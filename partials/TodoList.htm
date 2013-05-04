@@ -1,3 +1,3 @@
 <ul>
-	<li ng-repeat="todo in todos"><a href="#/edit/{{todo.ID}}">{{todo.Title}}</a> - {{todo.DueDate}}</li>
+	<li ng-repeat="todo in todos"><span ng-show="todo.Complete">X</span><a href="#/edit/{{todo.ID}}">{{todo.Title}}</a> - {{todo.DueDate}}</li>
 </ul>
