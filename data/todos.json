@@ -3,9 +3,9 @@
 		"ID": 1,
 		"Title": "test",
 		"Description": "description",
-		"Requirement": [],
+		"RequirementsMet": true,
 		"DueDate": "none",
-		"Complete": "true"
+		"Complete": true
 	},
 	{
 		"ID": 2,
@@ -13,6 +13,6 @@
 		"Description": "description 2",
 		"RequirementsMet": "false",
 		"DueDate": "none",
-		"Complete": "false"
+		"Complete": false
 	}
 ]

@@ -1,3 +1,7 @@
 <ul>
-	<li ng-repeat="todo in todos"><span ng-show="todo.Complete">X</span><a href="#/edit/{{todo.ID}}">{{todo.Title}}</a> - {{todo.DueDate}}</li>
+	<li ng-repeat="todo in todos">
+		<input type="checkbox" ng-model="todo.Complete" ng-checked="todo.Complete"/>
+		<a ng-href="#/edit/{{todo.ID}}">{{todo.Title}}</a>
+		- {{todo.DueDate}}
+	</li>
 </ul>
