@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="ToDone">
 	<head>
 		<meta charset="utf-8">
 		<title>ToDone</title>
@@ -7,9 +7,6 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
 		<script src="js/core.js"></script>
 	</head>
-	<body ng-Controller="ListCtrl">
-		<ul>
-			<li ng-repeat="todo in todos">{{todo.Title}} - {{todo.DueDate}}</li>
-		</ul>
+	<body ng-view>
 	</body>
 </html>
