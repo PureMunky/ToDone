@@ -1,5 +1,28 @@
 <div>
-	Title: <input type="text" value="{{id}}"/>
-	Description: <textarea>{{id}}</textarea>
-	<a href="#/list">Cancel</a>
+	<table>
+		<tr>
+			<td>Title</td>
+			<td><input type="text" value="{{todo.Title}}"/></td>
+		</tr>
+		<tr>
+			<td colspan=2>Description</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<textarea>{{todo.Description}}</textarea>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<ul>
+					<li ng-repeat="todo in todo.Requirement">{{todo.ID}}</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<a href="#/list">Cancel</a>
+			</td>
+		</tr>
+	</table>
 </div>
