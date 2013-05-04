@@ -14,14 +14,23 @@
 		</tr>
 		<tr>
 			<td colspan=2>
+				Requirements:
 				<ul>
-					<li ng-repeat="todo in todo.Requirement">{{todo.ID}}</li>
+					<li ng-repeat="todo in todo.Requirements">{{todo.Title}}</li>
 				</ul>
 			</td>
 		</tr>
 		<tr>
 			<td colspan=2>
-				<a href="#/list">Cancel</a>
+				Lists:
+				<ul>
+					<li ng-repeat="list in todo.Lists">{{list.Title}}</li>
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td colspan=2>
+				<a href="#/list">Cancel</a> <a href="#/list">Save</a>
 			</td>
 		</tr>
 	</table>
