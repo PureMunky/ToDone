@@ -25,3 +25,11 @@ function TodoEditCtrl($scope, $http, $routeParams) {
 		$scope.todo = data;
 	});
 }
+
+/* Angular Modules */
+angular.module('task', [])
+  .directive('addTask', function() {
+    return {
+      templateUrl: 'partials/directives/addTask.htm'
+    }
+  });

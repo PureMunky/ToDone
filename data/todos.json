@@ -20,7 +20,7 @@
     "Title": "test 3",
     "Description": "description 3",
     "RequirementsMet": "false",
-    "DueDate": "none",
+    "DueDate": "tomorrow",
     "Complete": false
   },
   {
@@ -28,7 +28,7 @@
     "Title": "test 4",
     "Description": "description 4",
     "RequirementsMet": "false",
-    "DueDate": "none",
+    "DueDate": "9/1/2013",
     "Complete": false
   },
   {
