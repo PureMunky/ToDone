@@ -7,6 +7,12 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
 		<script src="js/core.js"></script>
 	</head>
-	<body ng-view>
+	<body>
+   <nav ng-controller="ToDone.Controllers.MainNavigation">
+     <ul>
+       <li ng-repeat="link in links"><a href="" ng-click="navigate('{{link.Link}}')">{{link.Name}}</a></li>
+     </ul>
+   </nav>
+   <div ng-view></div>
 	</body>
 </html>

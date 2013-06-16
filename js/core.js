@@ -1,11 +1,11 @@
 /* Constants */
-var API = {
-	TodoEdit: 'data/todo_single.json',
-	TodoList: 'data/todos.json',
-  CurrentList: 'data/todos.json'
-};
-
 var ToDone = {};
+
+ToDone.API = {
+	TodoEdit: function () { return 'data/todo_single.json'; },
+	TodoList: function () { return 'data/todos.json'; },
+  CurrentList: function () { return 'data/todos.json'; }
+};
 
 /* Angular App */
 ToDone.App = angular.module('ToDone', [])
@@ -22,22 +22,40 @@ ToDone.Controllers = (function() {
   var that = {};
   
   that.TodoList = function($scope, $http) {
-  	$http.get(API.TodoList).success(function(data) {
+  	$http.get(ToDone.API.TodoList()).success(function(data) {
   		$scope.todos = data;
   	});
   };
   
   that.CurrentList = function ($scope, $http) {
-    $http.get(API.CurrentList).success(function(data) {
+    $http.get(ToDone.API.CurrentList()).success(function(data) {
       $scope.todos = data;    
     });
   };
   
   that.TodoEdit = function ($scope, $http, $routeParams) {
-  	$http.get(API.TodoEdit).success(function(data) {
+  	$http.get(ToDone.API.TodoEdit()).success(function(data) {
   		$scope.todo = data;
   	});
-  }
+  };
+  
+  that.MainNavigation = function ($scope, $location) {
+    $scope.links = [
+      {
+        Name: 'Current',
+        Link: '/current'
+      },
+      {
+        Name: 'List',
+        Link: '/list'
+      }
+    ];
+    
+    $scope.navigate = function (to) {
+      alert('hey');
+      $location.url(to);
+    };
+  };
   
   return that;
 })();
