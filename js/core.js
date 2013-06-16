@@ -1,7 +1,8 @@
 /* Constants */
 var API = {
 	TodoEdit: 'data/todo_single.json',
-	TodoList: 'data/todos.json'
+	TodoList: 'data/todos.json',
+  CurrentList: 'data/todos.json'
 };
 
 var ToDone = {};
