@@ -34,9 +34,15 @@ ToDone.Controllers = (function() {
   };
   
   that.TodoEdit = function ($scope, $http, $routeParams) {
-  	$http.get(ToDone.API.TodoEdit()).success(function(data) {
+  	$http.get(ToDone.API.TodoEdit() + $routeParams.TodoID).success(function(data) {
   		$scope.todo = data;
   	});
+   
+    $scope.save = function () {
+      $http.put(ToDone.API.TodoEdit() + $routeParams.TodoID, $scope.todo).success(function(data) {
+        $scope.todo = data;
+      });
+    };
   };
   
   that.MainNavigation = function ($scope, $location) {
