@@ -2,9 +2,9 @@
 var ToDone = {};
 
 ToDone.API = {
-	TodoEdit: function () { return 'data/todo_single.json'; },
-	TodoList: function () { return 'data/todos.json'; },
-  CurrentList: function () { return 'data/todos.json'; }
+	TodoEdit: function () { return '/API/ToDone/TaskService.svc/'; },
+	TodoList: function () { return '/API/ToDone/TaskService.svc/list'; },
+  CurrentList: function () { return '/API/ToDone/TaskService.svc/current'; }
 };
 
 /* Angular App */
