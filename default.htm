@@ -10,7 +10,7 @@
 	<body>
    <nav ng-controller="ToDone.Controllers.MainNavigation">
      <ul>
-       <li ng-repeat="link in links"><a href="" ng-click="navigate('{{link.Link}}')">{{link.Name}}</a></li>
+       <li ng-repeat="link in links"><a ng-href="{{link.Link}}">{{link.Name}}</a></li>
      </ul>
    </nav>
    <div ng-view></div>

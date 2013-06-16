@@ -43,18 +43,13 @@ ToDone.Controllers = (function() {
     $scope.links = [
       {
         Name: 'Current',
-        Link: '/current'
+        Link: '#/current'
       },
       {
         Name: 'List',
-        Link: '/list'
+        Link: '#/list'
       }
     ];
-    
-    $scope.navigate = function (to) {
-      alert('hey');
-      $location.url(to);
-    };
   };
   
   return that;
