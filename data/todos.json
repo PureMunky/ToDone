@@ -5,7 +5,8 @@
     "Description": "description",
     "RequirementsMet": true,
     "DueDate": "none",
-    "Complete": true
+    "Complete": true,
+    "fullText": "Need to complete x so that you can y..."
   },
   {
     "ID": 2,
