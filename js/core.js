@@ -27,7 +27,9 @@ ToDone.Controllers = (function() {
   };
   
   that.CurrentList = function ($scope, $http) {
-    $http.get(API.CurrentList)
+    $http.get(API.CurrentList).success(function(data) {
+      $scope.todos = data;    
+    });
   };
   
   that.TodoEdit = function ($scope, $http, $routeParams) {
