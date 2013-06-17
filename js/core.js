@@ -13,6 +13,7 @@ ToDone.App = angular.module('ToDone', [])
 		$routeProvider
 			.when('/list', {templateUrl: 'partials/TodoList.htm', controller: ToDone.Controllers.TodoList})
 			.when('/edit/:TodoID', {templateUrl: 'partials/TodoEdit.htm', controller: ToDone.Controllers.TodoEdit})
+      .when('/create', {templateUrl: 'partials/TodoEdit.htm', controller: ToDone.Controllers.TodoEdit})
       .when('/current', {templateUrl: 'partials/CurrentList.htm', controller: ToDone.Controllers.CurrentList})
 			.otherwise({redirectTo: '/current'});
 	}]);
@@ -34,12 +35,18 @@ ToDone.Controllers = (function() {
   };
   
   that.TodoEdit = function ($scope, $http, $routeParams) {
-  	$http.get(ToDone.API.TodoEdit() + $routeParams.TodoID).success(function(data) {
-  		$scope.todo = data;
-  	});
+  
+    if($routeParams.TodoID && $routeParams.TodoID != -1) {
+      $http.get(ToDone.API.TodoEdit() + $routeParams.TodoID).success(function(data) {
+        $scope.todo = data;
+       });   
+    } else {
+      $scope.todo.TaskID = -1;
+    }
+  	
    
     $scope.save = function () {
-      $http.put(ToDone.API.TodoEdit() + $routeParams.TodoID, $scope.todo).success(function(data) {
+      $http.put(ToDone.API.TodoEdit() + $scope.todo.TaskID, $scope.todo).success(function(data) {
         $scope.todo = data;
       });
     };
