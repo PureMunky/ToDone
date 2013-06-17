@@ -66,16 +66,15 @@ ToDone.Controllers = (function() {
     ];
   };
   
-  that.QuickAdd = function ($scope, $http) {
-    $scope.rawTask = {};
+  that.QuickAdd = function ($scope, $http, $route) {
     $http.get(ToDone.API.TodoEdit() + '-1').success(function(data) {
       $scope.todo = data;
-      $scope.rawTask = data;
     });
     
     $scope.save = function () {
       $http.put(ToDone.API.TodoEdit() + '-1', $scope.todo).success(function(data) {
-        $scope.todo = $scope.rawTask;
+        $scope.todo.Title = '';
+        $route.reload();
       });
     };
   };
