@@ -61,6 +61,10 @@ ToDone.Controllers = (function() {
       {
         Name: 'List',
         Link: '#/list'
+      },
+      {
+        Name: 'New',
+        Link: '#/create'
       }
     ];
   };
