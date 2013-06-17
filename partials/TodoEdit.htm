@@ -1,18 +1,17 @@
 <div>
 	<table>
 		<tr>
-			<td>Title</td>
-			<td><input type="text" ng-model="todo.Title"/></td>
-		</tr>
-		<tr>
-			<td colspan=2>Description</td>
+			<td colspan="2">
+       <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed"/>
+       <input type="text" ng-model="todo.Title"/>
+      </td>
 		</tr>
 		<tr>
 			<td colspan=2>
 				<textarea ng-model="todo.Description"></textarea>
 			</td>
 		</tr>
-		<tr>
+		<tr ng-show="todo.Requirements.length > 0">
 			<td colspan=2>
 				Requirements:
 				<ul>
@@ -20,7 +19,7 @@
 				</ul>
 			</td>
 		</tr>
-		<tr>
+		<tr ng-show="todo.Lists.length > 0">
 			<td colspan=2>
 				Lists:
 				<ul>
