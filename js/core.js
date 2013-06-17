@@ -35,18 +35,14 @@ ToDone.Controllers = (function() {
   };
   
   that.TodoEdit = function ($scope, $http, $routeParams) {
-  
-    if($routeParams.TodoID && $routeParams.TodoID != -1) {
-      $http.get(ToDone.API.TodoEdit() + $routeParams.TodoID).success(function(data) {
-        $scope.todo = data;
-       });   
-    } else {
-      $scope.todo.TaskID = -1;
-    }
-  	
+    var TaskID = $routeParams.TodoID || -1;
+
+    $http.get(ToDone.API.TodoEdit() + TaskID).success(function(data) {
+      $scope.todo = data;
+     });   
    
     $scope.save = function () {
-      $http.put(ToDone.API.TodoEdit() + $scope.todo.TaskID, $scope.todo).success(function(data) {
+      $http.put(ToDone.API.TodoEdit() + TaskID, $scope.todo).success(function(data) {
         $scope.todo = data;
       });
     };
