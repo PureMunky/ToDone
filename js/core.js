@@ -75,7 +75,7 @@ ToDone.Controllers = (function() {
     
     $scope.save = function () {
       $http.put(ToDone.API.TodoEdit() + '-1', $scope.todo).success(function(data) {
-        $scope.todo = rawwTask;
+        $scope.todo = rawTask;
       });
     };
   };
