@@ -34,16 +34,17 @@ ToDone.Controllers = (function() {
     });
   };
   
-  that.TodoEdit = function ($scope, $http, $routeParams) {
+  that.TodoEdit = function ($scope, $http, $routeParams, $location) {
     var TaskID = $routeParams.TodoID || -1;
 
     $http.get(ToDone.API.TodoEdit() + TaskID).success(function(data) {
       $scope.todo = data;
-     });   
+     });
    
     $scope.save = function () {
       $http.put(ToDone.API.TodoEdit() + TaskID, $scope.todo).success(function(data) {
         $scope.todo = data;
+        $location.path('/list');
       });
     };
   };
