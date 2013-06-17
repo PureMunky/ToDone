@@ -1,0 +1,15 @@
+nav li {
+    display: inline-block;
+    list-style-type: none;
+    padding-right: 5px;
+}
+
+li {
+    list-style-type: none;
+        
+}
+
+.QuickAdd {
+    position: fixed;
+    bottom:  5px;
+}
