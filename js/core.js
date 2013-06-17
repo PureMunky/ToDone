@@ -66,6 +66,19 @@ ToDone.Controllers = (function() {
     ];
   };
   
+  that.QuickAdd = function ($scope, $http) {
+    var rawTask;
+    $http.get(ToDone.API.TodoEdit() + '-1').success(function(data) {
+      $scope.todo = data;
+      rawTask = data;
+    });
+    
+    $scope.save = function () {
+      $http.put(ToDone.API.TodoEdit() + '-1', $scope.todo).success(function(data) {
+        $scope.todo = rawwTask;
+      });
+    };
+  };
   return that;
 })();
 

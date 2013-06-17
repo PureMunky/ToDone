@@ -16,5 +16,8 @@
      </ul>
    </nav>
    <div ng-view></div>
+   <div ng-controller="ToDone.Controllers.QuickAdd">
+     <input type="text" ng-model="todo.Title"/><a href="" ng-click="save()">Save</a>
+   </div>
 	</body>
 </html>
