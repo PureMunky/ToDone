@@ -4,7 +4,8 @@ var ToDone = {};
 ToDone.API = {
 	TodoEdit: function () { return '/API/ToDone/TaskService.svc/'; },
 	TodoList: function () { return '/API/ToDone/TaskService.svc/list'; },
-  CurrentList: function () { return '/API/ToDone/TaskService.svc/current'; }
+  CurrentList: function () { return '/API/ToDone/TaskService.svc/current'
+; }
 };
 
 /* Angular App */
@@ -15,7 +16,7 @@ ToDone.App = angular.module('ToDone', [])
 			.when('/edit/:TodoID', {templateUrl: 'partials/TodoEdit.htm', controller: ToDone.Controllers.TodoEdit})
       .when('/create', {templateUrl: 'partials/TodoEdit.htm', controller: ToDone.Controllers.TodoEdit})
       .when('/current', {templateUrl: 'partials/CurrentList.htm', controller: ToDone.Controllers.CurrentList})
-			.otherwise({redirectTo: '/current'});
+			.otherwise({redirectTo: '/list'});
 	}]);
 
 /* Angular Controllers */
