@@ -12,7 +12,7 @@ ToDone.API = {
         return '/API/ToDone/TaskService.svc/current';
     },
     Lists: function () {
-        return: 'data/lists.json';
+        return 'data/lists.json';
     }
 };
 
