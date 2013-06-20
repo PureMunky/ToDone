@@ -10,6 +10,9 @@ ToDone.API = {
     },
     CurrentList: function () {
         return '/API/ToDone/TaskService.svc/current';
+    },
+    Lists: function () {
+        return: 'data/lists.json';
     }
 };
 
@@ -40,6 +43,10 @@ ToDone.Controllers = (function () {
         $http.get(ToDone.API.TodoList()).success(function (data) {
             $scope.todos = data;
         });
+        
+        $http.get(ToDone.API.Lists()).success(function (data) {
+            $scope.lists = data;
+        });
     };
 
     that.CurrentList = function ($scope, $http) {
@@ -63,7 +70,7 @@ ToDone.Controllers = (function () {
         };
     };
 
-    that.MainNavigation = function ($scope, $location) {
+    that.MainNavigation = function ($scope) {
         $scope.links = [{
             Name: 'Current',
             Link: '#/current'
@@ -82,7 +89,7 @@ ToDone.Controllers = (function () {
         });
         
         $scope.save = function () {
-            $http.put(ToDone.API.TodoEdit() + '-1', $scope.todo).success(function (data) {
+            $http.put(ToDone.API.TodoEdit() + '-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $route.reload();
             });
@@ -96,7 +103,7 @@ angular.module('task', []).directive('addTask', function () {
     return {
         templateUrl: 'partials/directives/addTask.htm',
         compile: function compile(tElement, tAttrs) {
-            return function postLink(scope, iElement, iAttrs) {}
+            return function postLink(scope, iElement, iAttrs) {};
         }
     }
 });
