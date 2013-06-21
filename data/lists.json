@@ -1,11 +1,11 @@
 [
     {
-        title: 'Movies',
+        "title": "Movies"
     },
     {
-        title: 'ToDone'
+        "title": "ToDone"
     },
     {
-        title: 'Stuff'
+        "title": "Stuff"
     }
 ]

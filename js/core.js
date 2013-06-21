@@ -39,13 +39,14 @@ ToDone.App = angular.module('ToDone', []).config(['$routeProvider', function ($r
 ToDone.Controllers = (function () {
     var that = {};
 
-    that.TodoList = function ($scope, $http) {
+    that.TodoList = function ($scope, $http, $log) {
         $http.get(ToDone.API.TodoList()).success(function (data) {
             $scope.todos = data;
         });
         
         $http.get(ToDone.API.Lists()).success(function (data) {
             $scope.lists = data;
+            $log.log(data);
         });
     };
 
