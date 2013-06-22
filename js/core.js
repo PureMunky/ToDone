@@ -13,6 +13,9 @@ ToDone.API = {
     },
     Lists: function () {
         return 'data/lists.json';
+    },
+    Contexts: function () {
+        return 'data/contexts.json';
     }
 };
 
@@ -39,14 +42,22 @@ ToDone.App = angular.module('ToDone', []).config(['$routeProvider', function ($r
 ToDone.Controllers = (function () {
     var that = {};
 
-    that.TodoList = function ($scope, $http, $log) {
+    that.TodoList = function ($scope, $http) {
+        $scope.SelectedContext = 'Home';
+        $scope.setContext = function (newContext) {
+            $scope.SelectedContext = newContext;
+        };
+        
         $http.get(ToDone.API.TodoList()).success(function (data) {
             $scope.todos = data;
         });
         
         $http.get(ToDone.API.Lists()).success(function (data) {
             $scope.lists = data;
-            $log.log(data);
+        });
+        
+        $http.get(ToDone.API.Contexts()).success(function (data) {
+            $scope.contexts = data;
         });
     };
 

@@ -1,5 +1,8 @@
 <div class="well">
     <ul>
+        <ul class="nav nav-pills">
+            <li ng-repeat="context in contexts" ng-class="{'active': context.Title == SelectedContext}"><a href ng-click="setContext(context.Title)">{{context.Title}}</a></li>
+        </ul>
         <select>
             <option ng-repeat="list in lists">{{list.title}}</option>
         </select>
