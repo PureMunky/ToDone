@@ -80,6 +80,10 @@ ToDone.Controllers = (function () {
                 $location.path('/list');
             });
         };
+        
+        $scope.cancel = function () {
+            $location.path('/list');
+        }
     };
 
     that.MainNavigation = function ($scope) {
