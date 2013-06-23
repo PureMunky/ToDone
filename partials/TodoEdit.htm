@@ -13,10 +13,7 @@
 		</tr>
 		<tr ng-show="tags.length > 0">
 			<td colspan=2>
-				Tags:
-				<ul class="nav nav-pills">
-					<li ng-repeat="tag in tags">{{tag.Title}}</li>
-				</ul>
+				Tags: <span ng-repeat="tag in tags" class="label">{{tag.Title}}</span>
 			</td>
 		</tr>
         <tr ng-show="todo.Requirements.length > 0">
