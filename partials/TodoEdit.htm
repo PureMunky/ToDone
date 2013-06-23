@@ -11,9 +11,9 @@
 				<textarea ng-model="todo.Description"></textarea>
 			</td>
 		</tr>
-		<tr ng-show="tags.length > 0">
+		<tr>
 			<td colspan=2>
-				Tags: <span ng-repeat="tag in tags" class="label">{{tag.Title}}</span>
+				Tags: <i class="icon-plus-sign"></i> <span ng-repeat="tag in tags" class="label">{{tag.Title}} <i class="icon-remove"></i></span>
 			</td>
 		</tr>
         <tr ng-show="todo.Requirements.length > 0">
