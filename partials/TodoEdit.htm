@@ -2,16 +2,24 @@
 	<table>
 		<tr>
 			<td colspan="2">
-       <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed"/>
-       <input type="text" ng-model="todo.Title"/>
-      </td>
+                <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed"/>
+                <input type="text" ng-model="todo.Title"/>
+            </td>
 		</tr>
 		<tr>
 			<td colspan=2>
 				<textarea ng-model="todo.Description"></textarea>
 			</td>
 		</tr>
-		<tr ng-show="todo.Requirements.length > 0">
+		<tr ng-show="tags.length > 0">
+			<td colspan=2>
+				Tags:
+				<ul class="nav nav-ills">
+					<li ng-repeat="tag in tags">{{tag.Title}}</li>
+				</ul>
+			</td>
+		</tr>
+        <tr ng-show="todo.Requirements.length > 0">
 			<td colspan=2>
 				Requirements:
 				<ul>

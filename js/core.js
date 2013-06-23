@@ -16,6 +16,9 @@ ToDone.API = {
     },
     Contexts: function () {
         return 'data/contexts.json';
+    },
+    Tags: function () {
+        return '/API/ToDone/TagService.svc/';
     }
 };
 
@@ -72,6 +75,10 @@ ToDone.Controllers = (function () {
 
         $http.get(ToDone.API.TodoEdit() + TaskID).success(function (data) {
             $scope.todo = data;
+        });
+
+        $http.get(ToDone.API.Tags() + 'task/' + TaskID).success(function (data) {
+            $scope.tags = data;
         });
 
         $scope.save = function () {
