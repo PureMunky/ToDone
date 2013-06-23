@@ -2,8 +2,10 @@
 	<table>
 		<tr>
 			<td colspan="2">
-                <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed"/>
-                <input type="text" ng-model="todo.Title"/>
+                <div class="input-prepend">
+                    <span class="add-on"><input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed"/></span>
+                    <input type="text" ng-model="todo.Title"/>
+                </div>
             </td>
 		</tr>
 		<tr>
@@ -13,7 +15,12 @@
 		</tr>
 		<tr>
 			<td colspan=2>
-				Tags: <i class="icon-plus-sign"></i> <span ng-repeat="tag in tags" class="label">{{tag.Title}} <i class="icon-remove"></i></span>
+				Tags:<br />
+                <div class="input-prepend">
+                    <span class="add-on"><i class="icon-plus-sign"></i></span>
+                    <input type="text" />
+                </div>
+                <span ng-repeat="tag in tags" class="label">{{tag.Title}} <i class="icon-remove"></i></span>
 			</td>
 		</tr>
         <tr ng-show="todo.Requirements.length > 0">
