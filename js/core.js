@@ -62,6 +62,10 @@ ToDone.Controllers = (function () {
         $http.get(ToDone.API.Contexts()).success(function (data) {
             $scope.contexts = data;
         });
+
+        $http.get(ToDone.API.Tags()).success(function (data) {
+            $scope.tags = data;
+        });
     };
 
     that.CurrentList = function ($scope, $http) {

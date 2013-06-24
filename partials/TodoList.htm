@@ -1,10 +1,10 @@
 <div class="well">
     <ul>
-        <ul class="nav nav-pills">
+        <!--<ul class="nav nav-pills">
             <li ng-repeat="context in contexts" ng-class="{'active': context.Title == SelectedContext}"><a href ng-click="setContext(context.Title)">{{context.Title}}</a></li>
-        </ul>
+        </ul>-->
         <select>
-            <option ng-repeat="list in lists">{{list.title}}</option>
+            <option ng-repeat="tag in tags">{{list.title}}</option>
         </select>
         <li ng-repeat="todo in todos">
             <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed" disabled="true" />
