@@ -3,8 +3,9 @@
         <!--<ul class="nav nav-pills">
             <li ng-repeat="context in contexts" ng-class="{'active': context.Title == SelectedContext}"><a href ng-click="setContext(context.Title)">{{context.Title}}</a></li>
         </ul>-->
-        <select>
-            <option ng-repeat="tag in tags">{{tag.Title}}</option>
+        <select
+            ng-model="Form.SelectedTag"
+            ng-options="tag.Title for tag in tags">
         </select>
         <li ng-repeat="todo in todos">
             <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed" disabled="true" />

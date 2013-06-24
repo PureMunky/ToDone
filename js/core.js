@@ -2,14 +2,8 @@
 var ToDone = {};
 
 ToDone.API = {
-    TodoEdit: function () {
+    Todo: function () {
         return '/API/ToDone/TaskService.svc/';
-    },
-    TodoList: function () {
-        return '/API/ToDone/TaskService.svc/list';
-    },
-    CurrentList: function () {
-        return '/API/ToDone/TaskService.svc/current';
     },
     Lists: function () {
         return 'data/lists.json';
@@ -47,11 +41,15 @@ ToDone.Controllers = (function () {
 
     that.TodoList = function ($scope, $http) {
         $scope.SelectedContext = 'Home';
+        $scope.Form = {
+            SelectedTag: {}
+        };
+
         $scope.setContext = function (newContext) {
             $scope.SelectedContext = newContext;
         };
         
-        $http.get(ToDone.API.TodoList()).success(function (data) {
+        $http.get(ToDone.API.Todo() + '/tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
             $scope.todos = data;
         });
         
@@ -69,7 +67,7 @@ ToDone.Controllers = (function () {
     };
 
     that.CurrentList = function ($scope, $http) {
-        $http.get(ToDone.API.CurrentList()).success(function (data) {
+        $http.get(ToDone.API.Todo() + '/current').success(function (data) {
             $scope.todos = data;
         });
     };
@@ -81,7 +79,7 @@ ToDone.Controllers = (function () {
             CurrentTagText: ''
         };
 
-        $http.get(ToDone.API.TodoEdit() + TaskID).success(function (data) {
+        $http.get(ToDone.API.Todo() + '/' + TaskID).success(function (data) {
             $scope.todo = data;
         });
 
@@ -100,7 +98,7 @@ ToDone.Controllers = (function () {
         }
 
         $scope.save = function () {
-            $http.put(ToDone.API.TodoEdit() + TaskID, $scope.todo).success(function (data) {
+            $http.put(ToDone.API.Todo() + '/' + TaskID, $scope.todo).success(function (data) {
                 $scope.todo = data;
                 $location.path('/list');
             });
@@ -125,12 +123,12 @@ ToDone.Controllers = (function () {
     };
 
     that.QuickAdd = function ($scope, $http, $route) {
-        $http.get(ToDone.API.TodoEdit() + '-1').success(function (data) {
+        $http.get(ToDone.API.Todo() + '/-1').success(function (data) {
             $scope.todo = data;
         });
         
         $scope.save = function () {
-            $http.put(ToDone.API.TodoEdit() + '-1', $scope.todo).success(function () {
+            $http.put(ToDone.API.Todo() + '/-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $route.reload();
             });
