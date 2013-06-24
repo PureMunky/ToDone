@@ -90,6 +90,8 @@ ToDone.Controllers = (function () {
                 $http.put(ToDone.API.Tags() + 'task/' + TaskID, [{ TagID: -1, Title: $scope.Form.CurrentTagText }]).success(function (data) {
                     $scope.tags = data;
                 });
+
+                $scope.Form.CurrentTagText = '';
             }
         }
 
