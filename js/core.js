@@ -73,7 +73,9 @@ ToDone.Controllers = (function () {
     that.TodoEdit = function ($scope, $http, $routeParams, $location) {
         var TaskID = $routeParams.TodoID || -1;
 
-        $scope.Form.CurrentTagText = '';
+        $scope.Form = {
+            CurrentTagText: ''
+        };
 
         $http.get(ToDone.API.TodoEdit() + TaskID).success(function (data) {
             $scope.todo = data;
