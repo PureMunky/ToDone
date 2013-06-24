@@ -49,10 +49,16 @@ ToDone.Controllers = (function () {
             $scope.SelectedContext = newContext;
         };
         
-        $http.get(ToDone.API.Todo() + '/tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
+        $scope.FilterTag = function () {
+            $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
+                $scope.todos = data;
+            });
+        };
+
+        $http.get(ToDone.API.Todo() + 'list' + $scope.Form.SelectedTag.TagID).success(function (data) {
             $scope.todos = data;
         });
-        
+
         $http.get(ToDone.API.Lists()).success(function (data) {
             $scope.lists = data;
         });
@@ -67,7 +73,7 @@ ToDone.Controllers = (function () {
     };
 
     that.CurrentList = function ($scope, $http) {
-        $http.get(ToDone.API.Todo() + '/current').success(function (data) {
+        $http.get(ToDone.API.Todo() + 'current').success(function (data) {
             $scope.todos = data;
         });
     };
