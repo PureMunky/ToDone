@@ -55,7 +55,7 @@ ToDone.Controllers = (function () {
             });
         };
 
-        $http.get(ToDone.API.Todo() + 'list' + $scope.Form.SelectedTag.TagID).success(function (data) {
+        $http.get(ToDone.API.Todo() + 'list').success(function (data) {
             $scope.todos = data;
         });
 

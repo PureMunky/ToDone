@@ -3,10 +3,13 @@
         <!--<ul class="nav nav-pills">
             <li ng-repeat="context in contexts" ng-class="{'active': context.Title == SelectedContext}"><a href ng-click="setContext(context.Title)">{{context.Title}}</a></li>
         </ul>-->
-        <select
-            ng-model="Form.SelectedTag"
-            ng-options="tag.Title for tag in tags">
-        </select>
+        <div class="input-append">
+            <select
+                ng-model="Form.SelectedTag"
+                ng-options="tag.Title for tag in tags">
+            </select>
+            <button class="btn" ng-click="FilterTag()">Filter</button>
+        </div>
         <li ng-repeat="todo in todos">
             <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed" disabled="true" />
             <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a> - {{todo.DueDate}}
