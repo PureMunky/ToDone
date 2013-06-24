@@ -73,6 +73,8 @@ ToDone.Controllers = (function () {
     that.TodoEdit = function ($scope, $http, $routeParams, $location) {
         var TaskID = $routeParams.TodoID || -1;
 
+        $scope.Form.CurrentTagText = '';
+
         $http.get(ToDone.API.TodoEdit() + TaskID).success(function (data) {
             $scope.todo = data;
         });
@@ -80,6 +82,14 @@ ToDone.Controllers = (function () {
         $http.get(ToDone.API.Tags() + 'task/' + TaskID).success(function (data) {
             $scope.tags = data;
         });
+
+        $scope.writeTag = function () {
+            if ($scope.Form.CurrentTagText) {
+                $http.put(ToDone.API.Tags() + 'task/' + TaskID, { TagID: -1, Title: $scope.Form.CurrentTagText }).success(function (data) {
+                    $scope.tags = data;
+                });
+            }
+        }
 
         $scope.save = function () {
             $http.put(ToDone.API.TodoEdit() + TaskID, $scope.todo).success(function (data) {
