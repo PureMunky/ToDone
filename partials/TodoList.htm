@@ -7,6 +7,7 @@
             <select
                 ng-model="Form.SelectedTag"
                 ng-options="tag.Title for tag in tags">
+                <option value="-1">-- All --</option>
             </select>
             <button class="btn" ng-click="FilterTag()">Filter</button>
         </div>

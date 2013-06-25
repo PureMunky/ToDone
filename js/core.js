@@ -71,7 +71,6 @@ ToDone.Controllers = (function () {
 
         $http.get(ToDone.API.Tags()).success(function (data) {
             $scope.tags = data;
-            $scope.tags.push({ TagID: -1, Title: '--All--' });
         });
 
         $scope.FilterTag();
