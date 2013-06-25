@@ -50,9 +50,15 @@ ToDone.Controllers = (function () {
         };
         
         $scope.FilterTag = function () {
-            $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
-                $scope.todos = data;
-            });
+            if ($scope.Form.SelectedTag.TagID == -1) {
+                $http.get(ToDone.API.Todo() + 'list').success(function (data) {
+                    $scope.todos = data;
+                });
+            } else {
+                $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
+                    $scope.todos = data;
+                });
+            }
         };
 
         $http.get(ToDone.API.Todo() + 'list').success(function (data) {
@@ -69,6 +75,7 @@ ToDone.Controllers = (function () {
 
         $http.get(ToDone.API.Tags()).success(function (data) {
             $scope.tags = data;
+            $scope.tags.push({ TagID: -1, Title: '--All--' });
         });
     };
 
