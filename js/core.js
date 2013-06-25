@@ -77,9 +77,15 @@ ToDone.Controllers = (function () {
         $http.get(ToDone.API.Tags()).success(function (data) {
             $scope.tags = data;
             $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
+            $scope.SelectedTag = $scope.FilterTag.TagOptions[0];
         });
 
-        $scope.FilterTag();
+        $scope.$watch(
+            "Form.SelectedTag",
+            function () {
+                $scope.FilterTag();
+            }
+        );
     };
 
     that.CurrentList = function ($scope, $http) {
