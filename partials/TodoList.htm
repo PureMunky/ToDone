@@ -6,8 +6,7 @@
         <div class="input-append">
             <select
                 ng-model="Form.SelectedTag"
-                ng-options="tag.Title for tag in tags">
-                <option value="-1">-- All --</option>
+                ng-options="tag.Title for tag in Form.TagOptions">
             </select>
             <button class="btn" ng-click="FilterTag()">Filter</button>
         </div>

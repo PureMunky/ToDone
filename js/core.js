@@ -42,7 +42,12 @@ ToDone.Controllers = (function () {
     that.TodoList = function ($scope, $http) {
         $scope.SelectedContext = 'Home';
         $scope.Form = {
-            SelectedTag: {}
+            SelectedTag: {},
+            StaticTags: [{
+                TagID: -1,
+                Title: '-- All --'
+            }],
+            TagOptions: []
         };
 
         $scope.setContext = function (newContext) {
@@ -71,6 +76,7 @@ ToDone.Controllers = (function () {
 
         $http.get(ToDone.API.Tags()).success(function (data) {
             $scope.tags = data;
+            $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
         });
 
         $scope.FilterTag();
