@@ -50,20 +50,16 @@ ToDone.Controllers = (function () {
         };
         
         $scope.FilterTag = function () {
-            if ($scope.Form.SelectedTag.TagID == -1) {
-                $http.get(ToDone.API.Todo() + 'list').success(function (data) {
+            if ($scope.Form.SelectedTag.TagID > 0) {
+                $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
                     $scope.todos = data;
                 });
             } else {
-                $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
+                $http.get(ToDone.API.Todo() + 'list').success(function (data) {
                     $scope.todos = data;
                 });
             }
         };
-
-        $http.get(ToDone.API.Todo() + 'list').success(function (data) {
-            $scope.todos = data;
-        });
 
         $http.get(ToDone.API.Lists()).success(function (data) {
             $scope.lists = data;
@@ -77,6 +73,8 @@ ToDone.Controllers = (function () {
             $scope.tags = data;
             $scope.tags.push({ TagID: -1, Title: '--All--' });
         });
+
+        $scope.FilterTag();
     };
 
     that.CurrentList = function ($scope, $http) {
