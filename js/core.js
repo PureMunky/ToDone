@@ -66,18 +66,18 @@ ToDone.Controllers = (function () {
             }
         };
 
-        $http.get(ToDone.API.Lists()).success(function (data) {
-            $scope.lists = data;
-        });
-        
-        $http.get(ToDone.API.Contexts()).success(function (data) {
-            $scope.contexts = data;
-        });
-
         $http.get(ToDone.API.Tags()).success(function (data) {
             $scope.tags = data;
             $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
             $scope.SelectedTag = $scope.FilterTag.TagOptions[0];
+        });
+
+        $http.get(ToDone.API.Lists()).success(function (data) {
+            $scope.lists = data;
+        });
+
+        $http.get(ToDone.API.Contexts()).success(function (data) {
+            $scope.contexts = data;
         });
 
         $scope.$watch(
