@@ -7,7 +7,7 @@
             ng-model="Form.SelectedTag"
             ng-options="tag.Title for tag in Form.TagOptions">
         </select>
-        <li ng-repeat="todo in todos">
+        <li ng-repeat="todo in todos" class="well">
             <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed" disabled="true" />
             <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
             <span ng-show="todo.DueDate">Due: {{todo.DueDate | jsonDate}}</span>
