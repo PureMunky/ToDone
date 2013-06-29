@@ -77,11 +77,11 @@ ToDone.Controllers = (function () {
             }
         }
 
-        $scope.removeTag = function () {
+        $scope.removeTag = function (tag) {
             if ($scope.Form.CurrentTagText) {
-                $scope.todo.Tags.push({ TagID: -1, Title: $scope.Form.CurrentTagText });
+                var index = $scope.todo.Tags.indexOf(tag);
 
-                $scope.Form.CurrentTagText = '';
+                $scope.todo.Tags.splice(index, 1);
             }
         }
 
