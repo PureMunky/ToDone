@@ -23,7 +23,7 @@
 				Tags: <span ng-repeat="tag in todo.Tags" class="label">{{tag.Title}} <i class="icon-remove" ng-click="removeTag(tag)"></i></span><br />
                 <div class="input-prepend input-append">
                     <input type="text" ng-model="Form.CurrentTagText" placeholder="Tag Name" />
-                    <button class="btn" ng-click="writeTag()">Write</button>
+                    <button class="btn" ng-click="writeTag()"><i class="icon icon-plus"></i></button>
                 </div>
 			</td>
 		</tr>
