@@ -77,6 +77,14 @@ ToDone.Controllers = (function () {
             }
         }
 
+        $scope.removeTag = function () {
+            if ($scope.Form.CurrentTagText) {
+                $scope.todo.Tags.push({ TagID: -1, Title: $scope.Form.CurrentTagText });
+
+                $scope.Form.CurrentTagText = '';
+            }
+        }
+
         $scope.save = function () {
             $http.put(ToDone.API.Todo() + '/' + TaskID, $scope.todo).success(function (data) {
                 $scope.todo = data;

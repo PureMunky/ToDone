@@ -33,7 +33,7 @@
                         <li ng-repeat="link in links"><a ng-href="{{link.Link}}">{{link.Name}}</a></li>
                     </ul>
                     <form ng-controller="ToDone.Controllers.QuickAdd" class="navbar-form pull-right">
-                        <input type="text" ng-model="todo.Title" placeholder="QuickAdd" />
+                        <input type="text" ng-model="todo.Title" ng-submit="save()" placeholder="QuickAdd" />
                         <button type="button" class="btn" ng-click="save()">Save</button>
                     </form>
                 </div>

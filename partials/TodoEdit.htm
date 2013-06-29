@@ -4,20 +4,20 @@
 			<td colspan="2">
                 <div class="input-prepend">
                     <span class="add-on"><input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed"/></span>
-                    <input type="text" ng-model="todo.Title" placeholder="Task Title"/>
+                    <input type="text" ng-model="todo.Title" ng-submit="save()" placeholder="Task Title"/>
                 </div>
             </td>
 		</tr>
 		<tr>
 			<td colspan=2>
-				<textarea ng-model="todo.Description" placeholder="Text Description..."></textarea>
+				<textarea ng-model="todo.Description" ng-submit="save()" placeholder="Text Description..."></textarea>
 			</td>
 		</tr>
 		<tr>
 			<td colspan=2>
 				Tags: <span ng-repeat="tag in todo.Tags" class="label">{{tag.Title}} <i class="icon-remove" ng-click="removeTag()"></i></span><br />
                 <div class="input-prepend input-append">
-                    <input type="text" ng-model="Form.CurrentTagText" placeholder="Tag Name" />
+                    <input type="text" ng-model="Form.CurrentTagText" ng-submit="writeTag()" placeholder="Tag Name" />
                     <button class="btn" ng-click="writeTag()">Write</button>
                 </div>
                 
