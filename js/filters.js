@@ -3,7 +3,7 @@
 
         // Exit if the value isn't defined
         if (angular.isUndefined(input)) {
-            return;
+            return '';
         }
 
         var date = new Date(parseInt(input.substr(6)));
