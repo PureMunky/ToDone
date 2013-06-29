@@ -32,7 +32,7 @@ ToDone.Controllers = (function () {
         $http.get(ToDone.API.Tags()).success(function (data) {
             $scope.tags = data;
             $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
-            $scope.Form.SelectedTag = $scope.FilterTag.TagOptions[0];
+            $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
         });
 
         $http.get(ToDone.API.Lists()).success(function (data) {
