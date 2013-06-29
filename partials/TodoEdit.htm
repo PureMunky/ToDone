@@ -8,6 +8,11 @@
                 </div>
             </td>
 		</tr>
+        <tr>
+            <td colspan="2">
+                Due: {{todo.DueDate | jsonDate}}
+            </td>
+        </tr>
 		<tr>
 			<td colspan=2>
 				<textarea ng-model="todo.Description" ng-submit="save()" placeholder="Text Description..."></textarea>
