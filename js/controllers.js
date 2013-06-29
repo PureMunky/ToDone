@@ -111,7 +111,12 @@ ToDone.Controllers = (function () {
         });
 
         $scope.save = function () {
+            if (!$scope.todo.Tags) {
+                $scope.todo.Tags = [];
+            }
+
             $scope.todo.Tags.push($rootScope.CurrentTag);
+
             $http.put(ToDone.API.Todo() + '/-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $scope.todo.Tags = [];
