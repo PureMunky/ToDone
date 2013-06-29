@@ -71,7 +71,7 @@ ToDone.Controllers = (function () {
 
         $scope.writeTag = function () {
             if ($scope.Form.CurrentTagText) {
-                $scope.todo.Tags = $scope.todo.Tags | [];
+                $scope.todo.Tags = $scope.todo.Tags || [];
 
                 $scope.todo.Tags.push({ TagID: -1, Title: $scope.Form.CurrentTagText });
 
