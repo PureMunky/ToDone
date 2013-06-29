@@ -3,7 +3,7 @@
         ng-model="Form.SelectedTag"
         ng-options="tag.Title for tag in Form.TagOptions">
     </select>
-    <div ng-repeat="todo in todos" class="well well-small" ng-click="$location.path('/edit/{{todo.TaskID}}')">
+    <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
         <i class="icon-edit"></i>
         <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
         <span ng-show="todo.DueDate">Due: {{todo.DueDate | jsonDate}}</span><br />

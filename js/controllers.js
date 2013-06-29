@@ -2,7 +2,7 @@
 ToDone.Controllers = (function () {
     var that = {};
 
-    that.TodoList = function ($scope, $http, $rootScope) {
+    that.TodoList = function ($scope, $http, $rootScope, $location) {
         $scope.SelectedContext = 'Home';
         $scope.Form = {
             SelectedTag: {},
@@ -27,6 +27,10 @@ ToDone.Controllers = (function () {
                     $scope.todos = data;
                 });
             }
+        };
+
+        $scope.edit = function (taskID) {
+            $location.path('/edit/' + taskID);
         };
 
         $http.get(ToDone.API.Tags()).success(function (data) {
