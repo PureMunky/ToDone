@@ -69,7 +69,7 @@ ToDone.Controllers = (function () {
             CurrentTagText: ''
         };
 
-        $http.get(ToDone.API.Todo() + '/' + TaskID).success(function (data) {
+        $http.get(ToDone.API.Todo() + TaskID).success(function (data) {
             $scope.todo = data;
         });
 
@@ -90,7 +90,7 @@ ToDone.Controllers = (function () {
         }
 
         $scope.save = function () {
-            $http.put(ToDone.API.Todo() + '/' + TaskID, $scope.todo).success(function (data) {
+            $http.put(ToDone.API.Todo() + TaskID, $scope.todo).success(function (data) {
                 $scope.todo = data;
                 $location.path('/list');
             });
