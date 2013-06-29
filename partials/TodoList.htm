@@ -1,4 +1,4 @@
-<div class="well">
+<div>
     <ul>
         <!--<ul class="nav nav-pills">
             <li ng-repeat="context in contexts" ng-class="{'active': context.Title == SelectedContext}"><a href ng-click="setContext(context.Title)">{{context.Title}}</a></li>
@@ -7,11 +7,11 @@
             ng-model="Form.SelectedTag"
             ng-options="tag.Title for tag in Form.TagOptions">
         </select>
-        <li ng-repeat="todo in todos" class="well">
+        <div ng-repeat="todo in todos" class="well-small">
             <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed" disabled="true" />
             <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
             <span ng-show="todo.DueDate">Due: {{todo.DueDate | jsonDate}}</span>
             <span class="label" ng-repeat="tag in todo.Tags | filter: '!'+Form.SelectedTag.TagID">{{tag.Title}}</span>
-        </li>
+        </div>
     </ul>
 </div>
