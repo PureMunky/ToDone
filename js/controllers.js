@@ -80,11 +80,9 @@ ToDone.Controllers = (function () {
         }
 
         $scope.removeTag = function (tag) {
-            if ($scope.Form.CurrentTagText) {
-                var index = $scope.todo.Tags.indexOf(tag);
+            var index = $scope.todo.Tags.indexOf(tag);
 
-                $scope.todo.Tags.splice(index, 1);
-            }
+            $scope.todo.Tags.splice(index, 1);
         }
 
         $scope.save = function () {
