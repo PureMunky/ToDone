@@ -9,7 +9,8 @@
         </select>
         <li ng-repeat="todo in todos">
             <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed" disabled="true" />
-            <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a> - {{todo.DueDate}} - <span ng-repeat="tag in todo.Tags">{{tag.Title}}</span>
+            <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
+            <span class="label" ng-repeat="tag in todo.Tags">{{tag.Title}}</span>
         </li>
     </ul>
 </div>
