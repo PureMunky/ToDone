@@ -47,7 +47,11 @@ ToDone.Controllers = (function () {
             "Form.SelectedTag",
             function () {
                 $scope.FilterTag();
-                $rootScope.CurrentTag = $scope.Form.SelectedTag;
+                if ($scope.Form.SelectedTag.TagID > 0) {
+                    $rootScope.CurrentTag = $scope.Form.SelectedTag;
+                } else {
+                    $rootScope.CurrentTag = null;
+                }
             }
         );
     };
@@ -119,11 +123,13 @@ ToDone.Controllers = (function () {
         });
 
         $scope.save = function () {
-            if (!$scope.todo.Tags) {
-                $scope.todo.Tags = [];
-            }
+            if ($rootScope.CurrentTag) {
+                if (!$scope.todo.Tags) {
+                    $scope.todo.Tags = [];
+                }
 
-            $scope.todo.Tags.push($rootScope.CurrentTag);
+                $scope.todo.Tags.push($rootScope.CurrentTag);
+            }
 
             $http.put(ToDone.API.Todo() + '/-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
