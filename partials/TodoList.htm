@@ -10,7 +10,7 @@
         <li ng-repeat="todo in todos">
             <input type="checkbox" ng-model="todo.Completed" ng-checked="todo.Completed" disabled="true" />
             <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
-            <span class="label" ng-repeat="tag in todo.Tags | filter: '!'+Form.SelectedTag">{{tag.Title}}</span>
+            <span class="label" ng-repeat="tag in todo.Tags | filter: '!'+Form.SelectedTag.TagID">{{tag.Title}}</span>
         </li>
     </ul>
 </div>
