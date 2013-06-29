@@ -3,6 +3,10 @@
 
         // Exit if the value isn't defined
         if (angular.isUndefined(input)) {
+            return;
+        }
+
+        if (!input) {
             return '';
         }
 
