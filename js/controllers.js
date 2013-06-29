@@ -68,15 +68,9 @@ ToDone.Controllers = (function () {
             $scope.todo = data;
         });
 
-        $http.get(ToDone.API.Tags() + 'task/' + TaskID).success(function (data) {
-            $scope.tags = data;
-        });
-
         $scope.writeTag = function () {
             if ($scope.Form.CurrentTagText) {
-                $http.put(ToDone.API.Tags() + 'task/' + TaskID, [{ TagID: -1, Title: $scope.Form.CurrentTagText }]).success(function (data) {
-                    $scope.tags = data;
-                });
+                $scope.todo.Tags.push({ TagID: -1, Title: $scope.Form.CurrentTagText });
 
                 $scope.Form.CurrentTagText = '';
             }
