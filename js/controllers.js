@@ -2,7 +2,7 @@
 ToDone.Controllers = (function () {
     var that = {};
 
-    that.TodoList = function ($scope, $http) {
+    that.TodoList = function ($scope, $http, $rootScope) {
         $scope.SelectedContext = 'Home';
         $scope.Form = {
             SelectedTag: {},
@@ -47,6 +47,7 @@ ToDone.Controllers = (function () {
             "Form.SelectedTag",
             function () {
                 $scope.FilterTag();
+                $rootScope.CurrentTag = $scope.Form.SelectedTag;
             }
         );
     };
@@ -96,22 +97,28 @@ ToDone.Controllers = (function () {
             Name: 'List',
             Link: '#/list'
         }, {
+            Name: 'Recent',
+            Link: '#/recent'
+        }, {
             Name: 'New',
             Link: '#/create'
         }];
     };
 
-    that.QuickAdd = function ($scope, $http, $route) {
+    that.QuickAdd = function ($scope, $http, $route, $rootScope) {
         $http.get(ToDone.API.Todo() + '/-1').success(function (data) {
             $scope.todo = data;
         });
 
         $scope.save = function () {
+            $scope.todo.Tags.push($rootScope.CurrentTag);
             $http.put(ToDone.API.Todo() + '/-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
+                $scope.todo.Tags = [];
                 $route.reload();
             });
         };
     };
+
     return that;
 })();

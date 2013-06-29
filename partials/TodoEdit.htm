@@ -15,7 +15,7 @@
 		</tr>
 		<tr>
 			<td colspan=2>
-				Tags: <span ng-repeat="tag in todo.Tags" class="label">{{tag.Title}} <i class="icon-remove"></i></span><br />
+				Tags: <span ng-repeat="tag in todo.Tags" class="label">{{tag.Title}} <i class="icon-remove" ng-click="removeTag()"></i></span><br />
                 <div class="input-prepend input-append">
                     <input type="text" ng-model="Form.CurrentTagText" placeholder="Tag Name" />
                     <button class="btn" ng-click="writeTag()">Write</button>
