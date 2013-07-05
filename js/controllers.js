@@ -1,4 +1,4 @@
-﻿/* Angular Controllers */
+/* Angular Controllers */
 ToDone.Controllers = (function () {
     var that = {};
 
@@ -135,6 +135,13 @@ ToDone.Controllers = (function () {
                 $route.reload();
             });
         };
+        
+        $scope.$watch(
+            "$rootScope.CurrentTag",
+            function () {
+                $scope.todo.Tags[0] = $rootScope.CurrentTag;
+            }
+        );
     };
 
     return that;
