@@ -139,7 +139,9 @@ ToDone.Controllers = (function () {
         $scope.$watch(
             "$rootScope.CurrentTag",
             function () {
-                $scope.todo.Tags[0] = $rootScope.CurrentTag;
+                if($scope.todo.Tags && $rootScope.CurrentTag) {
+                    $scope.todo.Tags[0] = $rootScope.CurrentTag;
+                }
             }
         );
     };
