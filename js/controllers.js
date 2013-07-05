@@ -139,7 +139,7 @@ ToDone.Controllers = (function () {
         $scope.$watch(
             "$rootScope.CurrentTag",
             function () {
-                if($scope.todo.Tags && $rootScope.CurrentTag) {
+                if($scope.todo && $rootScope.CurrentTag) {
                     $scope.todo.Tags[0] = $rootScope.CurrentTag;
                 }
             }
