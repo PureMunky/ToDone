@@ -136,6 +136,7 @@ ToDone.Controllers = (function () {
             'CurrentTag',
             function (newValue) {
                 if($scope.todo) {
+                    console.log($scope.todo.Title);
                     $scope.todo.Tags[0] = newValue;
                 }
             });
