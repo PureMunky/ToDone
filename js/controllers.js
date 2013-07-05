@@ -124,15 +124,19 @@ ToDone.Controllers = (function () {
             $scope.todo = data;
         });
 
-        $scope.save = function () {
-            $scope.todo.Tags[0] = $rootScope.CurrentTag;
-            
+        $scope.save = function () {            
             $http.put(ToDone.API.Todo() + '/-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $scope.todo.Tags = [];
                 $route.reload();
             });
         };
+        
+        $rootScope.$watch(
+            'CurrentTag',
+            function (newValue) {
+                $scope.todo.Tags[0] = newValue;
+            });
     };
 
     return that;
