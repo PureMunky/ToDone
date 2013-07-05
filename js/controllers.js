@@ -140,6 +140,7 @@ ToDone.Controllers = (function () {
             "$rootScope.CurrentTag",
             function () {
                 if($scope.todo && $rootScope.CurrentTag) {
+                    alert($rootScope.CurrentTag.Title);
                     $scope.todo.Tags[0] = $rootScope.CurrentTag;
                 }
             }
