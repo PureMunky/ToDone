@@ -122,10 +122,11 @@ ToDone.Controllers = (function () {
     that.QuickAdd = function ($scope, $http, $route, $rootScope) {
         $http.get(ToDone.API.Todo() + '/-1').success(function (data) {
             $scope.todo = data;
-            $scope.todo.Tags[0] = $rootScope.CurrentTag;
         });
 
         $scope.save = function () {
+            $scope.todo.Tags[0] = $rootScope.CurrentTag;
+            
             $http.put(ToDone.API.Todo() + '/-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $scope.todo.Tags = [];
