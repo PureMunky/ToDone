@@ -1,11 +1,11 @@
 CACHE MANIFEST
-# 2013-07-06
+# 2013-07-06v1
 
 # Explicitly cached 'master entries'.
 CACHE:
 default.htm
 /js/*.js
-/partials/*
+/partials/*.htm
 
 # Resources that require the user to be online.
 NETWORK:
