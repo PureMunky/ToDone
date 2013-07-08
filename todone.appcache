@@ -10,6 +10,8 @@ css/core.css
 img/glyphicons-halflings-white.png
 img/glyphicons-halflings.png
 img/ToDone.png
+//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js
+//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js
 js/app.js
 js/bootstrap.min.js
 js/config.js
