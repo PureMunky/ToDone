@@ -4,8 +4,22 @@ CACHE MANIFEST
 # Explicitly cached 'master entries'.
 CACHE:
 default.htm
-js/*
-partials/*
+css/bootstrap-responsive.min.css
+css/bootstrap.min.css
+css/core.css
+img/glyphicons-halflings-white.png
+img/glyphicons-halflings.png
+img/ToDone.png
+js/app.js
+js/bootstrap.min.js
+js/config.js
+js/controllers.js
+js/directives.js
+js/filters.js
+js/services.js
+partials/CurrentList.htm
+partials/TodoEdit.htm
+partials/TodoList.htm
 
 # Resources that require the user to be online.
 NETWORK:
