@@ -4,7 +4,7 @@ CACHE MANIFEST
 # Explicitly cached 'master entries'.
 CACHE:
 default.htm
-js/*.js
+js/*
 partials/*
 
 # Resources that require the user to be online.
