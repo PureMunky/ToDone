@@ -1,36 +1,42 @@
 CACHE MANIFEST
 # 2013-07-08v1
 
-# Explicitly cached 'master entries'.
 CACHE:
+
+# App
 default.htm
+
+# CSS
 css/bootstrap-responsive.min.css
 css/bootstrap.min.css
 css/core.css
+
+# Images
 img/glyphicons-halflings-white.png
 img/glyphicons-halflings.png
 img/ToDone.png
+
+# CDN Resources
 //ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js
 //ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js
+
+# JavaScript
 js/app.js
 js/bootstrap.min.js
-js/config.js
+js/config_online.js
+js/config_offline.js
 js/controllers.js
 js/directives.js
 js/filters.js
 js/services.js
+
+# Angular Partials
 partials/CurrentList.htm
 partials/TodoEdit.htm
 partials/TodoList.htm
 
-# Resources that require the user to be online.
 NETWORK:
 /API
 
-# static.html will be served if main.py is inaccessible
-# offline.jpg will be served in place of all images in images/large/
-# offline.html will be served in place of all other .html files
 FALLBACK:
-# /main.py /static.html
-# images/large/ images/offline.jpg
-# *.html /offline.html
+js/config_online.js js/config_offline.js

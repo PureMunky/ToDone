@@ -2,6 +2,7 @@
 var ToDone = {};
 
 ToDone.API = {
+    Online: true,
     Todo: function () {
         return '/API/ToDone/TaskService.svc/';
     },
