@@ -4,6 +4,7 @@ CACHE MANIFEST
 CACHE:
 
 # App
+todone.appcache
 default.htm
 
 # CSS
@@ -23,7 +24,6 @@ img/ToDone.png
 # JavaScript
 js/app.js
 js/bootstrap.min.js
-js/config_online.js
 js/config_offline.js
 js/controllers.js
 js/directives.js
