@@ -40,7 +40,11 @@ ToDone.Controllers = (function () {
             if(!$rootScope.CurrentTag) {
                 $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
             } else {
-                console.log($scope.Form.TagOptions.indexOf($rootScope.CurrentTag));
+                for(var i = 0; i < $scope.Form.TagOptions.length(); i++) {
+                    if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag) {
+                        $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
+                    }
+                }
             }
         });
 
