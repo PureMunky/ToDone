@@ -7,7 +7,7 @@
         <i class="icon-edit"></i>
         <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
         <span ng-show="todo.DueDate">Due: {{todo.DueDate | jsonDate}}</span><br />
-        <span ng-show="todo.Description">Due: {{todo.Description}}</span><br />
+        <span ng-show="todo.Description">{{todo.Description}}</span><br />
         <span class="label" ng-repeat="tag in todo.Tags | filter: '!'+Form.SelectedTag.TagID">{{tag.Title}}</span>
     </div>
 </div>
