@@ -2,7 +2,7 @@
     <select
         ng-model="Form.SelectedTag"
         ng-options="tag.Title for tag in Form.TagOptions">
-    </select>
+    </select>{{ Form.SelectedTag.Title }}
     <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
         <i class="icon-edit"></i>
         <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
