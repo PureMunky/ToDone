@@ -92,6 +92,8 @@ ToDone.Controllers = (function () {
         }
 
         $scope.save = function () {
+            $scope.writeTag();
+            
             $http.put(ToDone.API.Todo() + TaskID, $scope.todo).success(function (data) {
                 $scope.todo = data;
                 $location.path('/list');
