@@ -25,6 +25,7 @@ ToDone.Controllers = (function () {
             } else {
                 $http.get(ToDone.API.Todo() + 'list').success(function (data) {
                     $scope.todos = data;
+                    localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
                 });
             }
         };
