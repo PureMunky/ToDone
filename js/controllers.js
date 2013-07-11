@@ -5,7 +5,7 @@ ToDone.Controllers = (function () {
     that.TodoList = function ($scope, $http, $rootScope, $location) {
         $scope.SelectedContext = 'Home';
         $scope.Form = {
-            SelectedTag: {},
+            SelectedTag: $rootScope.CurrentTag || {},
             StaticTags: [{
                 TagID: -1,
                 Title: '-- All --'
