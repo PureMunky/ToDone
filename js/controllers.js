@@ -23,10 +23,18 @@ ToDone.Controllers = (function () {
                     $scope.todos = data;
                 });
             } else {
-                $http.get(ToDone.API.Todo() + 'list').success(function (data) {
-                    $scope.todos = data;
-                    localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
-                });
+                if(ToDone.API.Online) {
+                    console.log('online tasks');
+                    
+                    $http.get(ToDone.API.Todo() + 'list').success(function (data) {
+                        $scope.todos = data;
+                        localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
+                    });
+                } else {
+                    console.log('offline tasks');
+                    
+                    $scope.todos = JSON.parse(localStorage.getItem('ToDone.Tasks'));
+                }
             }
         };
 
