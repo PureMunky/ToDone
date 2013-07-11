@@ -37,7 +37,11 @@ ToDone.Controllers = (function () {
             $scope.tags = data;
             $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
             
-            $scope.Form.SelectedTag = $scope.Form.TagOptions[$scope.Form.TagOptions.indexOf($rootScope.CurrentTag) || 0];
+            if(!$rootScope.CurrentTag) {
+                $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
+            } else {
+                console.log($scope.Form.TagOptions.indexOf($rootScope.CurrentTag));
+            }
         });
 
         $http.get(ToDone.API.Lists()).success(function (data) {
