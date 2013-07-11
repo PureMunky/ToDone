@@ -42,29 +42,38 @@ ToDone.Controllers = (function () {
             $location.path('/edit/' + taskID);
         };
 
-        $http.get(ToDone.API.Tags()).success(function (data) {
-            $scope.tags = data;
-            $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
-            
-            if(!$rootScope.CurrentTag) {
-                $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
-            } else {
-                for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
-                    if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag) {
-                        $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
+        if(ToDone.API.Online) {
+            $http.get(ToDone.API.Tags()).success(function (data) {
+                $scope.tags = data;
+                localStorage.setItem('ToDone.Tags', JSON.stringify(data));
+                $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
+                
+                if(!$rootScope.CurrentTag) {
+                    $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
+                } else {
+                    for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
+                        if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag) {
+                            $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
+                        }
                     }
                 }
-            }
-        });
-
-        $http.get(ToDone.API.Lists()).success(function (data) {
-            $scope.lists = data;
-        });
-
-        $http.get(ToDone.API.Contexts()).success(function (data) {
-            $scope.contexts = data;
-        });
-
+            });
+    
+            $http.get(ToDone.API.Lists()).success(function (data) {
+                $scope.lists = data;
+                localStorage.setItem('ToDone.Lists', JSON.stringify(data));
+            });
+    
+            $http.get(ToDone.API.Contexts()).success(function (data) {
+                $scope.contexts = data;
+                localStorage.setItem('ToDone.Contexts', JSON.stringify(data));
+            });
+        } else {
+            $scope.tags = JSON.parse(localStorage.getItem('ToDone.Tags'));
+            $scope.lists = JSON.parse(localStorage.getItem('ToDone.Lists'));
+            $scope.contexts = JSON.parse(localStorage.getItem('ToDone.Contexts'));
+        }
+        
         $scope.$watch(
             "Form.SelectedTag",
             function () {
