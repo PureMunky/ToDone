@@ -1,4 +1,4 @@
-﻿ToDone.App.filter('jsonDate', function () {
+ToDone.App.filter('jsonDate', function () {
     return function (input, format) {
 
         // Exit if the value isn't defined
@@ -21,4 +21,10 @@
             return date.toLocaleDateString();
         }
     }
+}).filter('linkify', function () {
+    return function (input) {
+        var exp = /(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+    
+        return input.replace(exp,"<a href='$1'>$1</a>"); 
+    };
 });
