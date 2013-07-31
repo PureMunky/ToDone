@@ -41,6 +41,10 @@
         </div>
     </div>
     <div ng-view class="container"></div>
+    <div ng-controller="Todone.Controllers.Build">
+        <span>Build: #{{BuildData.BuildNumber}}</span>
+        <span>Git Branch: {{BuildData.GitBranch}}</span>
+    </div>
     <script src="js/bootstrap.min.js"></script>
 </body>
 </html>

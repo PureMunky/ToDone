@@ -1,11 +1,12 @@
 CACHE MANIFEST
-# 2013-07-08v1
+# 2013-07-31v1
 
 CACHE:
 
 # App
 todone.appcache
 default.htm
+version.json
 
 # CSS
 css/bootstrap-responsive.min.css

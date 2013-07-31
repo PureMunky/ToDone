@@ -2,6 +2,12 @@
 ToDone.Controllers = (function () {
     var that = {};
 
+    that.Build = function ($scope, $http) {
+        $http.get(ToDone.API.Build()).success(function (data) {
+            $scope.BuildData = data;
+        });
+    };
+    
     that.TodoList = function ($scope, $http, $rootScope, $location) {
         $scope.SelectedContext = 'Home';
         $scope.Form = {

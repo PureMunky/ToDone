@@ -14,5 +14,8 @@ ToDone.API = {
     },
     Tags: function () {
         return '/API/ToDone/TagService.svc/';
+    },
+    Build: function () {
+        return 'version.json';
     }
 };
