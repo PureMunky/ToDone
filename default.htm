@@ -40,11 +40,11 @@
             </div>
         </div>
     </div>
-    <div ng-view class="container"></div>
-    <div ng-controller="ToDone.Controllers.Build">
+    <div ng-controller="ToDone.Controllers.Build" class="alert">
         <span>Build: #{{BuildData.BuildNumber}}</span>
         <span>Git Branch: {{BuildData.GitBranch}}</span>
     </div>
+    <div ng-view class="container"></div>
     <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
