@@ -22,7 +22,7 @@
 			<td colspan=2>
 				Tags: <span ng-repeat="tag in todo.Tags" class="label">{{tag.Title}} <i class="icon-remove" ng-click="removeTag(tag)"></i></span><br />
                 <div class="input-prepend input-append">
-                    <input type="text" auto-complete ui-items="tags" ng-model="Form.CurrentTagText" placeholder="Tag Name" />
+                    <input type="text" ng-model="Form.CurrentTagText" placeholder="Tag Name" />
                     <button class="btn" ng-click="writeTag()"><i class="icon-plus"></i></button>
                 </div>
 			</td>
