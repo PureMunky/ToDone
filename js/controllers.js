@@ -110,6 +110,11 @@ ToDone.Controllers = (function () {
             $scope.todo = data;
         });
 
+        $http.get(ToDone.API.Tags()).success(function (data) {
+            $scope.tags = data;
+            localStorage.setItem('ToDone.Tags', JSON.stringify(data));
+        });
+        
         $scope.writeTag = function () {
             if ($scope.Form.CurrentTagText) {
                 $scope.todo.Tags.push({ TagID: -1, Title: $scope.Form.CurrentTagText });
