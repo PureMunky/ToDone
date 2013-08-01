@@ -1,5 +1,5 @@
-﻿/* Angular App */
-ToDone.App = angular.module('ToDone', []).config(['$routeProvider', function ($routeProvider) {
+/* Angular App */
+ToDone.App = angular.module('ToDone', ['Auto']).config(['$routeProvider', function ($routeProvider) {
     $routeProvider.when('/list', {
         templateUrl: 'partials/TodoList.htm',
         controller: ToDone.Controllers.TodoList

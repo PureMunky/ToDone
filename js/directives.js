@@ -8,7 +8,7 @@ angular.module('task', []).directive('addTask', function () {
     }
 });
 
-angular.module('ToDone', []).directive('autoComplete', function($timeout) {
+angular.module('Auto', []).directive('autoComplete', function($timeout) {
     return function(scope, iElement, iAttrs) {
             iElement.autocomplete({
                 source: scope[iAttrs.uiItems],
