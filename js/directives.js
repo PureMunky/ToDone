@@ -14,7 +14,7 @@ ToDone.App.directive('repeatFormat', function () {
                 {ID: 'y', Title: 'Years'},
             ];
             
-            scope.active = (scope.repeatFormula.length > 0);
+            scope.active = (!!scope.repeatFormula || scope.repeatFormula.length > 0);
             
             var translateFormula = function () {
                 var formArray = scope.repeatFormula.split('|');
