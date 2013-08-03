@@ -17,9 +17,13 @@ ToDone.App.directive('repeatFormat', function () {
             scope.active = (!!scope.repeatFormula && scope.repeatFormula.length > 0);
             
             var translateFormula = function () {
-                var formArray = scope.repeatFormula.split('|');
-                                    
-                scope.repeatCount = formArray[0] || 1;
+                var formArray = [1, 'd'];
+                
+                if(scope.repeatFormula) {
+                    formArray = scope.repeatFormula.split('|');
+                }
+                
+                scope.repeatCount = formArray[0];
             
                 scope.repeatDuration = scope.repeatOptions[0];
                 for (var i = 0; i < scope.repeatOptions.length; i++) {
@@ -39,20 +43,23 @@ ToDone.App.directive('repeatFormat', function () {
             };
             
             scope.$watch('repeatFormula', function (oldVal, newVal) {
-                if(newVal) translateFormula();
+                translateFormula();
             });
             
             scope.$watch('repeatCount', function (oldVal, newVal) {
-                if(newVal) updateFormula();
+                updateFormula();
             });
             
             scope.$watch('repeatDuration', function (oldVal, newVal) {
-                if(newVal) updateFormula();
+                updateFormula();
             });
             
             scope.$watch('active', function (oldVal, newVal) {
-                if(newVal) updateFormula();
+                updateFormula();
             });
+            
+            translateFormula();
+            updateFormula();
         }
     };
 });
