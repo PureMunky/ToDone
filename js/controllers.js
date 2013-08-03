@@ -31,16 +31,12 @@ ToDone.Controllers = (function () {
                     $scope.todos = data;
                 });
             } else {
-                if(ToDone.API.Online) {
-                    console.log('online tasks');
-                    
+                if(ToDone.API.Online) {                    
                     $http.get(ToDone.API.Todo() + 'list').success(function (data) {
                         $scope.todos = data;
                         localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
                     });
                 } else {
-                    console.log('offline tasks');
-                    
                     $scope.todos = JSON.parse(localStorage.getItem('ToDone.Tasks'));
                 }
             }
@@ -178,7 +174,6 @@ ToDone.Controllers = (function () {
             'CurrentTag',
             function (newValue) {
                 if($scope.todo) {
-                    console.log($scope.todo.Title);
                     $scope.todo.Tags[0] = newValue;
                 }
             });
