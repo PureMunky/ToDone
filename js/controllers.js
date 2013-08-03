@@ -162,12 +162,12 @@ ToDone.Controllers = (function () {
     };
 
     that.QuickAdd = function ($scope, $http, $route, $rootScope) {
-        $http.get(ToDone.API.Todo() + '/-1').success(function (data) {
+        $http.get(ToDone.API.Todo() + '-1').success(function (data) {
             $scope.todo = data;
         });
 
         $scope.save = function () {            
-            $http.put(ToDone.API.Todo() + '/-1', $scope.todo).success(function () {
+            $http.put(ToDone.API.Todo() + '-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $scope.todo.Tags = [];
                 $route.reload();
