@@ -14,10 +14,10 @@ ToDone.App.directive('repeatFormat', function () {
                 {ID: 'y', Title: 'Years'},
             ];
             
-            scope.active = (!!scope.repeatFormula && scope.repeatFormula.length > 0);
-            
             var translateFormula = function () {
                 var formArray = [1, 'd'];
+                
+                scope.active = (!!scope.repeatFormula && scope.repeatFormula.length > 0);
                 
                 if(scope.repeatFormula) {
                     formArray = scope.repeatFormula.split('|');

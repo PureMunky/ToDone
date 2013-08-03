@@ -100,6 +100,10 @@ ToDone.Controllers = (function () {
     that.TodoEdit = function ($scope, $http, $routeParams, $location) {
         var TaskID = $routeParams.TodoID || -1;
 
+        $scope.todo = {
+            RepeatFormula: '2|d'
+        };
+
         $scope.Form = {
             CurrentTagText: ''
         };
