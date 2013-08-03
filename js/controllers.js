@@ -11,7 +11,7 @@ ToDone.Controllers = (function () {
     that.TodoList = function ($scope, $http, $rootScope, $location) {
         $scope.SelectedContext = 'Home';
         $scope.Form = {
-            SelectedTag: $rootScope.CurrentTag || {},
+            SelectedTag: $rootScope.CurrentTag || JSON.parse(localStorage.getItem('ToDone.SelectedTag')) || {},
             StaticTags: [{
                 TagID: -1,
                 Title: '-- All --'
@@ -25,6 +25,8 @@ ToDone.Controllers = (function () {
 
         $scope.FilterTag = function () {
             if ($scope.Form.SelectedTag.TagID > 0) {
+                localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
+                
                 $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
                     $scope.todos = data;
                 });
