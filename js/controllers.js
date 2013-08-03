@@ -58,7 +58,7 @@ ToDone.Controllers = (function () {
                     $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
                 } else {
                     for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
-                        if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag) {
+                        if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag.TagID) {
                             $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
                         }
                     }
