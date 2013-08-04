@@ -170,6 +170,7 @@ ToDone.Controllers = (function () {
             $http.put(ToDone.API.Todo() + '-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $scope.todo.Tags = [];
+                $scope.todo.RepeatFormula = '';
                 $route.reload();
             });
         };
