@@ -15,6 +15,10 @@ ToDone.Controllers = (function () {
             StaticTags: [{
                 TagID: -1,
                 Title: '-- All --'
+            },
+            {
+                TagID: -2,
+                Title: '-- Recent --'
             }],
             TagOptions: []
         };
@@ -31,8 +35,10 @@ ToDone.Controllers = (function () {
                     $scope.todos = data;
                 });
             } else {
+                var list = $scope.Form.SelectedTag.TagID == -2 ? 'recent/10' : 'list';
+                
                 if(ToDone.API.Online) {                    
-                    $http.get(ToDone.API.Todo() + 'list').success(function (data) {
+                    $http.get(ToDone.API.Todo() + list).success(function (data) {
                         $scope.todos = data;
                         localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
                     });
