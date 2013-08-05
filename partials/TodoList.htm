@@ -4,10 +4,11 @@
         ng-options="tag.Title for tag in Form.TagOptions">
     </select>
     <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
-        <i class="icon-edit"></i>
+        <i class="icon-edit" ng-hide="todo.Completed"></i>
+        <i class="icon-ok" ng-show="todo.Completed"></i>
         <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
         <div ng-show="todo.DueDate">Due: {{todo.DueDate | jsonDate}}</div>
         <pre ng-show="todo.Description" ng-bind-html-unsafe="todo.Description | linkify"></pre>
-        <span class="label" ng-repeat="tag in todo.Tags | filter: '!'+Form.SelectedTag.TagID">{{tag.Title}}</span>
+        <span class="label" ng-repeat="tag in todo.Tags | filter: '!'+Form.SelectedTag.TagID" style="margin-right: 4px;"><i class="icon-tag"></i>{{tag.Title}}</span>
     </div>
 </div>
