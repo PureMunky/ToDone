@@ -19,6 +19,10 @@ ToDone.Controllers = (function () {
             {
                 TagID: -2,
                 Title: '-- Recent --'
+            },
+            {
+                TagID: -3,
+                Title: '-- Due --'
             }],
             TagOptions: []
         };
@@ -35,7 +39,14 @@ ToDone.Controllers = (function () {
                     $scope.todos = data;
                 });
             } else {
-                var list = $scope.Form.SelectedTag.TagID == -2 ? 'recent/10' : 'list';
+                
+                var list = 'list';
+                
+                if($scope.Form.SelectedTag.TagID === -2) list = 'recent/10';
+                
+                if($scope.Form.SelectedTag.TagID === -3) list = 'due';
+                
+                
                 
                 if(ToDone.API.Online) {                    
                     $http.get(ToDone.API.Todo() + list).success(function (data) {
