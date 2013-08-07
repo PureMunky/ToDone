@@ -32,7 +32,7 @@ ToDone.Controllers = (function () {
             },
             {
                 Title: "Modified",
-                Sort: "last_modified"
+                Sort: "last_modified desc"
             }]
         };
 
