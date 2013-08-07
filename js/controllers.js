@@ -43,7 +43,7 @@ ToDone.Controllers = (function () {
         };
 
         $scope.FilterTag = function () {
-            if ($scope.Form.SelectedTag.TagID > 0) {
+            if ($scope.Form.SelectedTag.TagID > 0 && $scope.Form.SelectedSort.Sort) {
                 localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
                 
                 $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID + '/' + $scope.Form.SelectedSort.Sort).success(function (data) {
