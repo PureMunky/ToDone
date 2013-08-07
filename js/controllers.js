@@ -33,6 +33,14 @@ ToDone.Controllers = (function () {
             {
                 Title: "Due Date",
                 Sort: "due_date"
+            },
+            {
+                Title: "Start Date",
+                Sort: "start_date"
+            },
+            {
+                Title: "Modified",
+                Sort: "last_modified"
             }]
         };
 
