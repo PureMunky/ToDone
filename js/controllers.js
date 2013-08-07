@@ -12,6 +12,7 @@ ToDone.Controllers = (function () {
         $scope.SelectedContext = 'Home';
         $scope.Form = {
             SelectedTag: $rootScope.CurrentTag || JSON.parse(localStorage.getItem('ToDone.SelectedTag')) || {},
+            SelectedSort: {},
             StaticTags: [{
                 TagID: -1,
                 Title: '-- All --'
@@ -24,9 +25,19 @@ ToDone.Controllers = (function () {
                 TagID: -3,
                 Title: '-- Due --'
             }],
-            TagOptions: []
+            TagOptions: [],
+            SortOptions: [{
+                Title: "Title",
+                Sort: "title"
+            },
+            {
+                Title: "Due Date",
+                Sort: "due_date"
+            }]
         };
 
+        
+        
         $scope.setContext = function (newContext) {
             $scope.SelectedContext = newContext;
         };
@@ -35,7 +46,7 @@ ToDone.Controllers = (function () {
             if ($scope.Form.SelectedTag.TagID > 0) {
                 localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
                 
-                $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID).success(function (data) {
+                $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID + '/' + $scope.Form.SelectedSort.Sort).success(function (data) {
                     $scope.todos = data;
                 });
             } else {
@@ -62,7 +73,38 @@ ToDone.Controllers = (function () {
         $scope.edit = function (taskID) {
             $location.path('/edit/' + taskID);
         };
-
+        
+        function loadSort() {
+            var SavedSort = JSON.parse(localStorage.getItem('ToDone.SelectedSort'));
+            for(var i = 0; i < $scope.Form.SortOptions.length; i++) {
+                if($scope.Form.SortOptions[i].Sort == SavedSort.Sort) {
+                    $scope.Form.SelectedSort = $scope.Form.SortOptions[i];
+                }
+            }
+        }
+        
+        $scope.$watch(
+            "Form.SelectedTag",
+            function () {
+                $scope.FilterTag();
+                if ($scope.Form.SelectedTag.TagID > 0) {
+                    $rootScope.CurrentTag = $scope.Form.SelectedTag;
+                } else {
+                    $rootScope.CurrentTag = null;
+                }
+            }
+        );
+        $scope.$watch(
+            "Form.SelectedSort",
+            function () {
+                localStorage.setItem('ToDone.SelectedSort', JSON.stringify($scope.Form.SelectedSort));
+                $scope.FilterTag();
+            }
+        );
+        
+        
+        loadSort();
+        
         if(ToDone.API.Online) {
             $http.get(ToDone.API.Tags()).success(function (data) {
                 $scope.tags = data;
@@ -94,18 +136,6 @@ ToDone.Controllers = (function () {
             $scope.lists = JSON.parse(localStorage.getItem('ToDone.Lists'));
             $scope.contexts = JSON.parse(localStorage.getItem('ToDone.Contexts'));
         }
-        
-        $scope.$watch(
-            "Form.SelectedTag",
-            function () {
-                $scope.FilterTag();
-                if ($scope.Form.SelectedTag.TagID > 0) {
-                    $rootScope.CurrentTag = $scope.Form.SelectedTag;
-                } else {
-                    $rootScope.CurrentTag = null;
-                }
-            }
-        );
     };
 
     that.CurrentList = function ($scope, $http) {

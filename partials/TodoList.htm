@@ -3,6 +3,10 @@
         ng-model="Form.SelectedTag"
         ng-options="tag.Title for tag in Form.TagOptions">
     </select>
+    <select
+        ng-model="Form.SelectedSort"
+        ng-options="sort.Title for sort in Form.SortOptions">
+    </select>
     <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
         <i class="icon-edit" ng-hide="todo.Completed"></i>
         <i class="icon-ok" ng-show="todo.Completed"></i>
