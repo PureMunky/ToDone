@@ -16,14 +16,6 @@ ToDone.Controllers = (function () {
             StaticTags: [{
                 TagID: -1,
                 Title: '-- All --'
-            },
-            {
-                TagID: -2,
-                Title: '-- Recent --'
-            },
-            {
-                TagID: -3,
-                Title: '-- Due --'
             }],
             TagOptions: [],
             SortOptions: [{
@@ -58,17 +50,8 @@ ToDone.Controllers = (function () {
                     $scope.todos = data;
                 });
             } else {
-                
-                var list = 'list';
-                
-                if($scope.Form.SelectedTag.TagID === -2) list = 'recent/10';
-                
-                if($scope.Form.SelectedTag.TagID === -3) list = 'due';
-                
-                
-                
                 if(ToDone.API.Online) {                    
-                    $http.get(ToDone.API.Todo() + list).success(function (data) {
+                    $http.get(ToDone.API.Todo() + 'list/' + $scope.Form.SelectedSort.Sort).success(function (data) {
                         $scope.todos = data;
                         localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
                     });
