@@ -1,13 +1,20 @@
 <div>
-    <div class="well well-small">
-        Tag: <select
-            ng-model="Form.SelectedTag"
-            ng-options="tag.Title for tag in Form.TagOptions">
-        </select>
-        Sort By: <select
-            ng-model="Form.SelectedSort"
-            ng-options="sort.Title for sort in Form.SortOptions">
-        </select>
+    <div>
+        <div class="input-prepend">
+            <span class="add-on">Tag</span>
+            <select
+                ng-model="Form.SelectedTag"
+                ng-options="tag.Title for tag in Form.TagOptions">
+            </select>
+        </div>
+        
+        <div class="input-prepend">
+            <span class="add-on">Sort</span>
+            <select
+                ng-model="Form.SelectedSort"
+                ng-options="sort.Title for sort in Form.SortOptions">
+            </select>
+        </div>
     </div>
     <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
         <i class="icon-edit" ng-hide="todo.Completed"></i>
