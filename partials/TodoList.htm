@@ -19,8 +19,6 @@
         </div>
     </div>
     <div class="row">
-        Inc: {{SelectedTags.Include}}
-        Exc: {{SelectedTags.Exclude}}
         <div class="well well-small span3" td-tag-multi-select selected-tags="SelectedTags" tags="Form.TagOptions"></div>
         <div class="span8">
             <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
