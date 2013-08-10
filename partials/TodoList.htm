@@ -1,23 +1,25 @@
 <div>
-    <div>
-        <div class="input-prepend">
-            <span class="add-on">Tag</span>
-            <select
-                ng-model="Form.SelectedTag"
-                ng-options="tag.Title for tag in Form.TagOptions">
-            </select>
-        </div>
-        
-        <div class="input-prepend">
-            <span class="add-on">Sort</span>
-            <select
-                ng-model="Form.SelectedSort"
-                ng-options="sort.Title for sort in Form.SortOptions">
-            </select>
+    <div class="row">
+        <div class="span7 offset3">
+            <div class="input-prepend">
+                <span class="add-on">Tag</span>
+                <select
+                    ng-model="Form.SelectedTag"
+                    ng-options="tag.Title for tag in Form.TagOptions">
+                </select>
+            </div>
+            
+            <div class="input-prepend">
+                <span class="add-on">Sort</span>
+                <select
+                    ng-model="Form.SelectedSort"
+                    ng-options="sort.Title for sort in Form.SortOptions">
+                </select>
+            </div>
         </div>
     </div>
     <div class="row">
-        <div class="well well-small span4" style="display: inline-block;">
+        <div class="well well-small span3" style="display: inline-block;">
             <div ng-repeat="tag in Form.TagOptions">
                 <input type="checkbox"/>
                 <input type="checkbox"/>
