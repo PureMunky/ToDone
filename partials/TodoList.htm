@@ -20,6 +20,8 @@
     </div>
     <div class="row">
         <div class="well well-small span3">
+            <div>Inc: {{GetSelectedTags('Include')}}</div>
+            <div>Exc: {{GetSelectedTags('Exclude')}}</div>
             <div>+ -</div>
             <div ng-repeat="tag in Form.TagOptions">
                 <input type="checkbox" ng-model="tag.Include" ng-checked="tag.Include" ng-disabled="tag.Exclude"/>

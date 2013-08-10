@@ -94,7 +94,7 @@ ToDone.Controllers = (function () {
                 }
             }
         };
-        
+                
         function loadSort() {
             var SavedSort = JSON.parse(localStorage.getItem('ToDone.SelectedSort'));
             for(var i = 0; i < $scope.Form.SortOptions.length; i++) {
