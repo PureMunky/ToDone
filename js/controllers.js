@@ -123,7 +123,10 @@ ToDone.Controllers = (function () {
         loadSort();
         
         function GetTags() {
-            $http.get(ToDone.API.Tags() + 'filter/' + $scope.SelectedTags.Include + '/' + $scope.SelectedTags.Exclude).success(function (data) {
+            var tagService = ToDone.API.Tags();
+            if($scope.SelectedTags.Include && $scope.SelectedTags.Exclude) tagService = ToDone.API.Tags() + 'filter/' + $scope.SelectedTags.Include + '/' + $scope.SelectedTags.Exclude;
+            
+            $http.get(tagService).success(function (data) {
                 $scope.tags = data;
                 localStorage.setItem('ToDone.Tags', JSON.stringify(data));
                 $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
