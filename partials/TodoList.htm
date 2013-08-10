@@ -16,6 +16,13 @@
             </select>
         </div>
     </div>
+    <div style="display: inline-block;">
+        <div ng-repeat="tag in Form.TagOptions">
+            <input type="checkbox"/>
+            <input type="checkbox"/>
+            {{tag.Title}}
+        </div>
+    </div>
     <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
         <i class="icon-edit" ng-hide="todo.Completed"></i>
         <i class="icon-ok" ng-show="todo.Completed"></i>

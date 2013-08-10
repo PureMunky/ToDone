@@ -17,7 +17,14 @@ ToDone.Controllers = (function () {
                 TagID: -1,
                 Title: '-- All --'
             }],
-            TagOptions: [],
+            TagOptions: [{
+                TagID: 1,
+                Title: 'Test One'
+            },
+            {
+                TagID: 2,
+                Title: 'Test Two'
+            }],
             SortOptions: [{
                 Title: "Title",
                 Sort: "title"

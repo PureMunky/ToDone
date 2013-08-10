@@ -4,7 +4,7 @@ var ToDone = {};
 ToDone.API = {
     Online: true,
     Todo: function () {
-        return '/API/ToDone/TaskService.svc/';
+        return 'data/todos.json';
     },
     Lists: function () {
         return 'data/lists.json';
