@@ -9,7 +9,10 @@ ToDone.Controllers = (function () {
     };
     
     that.TodoList = function ($scope, $http, $rootScope, $location) {
-        $scope.SelectedTags = {};
+        $scope.SelectedTags = {
+            Exclude: '',
+            Include: ''
+        };
                 
         $scope.SelectedContext = 'Home';
         $scope.Form = {

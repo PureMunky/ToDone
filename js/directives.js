@@ -91,8 +91,8 @@ ToDone.App.directive('tdTagMultiSelect', function () {
         },
         link: function (scope, elem, attrs) {
             function LoadSelectedTags() {
-                scope.selectedTags.Include = localStorage.getItem('ToDone.SelectedTags.Include') || scope.selectedTags.Include;
-                scope.selectedTags.Exclude = localStorage.getItem('ToDone.SelectedTags.Exclude') || scope.selectedTags.Exclude;
+                scope.selectedTags.Include = localStorage.getItem('ToDone.SelectedTags.Include');
+                scope.selectedTags.Exclude = localStorage.getItem('ToDone.SelectedTags.Exclude');
                 
                 SetSelectedTags(scope.selectedTags.Include, 'Include');
                 SetSelectedTags(scope.selectedTags.Exclude, 'Exclude');
@@ -148,14 +148,6 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                     scope.selectedTags.Exclude = scope.GetSelectedTags('Exclude');
                 }
             );
-            
-            // scope.$watch('selectedTags.Include', function (oldVal, newVal) {
-            //     SetSelectedTags(newVal, 'Include');
-            // });
-            
-            // scope.$watch('selectedTags.Exclude', function (oldVal, newVal) {
-            //     SetSelectedTags(newVal, 'Exclude');
-            // });
         }
     };
 });
