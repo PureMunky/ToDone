@@ -1,0 +1,6 @@
+<div>+ -</div>
+<div ng-repeat="tag in Tags">
+    <input type="checkbox" ng-model="tag.Include" ng-checked="tag.Include" ng-disabled="tag.Exclude"/>
+    <input type="checkbox" ng-model="tag.Exclude" ng-checked="tag.Exclude" ng-disabled="tag.Include"/>
+    {{tag.Title}}
+</div>
