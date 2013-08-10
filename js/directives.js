@@ -90,12 +90,18 @@ ToDone.App.directive('tdTagMultiSelect', function () {
             tags: '='
         },
         link: function (scope, elem, attrs) {
+            var Form = {
+                selectedTags: {
+                    Include: '',
+                    Exclude: ''
+                }
+            }
             function LoadSelectedTags() {
-                scope.selectedTags.Include = localStorage.getItem('ToDone.SelectedTags.Include');
-                scope.selectedTags.Exclude = localStorage.getItem('ToDone.SelectedTags.Exclude');
+                Form.selectedTags.Include = localStorage.getItem('ToDone.SelectedTags.Include');
+                Form.selectedTags.Exclude = localStorage.getItem('ToDone.SelectedTags.Exclude');
                 
-                SetSelectedTags(scope.selectedTags.Include, 'Include');
-                SetSelectedTags(scope.selectedTags.Exclude, 'Exclude');
+                SetSelectedTags(Form.selectedTags.Include, 'Include');
+                SetSelectedTags(Form.selectedTags.Exclude, 'Exclude');
             }
             LoadSelectedTags();
             
@@ -137,6 +143,7 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 "GetSelectedTags('Include')",
                 function () {
                     StoreSelectedTags('Include');
+                    Form.selectedTags.Include = scope.GetSelectedTags('Include');
                     scope.selectedTags.Include = scope.GetSelectedTags('Include');
                 }
             );
@@ -145,6 +152,7 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 "GetSelectedTags('Exclude')",
                 function () {
                     StoreSelectedTags('Exclude');
+                    Form.selectedTags.Exclude = scope.GetSelectedTags('Exclude');
                     scope.selectedTags.Exclude = scope.GetSelectedTags('Exclude');
                 }
             );
