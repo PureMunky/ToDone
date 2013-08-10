@@ -9,6 +9,9 @@ ToDone.Controllers = (function () {
     };
     
     that.TodoList = function ($scope, $http, $rootScope, $location) {
+        var IncludedTags = localStorage.getItem('ToDone.SelectedTags.Include'),
+            ExcludedTags = localStorage.getItem('ToDone.SelectedTags.Exclude');
+                
         $scope.SelectedContext = 'Home';
         $scope.Form = {
             SelectedTag: $rootScope.CurrentTag || JSON.parse(localStorage.getItem('ToDone.SelectedTag')) || {},
@@ -72,29 +75,6 @@ ToDone.Controllers = (function () {
             $location.path('/edit/' + taskID);
         };
         
-        $scope.GetSelectedTags = function (Type) {
-            var rtnStr = '';
-            
-            for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
-                if($scope.Form.TagOptions[i][Type]) rtnStr += $scope.Form.TagOptions[i].TagID + ',';    
-            }
-            
-            localStorage.setItem('ToDone.SelectedTags.' + Type, rtnStr);
-            return rtnStr.substring(0, rtnStr.length - 1);
-        };
-        
-        function SetSelectedTags (List, Type) {
-            if(List){
-                var list = List.split(',');
-                
-                for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
-                    for(var j = 0; j < list.length; j++) {
-                        if(list[j] == $scope.Form.TagOptions[i].TagID) $scope.Form.TagOptions[i][Type] = true;
-                    }
-                }
-            }
-        };
-                
         function loadSort() {
             var SavedSort = JSON.parse(localStorage.getItem('ToDone.SelectedSort'));
             for(var i = 0; i < $scope.Form.SortOptions.length; i++) {
@@ -123,7 +103,6 @@ ToDone.Controllers = (function () {
             }
         );
         
-        
         loadSort();
         
         if(ToDone.API.Online) {
@@ -142,8 +121,8 @@ ToDone.Controllers = (function () {
                     }
                 }
                 
-                SetSelectedTags(localStorage.getItem('ToDone.SelectedTags.Include'), 'Include');
-                SetSelectedTags(localStorage.getItem('ToDone.SelectedTags.Exclude'), 'Exclude');
+                SetSelectedTags(IncludedTags, 'Include');
+                SetSelectedTags(ExcludedTags, 'Exclude');
             });
         } else {
             $scope.tags = JSON.parse(localStorage.getItem('ToDone.Tags'));

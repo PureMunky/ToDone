@@ -36,6 +36,7 @@ partials/CurrentList.htm
 partials/TodoEdit.htm
 partials/TodoList.htm
 partials/directives/editRepeatFormula.htm
+partials/directives/tagMultiSelect.htm
 
 NETWORK:
 /API

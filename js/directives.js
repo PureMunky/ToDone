@@ -80,3 +80,76 @@ ToDone.App.directive('repeatFormat', function () {
         }
     };
 });
+
+ToDone.App.directive('tdTagMultiSelect', function () {
+    return {
+        restrict: 'A',
+        templateUrl: 'partials/directives/tagMultiSelect.htm',
+        scope: {
+            inlcudeTags: '=',
+            excludeTags: '='
+        },
+        link: function (scope, elem, attrs) {
+            scope.Tags = [{
+                TagID: 1,
+                Title: 'Test One'
+            },
+            {
+                TagID: 2,
+                Title: 'Test Two'
+            }];
+            
+            scope.GetSelectedTags = function (Type) {
+                var rtnStr = '';
+                
+                for(var i = 0; i < scope.Tags.length; i++) {
+                    if(scope.Tags[i][Type]) rtnStr += scope.Tags[i].TagID + ',';    
+                }
+                
+                return rtnStr.substring(0, rtnStr.length - 1);
+            };
+            
+            function SetSelectedTags (List, Type) {
+                if(List){
+                    for(var i = 0; i < scope.Tags.length; i++) {
+                        for(var j = 0; j < List.length; j++) {
+                            if(List[j].TagID === scope.Tags[i].TagID) scope.Tags[i][Type] = true;
+                        }
+                    }
+                }
+            };
+            
+            function StoreSelectedTags(Type) {
+                var FormTags = scope.GetSelectedTags(Type);
+                
+                localStorage.setItem('ToDone.SelectedTags.' + Type, FormTags);
+                
+                console.log('stored ' + Type);
+            };
+                
+            scope.$watch('inlcudeTags', function (oldVal, newVal) {
+                SetSelectedTags(newVal, 'Include');
+            });
+            
+            scope.$watch('excludeTags', function (oldVal, newVal) {
+                SetSelectedTags(newVal, 'Exclude');
+            });
+            
+            scope.$watch(
+                "GetSelectedTags('Include')",
+                function () {
+                    scope.includeTags = scope.GetSelectedTags('Include');
+                    StoreSelectedTags('Include');
+                }
+            );
+            
+            scope.$watch(
+                "GetSelectedTags('Exclude')",
+                function () {
+                    scope.includeTags = scope.GetSelectedTags('Exclude');
+                    StoreSelectedTags('Exclude');
+                }
+            );
+        }
+    };
+});
