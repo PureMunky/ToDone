@@ -126,21 +126,23 @@ ToDone.Controllers = (function () {
             var tagService = ToDone.API.Tags();
             if($scope.SelectedTags.Include && $scope.SelectedTags.Exclude) tagService = ToDone.API.Tags() + 'filter/' + $scope.SelectedTags.Include + '/' + $scope.SelectedTags.Exclude;
             
-            $http.get(tagService).success(function (data) {
-                $scope.tags = data;
-                localStorage.setItem('ToDone.Tags', JSON.stringify(data));
-                $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
-                
-                if(!$rootScope.CurrentTag) {
-                    $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
-                } else {
-                    for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
-                        if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag.TagID) {
-                            $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
+            if(($scope.SelectedTags.Include && $scope.SelectedTags.Exclude) || (!$scope.SelectedTags.Include && !$scope.SelectedTags.Exclude)) {
+                $http.get(tagService).success(function (data) {
+                    $scope.tags = data;
+                    localStorage.setItem('ToDone.Tags', JSON.stringify(data));
+                    $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
+                    
+                    if(!$rootScope.CurrentTag) {
+                        $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
+                    } else {
+                        for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
+                            if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag.TagID) {
+                                $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
+                            }
                         }
                     }
-                }
-            });
+                });
+            }
         }
         
         if(ToDone.API.Online) {
