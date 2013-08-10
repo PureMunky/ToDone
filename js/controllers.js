@@ -119,9 +119,6 @@ ToDone.Controllers = (function () {
                         }
                     }
                 }
-                
-                SetSelectedTags(IncludedTags, 'Include');
-                SetSelectedTags(ExcludedTags, 'Exclude');
             });
         } else {
             $scope.tags = JSON.parse(localStorage.getItem('ToDone.Tags'));

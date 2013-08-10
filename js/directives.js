@@ -86,7 +86,7 @@ ToDone.App.directive('tdTagMultiSelect', function () {
         restrict: 'A',
         templateUrl: 'partials/directives/tagMultiSelect.htm',
         scope: {
-            selectedTags: '='
+            selectedTags: '=',
             Tags: '='
         },
         link: function (scope, elem, attrs) {
@@ -102,8 +102,10 @@ ToDone.App.directive('tdTagMultiSelect', function () {
             scope.GetSelectedTags = function (Type) {
                 var rtnStr = '';
                 
-                for(var i = 0; i < scope.Tags.length; i++) {
-                    if(scope.Tags[i][Type]) rtnStr += scope.Tags[i].TagID + ',';    
+                if(scope.Tags) {
+                    for(var i = 0; i < scope.Tags.length; i++) {
+                        if(scope.Tags[i][Type]) rtnStr += scope.Tags[i].TagID + ',';    
+                    }
                 }
                 
                 return rtnStr.substring(0, rtnStr.length - 1);
@@ -113,10 +115,12 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 if(List){
                     var list = List.split(',');
                     
-                    for(var i = 0; i < scope.Tags.length; i++) {
-                        for(var j = 0; j < list.length; j++) {
-                            if(list[j] == scope.Tags[i].TagID) {
-                                scope.Tags[i][Type] = true;
+                    if(scope.Tags) {
+                        for(var i = 0; i < scope.Tags.length; i++) {
+                            for(var j = 0; j < list.length; j++) {
+                                if(list[j] == scope.Tags[i].TagID) {
+                                    scope.Tags[i][Type] = true;
+                                }
                             }
                         }
                     }
