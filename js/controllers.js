@@ -9,8 +9,7 @@ ToDone.Controllers = (function () {
     };
     
     that.TodoList = function ($scope, $http, $rootScope, $location) {
-        var IncludedTags = localStorage.getItem('ToDone.SelectedTags.Include'),
-            ExcludedTags = localStorage.getItem('ToDone.SelectedTags.Exclude');
+        $scope.SelectedTags = {};
                 
         $scope.SelectedContext = 'Home';
         $scope.Form = {
