@@ -144,6 +144,7 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 "GetSelectedTags('Include')",
                 function () {
                     StoreSelectedTags('Include');
+                    LoadSelectedTags();
                     scope.selectedTags.Include = scope.GetSelectedTags('Include');
                 }
             );
@@ -152,6 +153,7 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 "GetSelectedTags('Exclude')",
                 function () {
                     StoreSelectedTags('Exclude');
+                    LoadSelectedTags();
                     scope.selectedTags.Exclude = scope.GetSelectedTags('Exclude');
                 }
             );
