@@ -20,9 +20,10 @@
     </div>
     <div class="row">
         <div class="well well-small span3">
+            <div>+ -</div>
             <div ng-repeat="tag in Form.TagOptions">
-                <input type="checkbox"/>
-                <input type="checkbox"/>
+                <input type="checkbox" ng-model="tag.Include" ng-checked="tag.Include" ng-disabled="tag.Exclude"/>
+                <input type="checkbox" ng-model="tag.Exclude" ng-checked="tag.Exclude" ng-disabled="tag.Include"/>
                 {{tag.Title}}
             </div>
         </div>

@@ -72,6 +72,29 @@ ToDone.Controllers = (function () {
             $location.path('/edit/' + taskID);
         };
         
+        $scope.GetSelectedTags = function (Type) {
+            var rtnStr = '';
+            
+            for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
+                if($scope.Form.TagOptions[i][Type]) rtnStr += $scope.Form.TagOptions[i].TagID + ',';    
+            }
+            
+            localStorage.setItem('ToDone.SelectedTags.' + Type, rtnStr);
+            return rtnStr.substring(0, rtnStr.length - 1);
+        };
+        
+        function SetSelectedTags (List, Type) {
+            if(List){
+                var list = List.split(',');
+                
+                for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
+                    for(var j = 0; j < list.length; j++) {
+                        if(list[j] == $scope.Form.TagOptions[i].TagID) $scope.Form.TagOptions[i][Type] = true;
+                    }
+                }
+            }
+        };
+        
         function loadSort() {
             var SavedSort = JSON.parse(localStorage.getItem('ToDone.SelectedSort'));
             for(var i = 0; i < $scope.Form.SortOptions.length; i++) {
@@ -118,16 +141,9 @@ ToDone.Controllers = (function () {
                         }
                     }
                 }
-            });
-    
-            $http.get(ToDone.API.Lists()).success(function (data) {
-                $scope.lists = data;
-                localStorage.setItem('ToDone.Lists', JSON.stringify(data));
-            });
-    
-            $http.get(ToDone.API.Contexts()).success(function (data) {
-                $scope.contexts = data;
-                localStorage.setItem('ToDone.Contexts', JSON.stringify(data));
+                
+                SetSelectedTags(localStorage.getItem('ToDone.SelectedTags.Include'), 'Include');
+                SetSelectedTags(localStorage.getItem('ToDone.SelectedTags.Exclude'), 'Exclude');
             });
         } else {
             $scope.tags = JSON.parse(localStorage.getItem('ToDone.Tags'));
