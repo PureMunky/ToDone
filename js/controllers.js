@@ -97,6 +97,7 @@ ToDone.Controllers = (function () {
                 }
             }
         );
+        
         $scope.$watch(
             "Form.SelectedSort",
             function () {
@@ -105,10 +106,24 @@ ToDone.Controllers = (function () {
             }
         );
         
+        $scope.$watch(
+            "SelectedTags.Include",
+            function () {
+                GetTags();
+            }
+        );
+        
+        $scope.$watch(
+            "SelectedTags.Exclude",
+            function () {
+                GetTags();
+            }
+        );
+        
         loadSort();
         
-        if(ToDone.API.Online) {
-            $http.get(ToDone.API.Tags()).success(function (data) {
+        function GetTags() {
+            $http.get(ToDone.API.Tags() + 'filter/' + $scope.SelectedTags.Include + '/' + $scope.SelectedTags.Exclude).success(function (data) {
                 $scope.tags = data;
                 localStorage.setItem('ToDone.Tags', JSON.stringify(data));
                 $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
@@ -123,6 +138,10 @@ ToDone.Controllers = (function () {
                     }
                 }
             });
+        }
+        
+        if(ToDone.API.Online) {
+            GetTags();
         } else {
             $scope.tags = JSON.parse(localStorage.getItem('ToDone.Tags'));
             $scope.lists = JSON.parse(localStorage.getItem('ToDone.Lists'));
