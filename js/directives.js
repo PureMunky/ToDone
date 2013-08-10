@@ -95,7 +95,8 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                     Include: '',
                     Exclude: ''
                 }
-            }
+            };
+            
             function LoadSelectedTags() {
                 Form.selectedTags.Include = localStorage.getItem('ToDone.SelectedTags.Include');
                 Form.selectedTags.Exclude = localStorage.getItem('ToDone.SelectedTags.Exclude');
@@ -143,7 +144,6 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 "GetSelectedTags('Include')",
                 function () {
                     StoreSelectedTags('Include');
-                    Form.selectedTags.Include = scope.GetSelectedTags('Include');
                     scope.selectedTags.Include = scope.GetSelectedTags('Include');
                 }
             );
@@ -152,8 +152,21 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 "GetSelectedTags('Exclude')",
                 function () {
                     StoreSelectedTags('Exclude');
-                    Form.selectedTags.Exclude = scope.GetSelectedTags('Exclude');
                     scope.selectedTags.Exclude = scope.GetSelectedTags('Exclude');
+                }
+            );
+            
+            scope.$watch(
+                "selectedTags.Include", 
+                function () {
+                    SetSelectedTags(Form.selectedTags.Include, 'Include');
+                }
+            );
+            
+            scope.$watch(
+                "selectedTags.Exclude", 
+                function () {
+                    SetSelectedTags(Form.selectedTags.Exclude, 'Exclude');
                 }
             );
         }
