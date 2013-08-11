@@ -98,6 +98,7 @@ ToDone.App.directive('tdTagMultiSelect', function () {
             };
             
             function LoadSelectedTags() {
+                console.log('LoadSelectedTags')
                 Form.selectedTags.Include = localStorage.getItem('ToDone.SelectedTags.Include');
                 Form.selectedTags.Exclude = localStorage.getItem('ToDone.SelectedTags.Exclude');
                 
@@ -107,6 +108,7 @@ ToDone.App.directive('tdTagMultiSelect', function () {
             LoadSelectedTags();
             
             scope.GetSelectedTags = function (Type) {
+                console.log('GetSelectedTags - ' + Type)
                 var rtnStr = '';
                 
                 if(scope.tags) {
@@ -119,6 +121,10 @@ ToDone.App.directive('tdTagMultiSelect', function () {
             };
             
             function SetSelectedTags (List, Type) {
+                console.log('SetSelectedTags');
+                console.log(List);
+                console.log(Type);
+                
                 if(List){
                     var list = List.split(',');
                     
@@ -135,6 +141,7 @@ ToDone.App.directive('tdTagMultiSelect', function () {
             };
             
             function StoreSelectedTags(Type) {
+                console.log('StoreSelectedTags - ' + Type);
                 var FormTags = scope.GetSelectedTags(Type);
                 
                 localStorage.setItem('ToDone.SelectedTags.' + Type, FormTags);
