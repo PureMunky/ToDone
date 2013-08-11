@@ -163,13 +163,13 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 }
             );
             
-            scope.$watch(
-                "tags", 
-                function () {
-                    SetSelectedTags(Form.selectedTags.Include, 'Include');
-                    SetSelectedTags(Form.selectedTags.Exclude, 'Exclude');
-                }
-            );
+            // scope.$watch(
+            //     "tags", 
+            //     function () {
+            //         SetSelectedTags(Form.selectedTags.Include, 'Include');
+            //         SetSelectedTags(Form.selectedTags.Exclude, 'Exclude');
+            //     }
+            // );
 
         }
     };
