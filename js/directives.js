@@ -99,7 +99,10 @@ ToDone.App.directive('tdTagMultiSelect', function () {
             
             function LoadSelectedTagsFromLocal() {
                 console.log('LoadSelectedTagsFromLocal')
-                Form.selectedTags = JSON.parse(localStorage.getItem('ToDone.SelectedTags'));
+                
+                if(localStorage.getItem('ToDone.SelectedTags')) {
+                    Form.selectedTags = JSON.parse(localStorage.getItem('ToDone.SelectedTags'));
+                }
                 
                 SetSelectedTagsInTagArray(Form.selectedTags.Include, 'Include');
                 SetSelectedTagsInTagArray(Form.selectedTags.Exclude, 'Exclude');
