@@ -97,15 +97,14 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 }
             };
             
-            function LoadSelectedTags() {
-                console.log('LoadSelectedTags')
-                Form.selectedTags.Include = localStorage.getItem('ToDone.SelectedTags.Include');
-                Form.selectedTags.Exclude = localStorage.getItem('ToDone.SelectedTags.Exclude');
+            function LoadSelectedTagsFromLocal() {
+                console.log('LoadSelectedTagsFromLocal')
+                Form.selectedTags = JSON.parse(localStorage.getItem('ToDone.SelectedTags'));
                 
-                SetSelectedTags(Form.selectedTags.Include, 'Include');
-                SetSelectedTags(Form.selectedTags.Exclude, 'Exclude');
+                SetSelectedTagsInTagArray(Form.selectedTags.Include, 'Include');
+                SetSelectedTagsInTagArray(Form.selectedTags.Exclude, 'Exclude');
             }
-            LoadSelectedTags();
+            LoadSelectedTagsFromLocal();
             
             scope.GetSelectedTags = function (Type) {
                 console.log('GetSelectedTags - ' + Type)
@@ -120,8 +119,8 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 return rtnStr.substring(0, rtnStr.length - 1);
             };
             
-            function SetSelectedTags (List, Type) {
-                console.log('SetSelectedTags');
+            function SetSelectedTagsInTagArray (List, Type) {
+                console.log('SetSelectedTagsInTagArray');
                 console.log(List);
                 console.log(Type);
                 
@@ -140,36 +139,36 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 }
             };
             
-            function StoreSelectedTags(Type) {
-                console.log('StoreSelectedTags - ' + Type);
-                var FormTags = scope.GetSelectedTags(Type);
-                
-                localStorage.setItem('ToDone.SelectedTags.' + Type, FormTags);
+            function StoreSelectedTagsLocally(SelectedTags) {
+                console.log('StoreSelectedTagsLocally');
+            
+                localStorage.setItem('ToDone.SelectedTags', JSON.stringify(SelectedTags));
             };
             
             scope.$watch(
                 "GetSelectedTags('Include')",
                 function () {
-                    StoreSelectedTags('Include');
                     scope.selectedTags.Include = scope.GetSelectedTags('Include');
+                    StoreSelectedTagsLocally(scope.selectedTags);
                 }
             );
             
             scope.$watch(
                 "GetSelectedTags('Exclude')",
                 function () {
-                    StoreSelectedTags('Exclude');
                     scope.selectedTags.Exclude = scope.GetSelectedTags('Exclude');
+                    StoreSelectedTagsLocally(scope.selectedTags);
                 }
             );
             
-            // scope.$watch(
-            //     "tags", 
-            //     function () {
-            //         SetSelectedTags(Form.selectedTags.Include, 'Include');
-            //         SetSelectedTags(Form.selectedTags.Exclude, 'Exclude');
-            //     }
-            // );
+            scope.$watch(
+                "tags", 
+                function () {
+                    console.log('tags changed');
+                    SetSelectedTagsInTagArray(Form.selectedTags.Include, 'Include');
+                    SetSelectedTagsInTagArray(Form.selectedTags.Exclude, 'Exclude');
+                }
+            );
 
         }
     };

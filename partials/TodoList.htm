@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="well well-small span3" td-tag-multi-select selected-tags="SelectedTags" tags="tags"></div>
+        <div class="well well-small span3" td-tag-multi-select selected-tags="SelectedTags" tags="Form.TagOptions"></div>
         <div class="span8">
             <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
                 <i class="icon-edit" ng-hide="todo.Completed"></i>
