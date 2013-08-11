@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2013-08-09v1
+# 2013-08-11v1
 
 CACHE:
 
@@ -35,6 +35,7 @@ js/services.js
 partials/CurrentList.htm
 partials/TodoEdit.htm
 partials/TodoList.htm
+partials/directives/editRepeatFormula.htm
 
 NETWORK:
 /API
