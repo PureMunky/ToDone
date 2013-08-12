@@ -63,7 +63,7 @@ ToDone.Controllers = (function () {
             //     });
             // } else {
                 if(ToDone.API.Online) {
-                    $http.get(ToDone.API.Todo() + 'list/' + ($scope.SelectedTags.Include || '-1') + '/' + ($scope.SelectedTags.Exclude || '-1') + '/' + $scope.Form.SelectedSort.Sort).success(function (data) {
+                    $http.get(ToDone.API.Todo() + 'filter/' + ($scope.SelectedTags.Include || '-1') + '/' + ($scope.SelectedTags.Exclude || '-1') + '/' + $scope.Form.SelectedSort.Sort).success(function (data) {
                         $scope.todos = data;
                         localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
                     });
