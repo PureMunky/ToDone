@@ -164,14 +164,14 @@ ToDone.App.directive('tdTagMultiSelect', function () {
                 }
             );
             
-            scope.$watch(
-                "tags", 
-                function () {
-                    console.log('tags changed');
-                    SetSelectedTagsInTagArray(Form.selectedTags.Include, 'Include');
-                    SetSelectedTagsInTagArray(Form.selectedTags.Exclude, 'Exclude');
-                }
-            );
+            // scope.$watch(
+            //     "tags", 
+            //     function () {
+            //         console.log('tags changed');
+            //         SetSelectedTagsInTagArray(Form.selectedTags.Include, 'Include');
+            //         SetSelectedTagsInTagArray(Form.selectedTags.Exclude, 'Exclude');
+            //     }
+            // );
 
         }
     };

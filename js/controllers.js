@@ -55,22 +55,22 @@ ToDone.Controllers = (function () {
         };
 
         $scope.FilterTag = function () {
-            if ($scope.Form.SelectedTag.TagID > 0 && $scope.Form.SelectedSort.Sort) {
-                localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
+            // if ($scope.Form.SelectedTag.TagID > 0 && $scope.Form.SelectedSort.Sort) {
+            //     localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
                 
-                $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID + '/' + $scope.Form.SelectedSort.Sort).success(function (data) {
-                    $scope.todos = data;
-                });
-            } else {
-                if(ToDone.API.Online) {                    
-                    $http.get(ToDone.API.Todo() + 'list/' + $scope.Form.SelectedSort.Sort).success(function (data) {
+            //     $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID + '/' + $scope.Form.SelectedSort.Sort).success(function (data) {
+            //         $scope.todos = data;
+            //     });
+            // } else {
+                if(ToDone.API.Online) {
+                    $http.get(ToDone.API.Todo() + 'list/' + ($scope.SelectedTags.Include || '-1') + '/' + ($scope.SelectedTags.Exclude || '-1') + '/' + $scope.Form.SelectedSort.Sort).success(function (data) {
                         $scope.todos = data;
                         localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
                     });
                 } else {
                     $scope.todos = JSON.parse(localStorage.getItem('ToDone.Tasks'));
                 }
-            }
+            // }
         };
 
         $scope.edit = function (taskID) {
@@ -109,14 +109,16 @@ ToDone.Controllers = (function () {
         $scope.$watch(
             "SelectedTags.Include",
             function () {
-                GetTags();
+                // GetTags();
+                $scope.FilterTag();
             }
         );
         
         $scope.$watch(
             "SelectedTags.Exclude",
             function () {
-                GetTags();
+                // GetTags();
+                $scope.FilterTag();
             }
         );
         
@@ -124,25 +126,25 @@ ToDone.Controllers = (function () {
         
         function GetTags() {
             var tagService = ToDone.API.Tags();
-            if($scope.SelectedTags.Include && $scope.SelectedTags.Exclude) tagService = ToDone.API.Tags() + 'filter/' + $scope.SelectedTags.Include + '/' + $scope.SelectedTags.Exclude;
+            // if($scope.SelectedTags.Include && $scope.SelectedTags.Exclude) tagService = ToDone.API.Tags() + 'filter/' + $scope.SelectedTags.Include + '/' + $scope.SelectedTags.Exclude;
             
-            if(($scope.SelectedTags.Include && $scope.SelectedTags.Exclude) || (!$scope.SelectedTags.Include && !$scope.SelectedTags.Exclude)) {
-                $http.get(tagService).success(function (data) {
-                    $scope.tags = data;
-                    localStorage.setItem('ToDone.Tags', JSON.stringify(data));
-                    $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
-                    
-                    if(!$rootScope.CurrentTag) {
-                        $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
-                    } else {
-                        for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
-                            if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag.TagID) {
-                                $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
-                            }
+            // if(($scope.SelectedTags.Include && $scope.SelectedTags.Exclude) || (!$scope.SelectedTags.Include && !$scope.SelectedTags.Exclude)) {
+            $http.get(tagService).success(function (data) {
+                $scope.tags = data;
+                localStorage.setItem('ToDone.Tags', JSON.stringify(data));
+                $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
+                
+                if(!$rootScope.CurrentTag) {
+                    $scope.Form.SelectedTag = $scope.Form.TagOptions[0];
+                } else {
+                    for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
+                        if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag.TagID) {
+                            $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
                         }
                     }
-                });
-            }
+                }
+            });
+            // }
         }
         
         if(ToDone.API.Online) {
