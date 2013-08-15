@@ -113,15 +113,15 @@ ToDone.Controllers = (function () {
                 }
             });
     
-            $http.get(ToDone.API.Lists()).success(function (data) {
-                $scope.lists = data;
-                localStorage.setItem('ToDone.Lists', JSON.stringify(data));
-            });
+            // $http.get(ToDone.API.Lists()).success(function (data) {
+            //     $scope.lists = data;
+            //     localStorage.setItem('ToDone.Lists', JSON.stringify(data));
+            // });
     
-            $http.get(ToDone.API.Contexts()).success(function (data) {
-                $scope.contexts = data;
-                localStorage.setItem('ToDone.Contexts', JSON.stringify(data));
-            });
+            // $http.get(ToDone.API.Contexts()).success(function (data) {
+            //     $scope.contexts = data;
+            //     localStorage.setItem('ToDone.Contexts', JSON.stringify(data));
+            // });
         } else {
             $scope.tags = JSON.parse(localStorage.getItem('ToDone.Tags'));
             $scope.lists = JSON.parse(localStorage.getItem('ToDone.Lists'));
