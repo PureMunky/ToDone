@@ -249,7 +249,7 @@ ToDone.Controllers = (function () {
             });
         
         $rootScope.$watch(
-            'CurrentTags',
+            'SelectedTags',
             function (newValue) {
                 if($scope.todo) {
                     $scope.todo.Tags = $rootScope.SelectedTags.Include;
