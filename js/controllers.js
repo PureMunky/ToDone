@@ -252,7 +252,7 @@ ToDone.Controllers = (function () {
             'CurrentTags',
             function (newValue) {
                 if($scope.todo) {
-                    $scope.todo.Tags = $rootScope.CurrentTags.Include;
+                    $scope.todo.Tags = $rootScope.SelectedTags.Include;
                 }
             });
     };
