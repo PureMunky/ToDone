@@ -86,17 +86,17 @@ ToDone.Controllers = (function () {
             }
         }
         
-        $scope.$watch(
-            "Form.SelectedTag",
-            function () {
-                $scope.FilterTag();
-                if ($scope.Form.SelectedTag.TagID > 0) {
-                    $rootScope.CurrentTag = $scope.Form.SelectedTag;
-                } else {
-                    $rootScope.CurrentTag = null;
-                }
-            }
-        );
+        // $scope.$watch(
+        //     "Form.SelectedTag",
+        //     function () {
+        //         $scope.FilterTag();
+        //         if ($scope.Form.SelectedTag.TagID > 0) {
+        //             $rootScope.CurrentTag = $scope.Form.SelectedTag;
+        //         } else {
+        //             $rootScope.CurrentTag = null;
+        //         }
+        //     }
+        // );
         
         $scope.$watch(
             "Form.SelectedSort",
@@ -111,6 +111,7 @@ ToDone.Controllers = (function () {
             function () {
                 // GetTags();
                 $scope.FilterTag();
+                $rootScope.SelectedTags = $scope.SelectedTags;
             }
         );
         
@@ -119,6 +120,7 @@ ToDone.Controllers = (function () {
             function () {
                 // GetTags();
                 $scope.FilterTag();
+                $rootScope.SelectedTags = $scope.SelectedTags;
             }
         );
         
@@ -243,6 +245,14 @@ ToDone.Controllers = (function () {
             function (newValue) {
                 if($scope.todo) {
                     $scope.todo.Tags[0] = newValue;
+                }
+            });
+        
+        $rootScope.$watch(
+            'CurrentTags',
+            function (newValue) {
+                if($scope.todo) {
+                    $scope.todo.Tags = $rootScope.CurrentTags.Include;
                 }
             });
     };
