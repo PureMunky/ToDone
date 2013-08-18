@@ -9,15 +9,16 @@ ToDone.Controllers = (function () {
     };
     
     that.TodoList = function ($scope, $http, $rootScope, $location) {
-        $scope.SelectedContext = 'Home';
         $scope.Form = {
             SelectedTag: $rootScope.CurrentTag || JSON.parse(localStorage.getItem('ToDone.SelectedTag')) || {},
+            SelectedContext: $rootScope.SelectedContext || JSON.parse(localStorage.getItem('ToDone.SelectedContext')) || {},
             SelectedSort: {},
             StaticTags: [{
                 TagID: -1,
                 Title: '-- All --'
             }],
             TagOptions: [],
+            ContextOptions: [],
             SortOptions: [{
                 Title: "Title",
                 Sort: "title"
@@ -36,29 +37,27 @@ ToDone.Controllers = (function () {
             }]
         };
 
-        
-        
-        $scope.setContext = function (newContext) {
-            $scope.SelectedContext = newContext;
-        };
-
         $scope.FilterTag = function () {
-            if ($scope.Form.SelectedTag.TagID > 0 && $scope.Form.SelectedSort.Sort) {
+            localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
+            
+            // if ($scope.Form.SelectedTag.TagID > 0 && $scope.Form.SelectedSort.Sort) {
                 localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
+                localStorage.setItem('ToDone.SelectedContext', JSON.stringify($scope.Form.SelectedContext));
                 
-                $http.get(ToDone.API.Todo() + 'tag/' + $scope.Form.SelectedTag.TagID + '/' + $scope.Form.SelectedSort.Sort).success(function (data) {
+                ///filter/17,18/-1/title
+                $http.get(ToDone.API.Todo() + 'filter/' + ($scope.Form.SelectedTag.TagID || -1) + ',' + ($scope.Form.SelectedContext.TagID || -1) + '/-1/' + $scope.Form.SelectedSort.Sort).success(function (data) {
                     $scope.todos = data;
                 });
-            } else {
-                if(ToDone.API.Online) {                    
-                    $http.get(ToDone.API.Todo() + 'list/' + $scope.Form.SelectedSort.Sort).success(function (data) {
-                        $scope.todos = data;
-                        localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
-                    });
-                } else {
-                    $scope.todos = JSON.parse(localStorage.getItem('ToDone.Tasks'));
-                }
-            }
+            // } else {
+            //     if(ToDone.API.Online) {                    
+            //         $http.get(ToDone.API.Todo() + 'list/' + $scope.Form.SelectedSort.Sort).success(function (data) {
+            //             $scope.todos = data;
+            //             localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
+            //         });
+            //     } else {
+            //         $scope.todos = JSON.parse(localStorage.getItem('ToDone.Tasks'));
+            //     }
+            // }
         };
 
         $scope.edit = function (taskID) {
@@ -97,7 +96,8 @@ ToDone.Controllers = (function () {
         loadSort();
         
         if(ToDone.API.Online) {
-            $http.get(ToDone.API.Tags()).success(function (data) {
+            // Get Normal Tags
+            $http.get(ToDone.API.Tags() + 'type/1').success(function (data) {
                 $scope.tags = data;
                 localStorage.setItem('ToDone.Tags', JSON.stringify(data));
                 $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
@@ -108,6 +108,23 @@ ToDone.Controllers = (function () {
                     for(var i = 0; i < $scope.Form.TagOptions.length; i++) {
                         if($scope.Form.TagOptions[i].TagID == $rootScope.CurrentTag.TagID) {
                             $scope.Form.SelectedTag = $scope.Form.TagOptions[i];
+                        }
+                    }
+                }
+            });
+            
+            // Get Context Tags
+            $http.get(ToDone.API.Tags() + 'type/2').success(function (data) {
+                $scope.contexts = data;
+                localStorage.setItem('ToDone.Contexts', JSON.stringify(data));
+                $scope.Form.ContextOptions = $scope.Form.StaticTags.concat($scope.contexts);
+                
+                if(!$rootScope.SelectedContext) {
+                    $scope.Form.SelectedContext = $scope.Form.TagOptions[0];
+                } else {
+                    for(var i = 0; i < $scope.Form.ContextOptions.length; i++) {
+                        if($scope.Form.ContextOptions[i].TagID == $rootScope.SelectedContext.TagID) {
+                            $scope.Form.SelectedContext = $scope.Form.ContextOptions[i];
                         }
                     }
                 }

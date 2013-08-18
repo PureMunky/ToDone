@@ -7,7 +7,13 @@
                 ng-options="tag.Title for tag in Form.TagOptions">
             </select>
         </div>
-        
+        <div class="input-prepend">
+            <span class="add-on">Context</span>
+            <select
+                ng-model="Form.SelectedContext"
+                ng-options="tag.Title for tag in Form.ContextOptions">
+            </select>
+        </div>
         <div class="input-prepend">
             <span class="add-on">Sort</span>
             <select
