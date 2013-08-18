@@ -239,11 +239,20 @@ ToDone.Controllers = (function () {
             });
         };
         
+
         $rootScope.$watch(
             'CurrentTag',
             function (newValue) {
                 if($scope.todo) {
                     $scope.todo.Tags[0] = newValue;
+                }
+            });
+
+        $rootScope.$watch(
+            'SelectedContext',
+            function (newValue) {
+                if($scope.todo) {
+                    $scope.todo.Tags[1] = newValue;
                 }
             });
     };
