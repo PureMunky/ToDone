@@ -233,7 +233,7 @@ ToDone.Controllers = (function () {
         $scope.save = function () {
             
             var squishedTags = [];
-            for(var i = 0; i < $scope.todo.Tags.length(); i++) {
+            for(var i = 0; i < $scope.todo.Tags.length; i++) {
                 if($scope.todo.Tags[i]) { squishedTags.push($scope.todo.Tags[i]); }
             }
             $scope.todo.Tags = squishedTags;
