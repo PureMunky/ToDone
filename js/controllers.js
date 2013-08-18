@@ -251,8 +251,11 @@ ToDone.Controllers = (function () {
         $rootScope.$watch(
             'SelectedContext',
             function (newValue) {
+                var i = 1;
                 if($scope.todo) {
-                    $scope.todo.Tags[1] = newValue;
+                    i = $scope.todo.Tags[0] ? 1 : 0;
+                    
+                    $scope.todo.Tags[i] = newValue;
                 }
             });
     };
