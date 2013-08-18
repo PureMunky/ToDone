@@ -38,24 +38,19 @@ ToDone.Controllers = (function () {
         };
 
         $scope.FilterTag = function () {
-            // if ($scope.Form.SelectedTag.TagID > 0 && $scope.Form.SelectedSort.Sort) {
-                localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
-                localStorage.setItem('ToDone.SelectedContext', JSON.stringify($scope.Form.SelectedContext));
+            localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
+            localStorage.setItem('ToDone.SelectedContext', JSON.stringify($scope.Form.SelectedContext));
                 
-                ///filter/17,18/-1/title
+            if ($scope.Form.SelectedTag.TagID > 0 || $scope.Form.SelectedContext.TagID) {
                 $http.get(ToDone.API.Todo() + 'filter/' + ($scope.Form.SelectedTag.TagID || -1) + ',' + ($scope.Form.SelectedContext.TagID || -1) + '/-1/' + ($scope.Form.SelectedSort.Sort || 'title')).success(function (data) {
                     $scope.todos = data;
                 });
-            // } else {
-            //     if(ToDone.API.Online) {                    
-            //         $http.get(ToDone.API.Todo() + 'list/' + $scope.Form.SelectedSort.Sort).success(function (data) {
-            //             $scope.todos = data;
-            //             localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
-            //         });
-            //     } else {
-            //         $scope.todos = JSON.parse(localStorage.getItem('ToDone.Tasks'));
-            //     }
-            // }
+            } else {                  
+                $http.get(ToDone.API.Todo() + 'list/' + ($scope.Form.SelectedSort.Sort || 'title')).success(function (data) {
+                    $scope.todos = data;
+                    localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
+                });
+            }
         };
 
         $scope.edit = function (taskID) {
@@ -140,16 +135,6 @@ ToDone.Controllers = (function () {
                     }
                 }
             });
-    
-            // $http.get(ToDone.API.Lists()).success(function (data) {
-            //     $scope.lists = data;
-            //     localStorage.setItem('ToDone.Lists', JSON.stringify(data));
-            // });
-    
-            // $http.get(ToDone.API.Contexts()).success(function (data) {
-            //     $scope.contexts = data;
-            //     localStorage.setItem('ToDone.Contexts', JSON.stringify(data));
-            // });
         } else {
             $scope.tags = JSON.parse(localStorage.getItem('ToDone.Tags'));
             $scope.lists = JSON.parse(localStorage.getItem('ToDone.Lists'));
@@ -187,13 +172,13 @@ ToDone.Controllers = (function () {
 
                 $scope.Form.CurrentTagText = '';
             }
-        }
+        };
 
         $scope.removeTag = function (tag) {
             var index = $scope.todo.Tags.indexOf(tag);
 
             $scope.todo.Tags.splice(index, 1);
-        }
+        };
 
         $scope.save = function () {
             $scope.writeTag();
@@ -206,7 +191,7 @@ ToDone.Controllers = (function () {
 
         $scope.cancel = function () {
             $location.path('/list');
-        }
+        };
     };
 
     that.MainNavigation = function ($scope) {
