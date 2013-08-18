@@ -230,7 +230,15 @@ ToDone.Controllers = (function () {
             $scope.todo = data;
         });
 
-        $scope.save = function () {            
+        $scope.save = function () {
+            
+            var squishedTags = [];
+            for(var i = 0; i < $scope.todo.Tags.length(); i++) {
+                if($scope.todo.Tags[i]) { squishedTags.push($scope.todo.Tags[i]); }
+            }
+            $scope.todo.Tags = squishedTags;
+            
+            
             $http.put(ToDone.API.Todo() + '-1', $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $scope.todo.Tags = [];
@@ -251,11 +259,8 @@ ToDone.Controllers = (function () {
         $rootScope.$watch(
             'SelectedContext',
             function (newValue) {
-                var i = 1;
                 if($scope.todo) {
-                    i = $scope.todo.Tags[0] ? 1 : 0;
-                    
-                    $scope.todo.Tags[i] = newValue;
+                    $scope.todo.Tags[1] = newValue;
                 }
             });
     };
