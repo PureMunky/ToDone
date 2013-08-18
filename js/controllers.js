@@ -58,7 +58,7 @@ ToDone.Controllers = (function () {
         };
         
         function loadSort() {
-            var SavedSort = JSON.parse(localStorage.getItem('ToDone.SelectedSort'));
+            var SavedSort = JSON.parse(localStorage.getItem('ToDone.SelectedSort')) || "title";
             for(var i = 0; i < $scope.Form.SortOptions.length; i++) {
                 if($scope.Form.SortOptions[i].Sort == SavedSort.Sort) {
                     $scope.Form.SelectedSort = $scope.Form.SortOptions[i];
