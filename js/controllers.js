@@ -38,14 +38,12 @@ ToDone.Controllers = (function () {
         };
 
         $scope.FilterTag = function () {
-            localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
-            
             // if ($scope.Form.SelectedTag.TagID > 0 && $scope.Form.SelectedSort.Sort) {
                 localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
                 localStorage.setItem('ToDone.SelectedContext', JSON.stringify($scope.Form.SelectedContext));
                 
                 ///filter/17,18/-1/title
-                $http.get(ToDone.API.Todo() + 'filter/' + ($scope.Form.SelectedTag.TagID || -1) + ',' + ($scope.Form.SelectedContext.TagID || -1) + '/-1/' + $scope.Form.SelectedSort.Sort).success(function (data) {
+                $http.get(ToDone.API.Todo() + 'filter/' + ($scope.Form.SelectedTag.TagID || -1) + ',' + ($scope.Form.SelectedContext.TagID || -1) + '/-1/' + ($scope.Form.SelectedSort.Sort || 'title')).success(function (data) {
                     $scope.todos = data;
                 });
             // } else {
@@ -84,6 +82,19 @@ ToDone.Controllers = (function () {
                 }
             }
         );
+        
+        $scope.$watch(
+            "Form.SelectedContext",
+            function () {
+                $scope.FilterTag();
+                if ($scope.Form.SelectedContext.TagID > 0) {
+                    $rootScope.SelectedContext = $scope.Form.SelectedContext;
+                } else {
+                    $rootScope.SelectedContext = null;
+                }
+            }
+        );
+        
         $scope.$watch(
             "Form.SelectedSort",
             function () {
