@@ -38,8 +38,8 @@ ToDone.Controllers = (function () {
         };
 
         $scope.FilterTag = function () {
-            localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
-            localStorage.setItem('ToDone.SelectedContext', JSON.stringify($scope.Form.SelectedContext));
+            if($scope.Form.SelectedTag) localStorage.setItem('ToDone.SelectedTag', JSON.stringify($scope.Form.SelectedTag));
+            if($scope.Form.SelectedContext) localStorage.setItem('ToDone.SelectedContext', JSON.stringify($scope.Form.SelectedContext));
                 
             if ($scope.Form.SelectedTag.TagID > 0 || $scope.Form.SelectedContext.TagID > 0) {
                 $http.get(ToDone.API.Todo() + 'filter/' + ($scope.Form.SelectedTag.TagID || -1) + ',' + ($scope.Form.SelectedContext.TagID || -1) + '/-1/' + ($scope.Form.SelectedSort.Sort || 'title')).success(function (data) {
