@@ -28,6 +28,8 @@
         <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
         <i class="icon-repeat" ng-show="todo.RepeatFormula.length"></i>
         <span class="label label-important" ng-show="(todo.DaysUntilDue < 0)">Overdue</span>
+        <span class="label label-warning" ng-show="(todo.DaysUntilDue == 0)">Today</span>
+        <span class="label label-info" ng-show="(todo.DaysUntilDue == 1)">Tomorrow</span>
         <span class="label" ng-repeat="tag in todo.Tags | filter: '!'+Form.SelectedTag.TagID" style="margin-right: 4px;"><i class="icon-tag"></i> {{tag.Title}}</span>
         <div ng-show="todo.DueDate">Due: {{todo.DueDate | jsonDate}}</div>
         <pre ng-show="todo.Description" ng-bind-html-unsafe="todo.Description | linkify"></pre>
