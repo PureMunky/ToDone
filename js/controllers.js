@@ -34,6 +34,10 @@ ToDone.Controllers = (function () {
             {
                 Title: "Modified",
                 Sort: "last_modified desc"
+            },
+            {
+                Title: "Smart",
+                Sort: "smart"
             }]
         };
 
@@ -195,7 +199,7 @@ ToDone.Controllers = (function () {
     };
 
     that.MainNavigation = function ($scope) {
-        $scope.links = [{
+        var futureLinks = [{
             Name: 'Current',
             Link: '#/current'
         }, {
@@ -204,6 +208,14 @@ ToDone.Controllers = (function () {
         }, {
             Name: 'Recent',
             Link: '#/recent'
+        }, {
+            Name: 'New',
+            Link: '#/create'
+        }];
+        
+        $scope.links = [{
+            Name: 'List',
+            Link: '#/list'
         }, {
             Name: 'New',
             Link: '#/create'
