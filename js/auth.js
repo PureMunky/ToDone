@@ -17,4 +17,4 @@ var Auth = (function () {
    };
    
    return that;
-});
+})();
