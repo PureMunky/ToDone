@@ -19,13 +19,6 @@
     <script src="js/filters.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/auth.js"></script>
-    <script type="text/javascript">
-        (function() {
-            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-            po.src = 'https://apis.google.com/js/client:plusone.js';
-            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-        })();
-    </script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -41,16 +34,6 @@
                     <ul class="nav" ng-controller="ToDone.Controllers.MainNavigation">
                         <li ng-repeat="link in links"><a ng-href="{{link.Link}}">{{link.Name}}</a></li>
                     </ul>
-                    <span id="signinButton">
-                        <span
-                            class="g-signin"
-                            data-callback="Auth.GoogleSignIn"
-                            data-clientid="626873191294.apps.googleusercontent.com"
-                            data-cookiepolicy="single_host_origin"
-                            data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                            data-scope="https://www.googleapis.com/auth/plus.login">
-                        </span>
-                    </span>
                     <form ng-controller="ToDone.Controllers.QuickAdd" ng-submit="save()" class="navbar-form pull-right">
                         <input type="text" ng-model="todo.Title" placeholder="QuickAdd" />
                         <button type="button" class="btn" ng-click="save()">Save</button>
@@ -63,7 +46,26 @@
         <span>Build: #{{BuildData.BuildNumber}}</span>
         <span>Git Branch: {{BuildData.GitBranch}}</span>
     </div>
+    <div class="container">
+        <span id="signinButton">
+            <span
+                class="g-signin"
+                data-callback="GoogleSignIn"
+                data-clientid="626873191294.apps.googleusercontent.com"
+                data-cookiepolicy="single_host_origin"
+                data-requestvisibleactions="http://schemas.google.com/AddActivity"
+                data-scope="https://www.googleapis.com/auth/plus.login">
+            </span>
+        </span>
+    </div>
     <div ng-view class="container"></div>
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/client:plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
 </body>
 </html>
