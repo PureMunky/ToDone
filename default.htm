@@ -42,21 +42,12 @@
             </div>
         </div>
     </div>
+    <div class="container" google-auth>
+
+    </div>
     <div ng-controller="ToDone.Controllers.Build" class="alert container">
         <span>Build: #{{BuildData.BuildNumber}}</span>
         <span>Git Branch: {{BuildData.GitBranch}}</span>
-    </div>
-    <div class="container">
-        <span id="signinButton">
-            <span
-                class="g-signin"
-                data-callback="GoogleSignIn"
-                data-clientid="626873191294.apps.googleusercontent.com"
-                data-cookiepolicy="single_host_origin"
-                data-requestvisibleactions="http://schemas.google.com/AddActivity"
-                data-scope="https://www.googleapis.com/auth/plus.login">
-            </span>
-        </span>
     </div>
     <div ng-view class="container"></div>
     <script src="js/bootstrap.min.js"></script>

@@ -1,14 +1,28 @@
 function GoogleSignIn(authResult) {
    if (authResult['access_token']) {
-        // Successfully authorized
-        // Hide the sign-in button now that the user is authorized, for example:
-        document.getElementById('signinButton').setAttribute('style', 'display: none');
-        console.log('Signed in!!');
+        Auth.SetGoogleUser();
     } else if (authResult['error']) {
-        // There was an error.
-        // Possible error codes:
-        //   "access_denied" - User denied access to your app
-        //   "immediate_failed" - Could not automatically log in the user
+
         console.log('There was an error: ' + authResult['error']);
     }
 }
+
+var Auth = (function () {
+    var that = {};
+    
+    var user = {};
+    
+    var setAuth = function () {
+        console.log('too soon!');
+    };
+    
+    that.setAuthFunction = function (fn) {
+        setAuth = fn;
+    };
+    
+    that.SetGoogleUser = function () {
+        setAuth();
+    };
+    
+    return that;
+})();
