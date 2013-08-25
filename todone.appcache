@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# 2013-08-25v2
+# 2013-08-25v3
 
 CACHE:
 
@@ -40,6 +40,7 @@ partials/directives/editRepeatFormula.htm
 
 NETWORK:
 /API
+https://apis.google.com/js/client:plusone.js
 
 FALLBACK:
 js/config_online.js js/config_offline.js
