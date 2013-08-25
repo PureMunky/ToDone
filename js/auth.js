@@ -6,6 +6,7 @@ var Auth = (function () {
             // Successfully authorized
             // Hide the sign-in button now that the user is authorized, for example:
             document.getElementById('signinButton').setAttribute('style', 'display: none');
+            console.log('Signed in!!');
         } else if (authResult['error']) {
             // There was an error.
             // Possible error codes:
