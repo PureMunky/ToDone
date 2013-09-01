@@ -24,6 +24,11 @@
 			</td>
 		</tr>
 		<tr>
+		    <td colspan=2>
+		        Priority: <select ng-options="n for n in [1, 2, 3, 4, 5, 6]" ng-model="todo.Priority"></select>
+		    </td>
+		</tr>
+		<tr>
 			<td colspan=2>
 				Tags: <span ng-repeat="tag in todo.Tags" class="label" style="margin-right: 4px;"><i class="icon-tag"></i> {{tag.Title}} <i class="icon-remove" ng-click="removeTag(tag)"></i></span><br />
                 <div class="input-prepend input-append">
