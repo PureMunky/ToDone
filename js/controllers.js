@@ -36,6 +36,10 @@ ToDone.Controllers = (function () {
                 Sort: "last_modified desc"
             },
             {
+                Title: "Priority",
+                Sort: "priority desc"
+            },
+            {
                 Title: "Smart",
                 Sort: "smart"
             }]
