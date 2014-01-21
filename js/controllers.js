@@ -134,7 +134,7 @@ ToDone.Controllers = (function () {
                 $scope.Form.ContextOptions = $scope.Form.StaticTags.concat($scope.contexts);
                 
                 if(!$rootScope.SelectedContext) {
-                    $scope.Form.SelectedContext = $scope.Form.TagOptions[0];
+                    $scope.Form.SelectedContext = $scope.Form.ContextOptions[0];
                 } else {
                     for(var i = 0; i < $scope.Form.ContextOptions.length; i++) {
                         if($scope.Form.ContextOptions[i].TagID == $rootScope.SelectedContext.TagID) {
