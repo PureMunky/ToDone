@@ -29,6 +29,11 @@
 		    </td>
 		</tr>
 		<tr>
+		    <td colspan=2>
+		        Special Sort: <input type="number" ng-model="todo.SpecialSort" style="width: 50px;" />
+		    </td>
+		</tr>
+		<tr>
 			<td colspan=2>
 				Tags: <span ng-repeat="tag in todo.Tags" class="label" style="margin-right: 4px;"><i class="icon-tag"></i> {{tag.Title}} <i class="icon-remove" ng-click="removeTag(tag)"></i></span><br />
                 <div class="input-prepend input-append">
