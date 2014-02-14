@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "author": "Phil Corbett <corbett.phil@gmail.com>",
   "scripts": {
-    "start": "node ./server/server.js",
-    "test": "vows ./test/index.js --spec --isolate"
+    "start": "node ./server/index.js",
+    "test": "vows ./test/* --spec --isolate"
   },
   "dependencies": {
     "express": ">= 1.2.0"
