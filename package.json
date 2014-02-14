@@ -9,10 +9,14 @@
       "email": "corbett.phil@gmail.com"
     } 
   ],
+  "dependencies" : {  },
   "scripts": {
     "start": "node ./server/server.js",
     "test": "vows ./test/index.js --spec --isolate",
   },
+  "devDependencies": {
+    "vows"    :  "0.5.x"
+  }
   "engines": {
     "node": ">=0.6"
   }
