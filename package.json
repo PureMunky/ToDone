@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "vows"    :  "0.5.x"
-  }
+  },
   "engines": {
     "node": ">=0.6"
   }
