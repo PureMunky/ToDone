@@ -1,22 +1,13 @@
 {
   "name": "ToDone",
-  "version": "0.0.1",
+  "description": "A todo app",
   "author": "Phil Corbett <corbett.phil@gmail.com>",
-  "description": "a todo app",
-  "contributors": [ 
-    {
-      "name": "Phil Corbett",
-      "email": "corbett.phil@gmail.com"
-    } 
-  ],
   "scripts": {
     "start": "node ./server/server.js",
     "test": "vows ./test/index.js --spec --isolate",
   },
-  "devDependencies": {
-    "vows"    :  "0.5.x"
+  "dependencies": {
+    "express": ">= 1.2.0"
   },
-  "engines": {
-    "node": ">=0.6"
-  }
+  "engine": "node 0.4.1"
 }
