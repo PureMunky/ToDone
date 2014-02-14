@@ -8,7 +8,8 @@
     "test": "vows ./test/* --spec --isolate"
   },
   "dependencies": {
-    "express": ">= 1.2.0"
+    "express": ">= 1.2.0",
+    "mongodb": ">= 1.3.0"
   },
   "devDependencies": {
     "vows": "0.5.x"
