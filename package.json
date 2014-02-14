@@ -9,5 +9,8 @@
   "dependencies": {
     "express": ">= 1.2.0"
   },
+  "devDependencies": {
+    "vows": "0.5.x"
+  },
   "engine": "node 0.4.1"
 }
