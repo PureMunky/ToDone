@@ -1,6 +1,7 @@
 {
   "name": "ToDone",
   "description": "A todo app",
+  "version": "0.0.1",
   "author": "Phil Corbett <corbett.phil@gmail.com>",
   "scripts": {
     "start": "node ./server/server.js",
