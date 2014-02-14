@@ -4,7 +4,7 @@
   "author": "Phil Corbett <corbett.phil@gmail.com>",
   "scripts": {
     "start": "node ./server/server.js",
-    "test": "vows ./test/index.js --spec --isolate",
+    "test": "vows ./test/index.js --spec --isolate"
   },
   "dependencies": {
     "express": ">= 1.2.0"
