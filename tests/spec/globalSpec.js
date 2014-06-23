@@ -1,15 +1,15 @@
-describe('AppName', function () {
+describe('ToDone', function () {
   var scope,
       controller;
 
   beforeEach(function () {
-    module('AppName');
+    module('ToDone');
   });
 
-  describe('Ctrl', function () {
+  describe('ListCtrl', function () {
     beforeEach(inject(function ($rootScope, $controller) {
       scope = $rootScope.$new();
-      controller = $controller('Ctrl', {
+      controller = $controller('ListCtrl', {
         '$scope': scope
       });
     }));

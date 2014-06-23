@@ -1,8 +1,8 @@
 (function (angular) {
 
-  var AppName = angular.module('AppName', []);
+  var ToDone = angular.module('ToDone', []);
 
-  AppName.factory('Svc', ['$window', function (win) {
+  ToDone.factory('Svc', ['$window', function (win) {
 
     return function (msg) {
       return 'hello ' + msg;
@@ -10,7 +10,7 @@
 
   }]);
 
-  AppName.controller('Ctrl', ['$scope', 'Svc', function ($scope, svc) {
+  ToDone.controller('ListCtrl', ['$scope', 'Svc', function ($scope, svc) {
 
     $scope.TestFunction = function () {
       return true;
