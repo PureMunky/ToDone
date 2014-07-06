@@ -6,10 +6,10 @@ describe('ToDone', function () {
     module('ToDone');
   });
 
-  describe('ListCtrl', function () {
+  describe('ToDone.Controllers.ListCtrl', function () {
     beforeEach(inject(function ($rootScope, $controller) {
       scope = $rootScope.$new();
-      controller = $controller('ListCtrl', {
+      controller = $controller('ToDone.Controllers.ListCtrl', {
         '$scope': scope
       });
     }));
@@ -18,12 +18,59 @@ describe('ToDone', function () {
       expect(true).toBe(true);
     });
 
-    it('has TestFunction', function () {
-      expect(!!scope.TestFunction).toBe(true);
+  });
+
+  describe('ToDone.Controllers.MainNavigation', function () {
+    beforeEach(inject(function ($rootScope, $controller) {
+      scope = $rootScope.$new();
+      controller = $controller('ToDone.Controllers.MainNavigation', {
+        '$scope': scope
+      });
+    }));
+
+    it('works', function () {
+      expect(true).toBe(true);
     });
 
-    it('calls the service', function () {
-      expect(scope.CallService('phil')).toBe('hello phil');
+    it('has links', function () {
+      expect(!!scope.Links).toBe(true);
     });
+
+  });
+
+  describe('ToDone.Controllers.QuickAdd', function () {
+    beforeEach(inject(function ($rootScope, $controller) {
+      scope = $rootScope.$new();
+      controller = $controller('ToDone.Controllers.QuickAdd', {
+        '$scope': scope
+      });
+    }));
+
+    it('works', function () {
+      expect(true).toBe(true);
+    });
+
+  });
+
+  describe('ToDone.Controllers.Build', function () {
+    beforeEach(inject(function ($rootScope, $controller) {
+      scope = $rootScope.$new();
+      controller = $controller('ToDone.Controllers.Build', {
+        '$scope': scope
+      });
+    }));
+
+    it('works', function () {
+      expect(true).toBe(true);
+    });
+
+    it('has build number', function () {
+      expect(scope.BuildData.BuildNumber).toBe(1);
+    });
+
+    it('has git branch', function () {
+      expect(scope.BuildData.GitBranch).toBe('testing');
+    });
+
   });
 });

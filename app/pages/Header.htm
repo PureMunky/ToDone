@@ -1,0 +1,21 @@
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="#">ToDone</a>
+            <div class="nav-collapse collapse">
+                <ul class="nav" ng-controller="ToDone.Controllers.MainNavigation">
+                    <li ng-repeat="link in Links"><a ng-href="{{link.Link}}">{{link.Name}}</a></li>
+                </ul>
+                <form ng-controller="ToDone.Controllers.QuickAdd" ng-submit="save()" class="navbar-form pull-right">
+                    <input type="text" ng-model="todo.Title" placeholder="QuickAdd" />
+                    <button type="button" class="btn" ng-click="save()">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -10,14 +10,29 @@
 
   }]);
 
-  ToDone.controller('ListCtrl', ['$scope', 'Svc', function ($scope, svc) {
+  ToDone.controller('ToDone.Controllers.ListCtrl', ['$scope', 'Svc', function ($scope, svc) {
 
-    $scope.TestFunction = function () {
-      return true;
-    };
+  }]);
 
-    $scope.CallService = function (msg) {
-      return svc(msg);
+  ToDone.controller('ToDone.Controllers.MainNavigation', ['$scope', 'Svc', function ($scope, svc) {
+    $scope.Links = [{
+      Name: 'List',
+      Link: '#/list'
+    }, {
+      Name: 'New',
+      Link: '#/create'
+    }];
+  }]);
+
+  ToDone.controller('ToDone.Controllers.QuickAdd', ['$scope', 'Svc', function ($scope, svc) {
+
+  }]);
+
+  ToDone.controller('ToDone.Controllers.Build', ['$scope', 'Svc', function ($scope, svc) {
+
+    $scope.BuildData = {
+      BuildNumber: 1,
+      GitBranch: 'testing'
     };
 
   }]);
