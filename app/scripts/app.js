@@ -15,6 +15,20 @@
   }]);
 
   ToDone.controller('ToDone.Controllers.MainNavigation', ['$scope', 'Svc', function ($scope, svc) {
+    var futureLinks = [{
+      Name: 'Current',
+      Link: '#/current'
+    }, {
+      Name: 'List',
+      Link: '#/list'
+    }, {
+      Name: 'Recent',
+      Link: '#/recent'
+    }, {
+      Name: 'New',
+      Link: '#/create'
+    }];
+
     $scope.Links = [{
       Name: 'List',
       Link: '#/list'
