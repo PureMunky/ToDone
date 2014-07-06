@@ -51,4 +51,16 @@
 
   }]);
 
+  ToDone.controller('ToDone.Controllers.TodoList', ['$scope', 'Svc', function ($scope, svc) {
+
+  }]);
+
+  ToDone.controller('ToDone.Controllers.TodoEdit', ['$scope', 'Svc', function ($scope, svc) {
+
+  }]);
+
+  ToDone.controller('ToDone.Controllers.CurrentList', ['$scope', 'Svc', function ($scope, svc) {
+
+  }]);
+
 })(angular);

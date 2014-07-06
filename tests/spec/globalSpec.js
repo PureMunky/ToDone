@@ -73,4 +73,46 @@ describe('ToDone', function () {
     });
 
   });
+
+  describe('ToDone.Controllers.TodoList', function () {
+    beforeEach(inject(function ($rootScope, $controller) {
+      scope = $rootScope.$new();
+      controller = $controller('ToDone.Controllers.TodoList', {
+        '$scope': scope
+      });
+    }));
+
+    it('works', function () {
+      expect(true).toBe(true);
+    });
+
+  });
+
+  describe('ToDone.Controllers.TodoEdit', function () {
+    beforeEach(inject(function ($rootScope, $controller) {
+      scope = $rootScope.$new();
+      controller = $controller('ToDone.Controllers.TodoEdit', {
+        '$scope': scope
+      });
+    }));
+
+    it('works', function () {
+      expect(true).toBe(true);
+    });
+
+  });
+
+  describe('ToDone.Controllers.CurrentList', function () {
+    beforeEach(inject(function ($rootScope, $controller) {
+      scope = $rootScope.$new();
+      controller = $controller('ToDone.Controllers.CurrentList', {
+        '$scope': scope
+      });
+    }));
+
+    it('works', function () {
+      expect(true).toBe(true);
+    });
+
+  });
 });
