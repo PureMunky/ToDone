@@ -38,6 +38,8 @@
     }];
   }]);
 
+  // Quick Add Controller
+  // Handles the ability to quickly create a new task.
   ToDone.controller('ToDone.Controllers.QuickAdd', ['$scope', 'Svc', function ($scope, svc) {
 
   }]);
