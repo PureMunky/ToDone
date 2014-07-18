@@ -6,7 +6,7 @@ function start() {
     var pathname = url.parse(req.url).pathname;
     console.log('Request for ' + pathname + ' recieved');
     res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end('hello!!');
+    res.end('yep, you just found my node server! please be nice!! :D');
   }
 
   http.createServer(onRequest).listen(80);
