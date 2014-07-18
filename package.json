@@ -4,6 +4,7 @@
   "version": "0.0.1",
   "author": "Phil Corbett <corbett.phil@gmail.com>",
   "scripts": {
+    "run": "nohup node ./server/index.js &",
     "start": "node ./server/index.js",
     "test": "vows ./test/* --spec --isolate"
   },
