@@ -160,7 +160,7 @@ ToDone.Controllers = (function () {
         });
     };
 
-    that.TodoEdit = function ($scope, $http, $routeParams, $location) {
+    that.TodoEdit = function ($scope, $http, $routeParams, $location, $q) {
         var TaskID = $routeParams.TodoID || -1;
 
         $scope.todo = {};
@@ -180,7 +180,7 @@ ToDone.Controllers = (function () {
         
         $scope.writeTag = function () {
             if ($scope.Form.CurrentTagText) {
-                $scope.todo.Tags.push({ TagID: -1, Title: $scope.Form.CurrentTagText, TypeID: 1 });
+                $scope.todo.Tags.push({ Title: $scope.Form.CurrentTagText, Type: 1 });
 
                 $scope.Form.CurrentTagText = '';
             }
@@ -193,19 +193,34 @@ ToDone.Controllers = (function () {
         };
 
         $scope.save = function () {
-            $scope.writeTag();
-            if (TaskID == -1) {
-              console.log($scope.todo);
-              $http.post(ToDone.API.Todo(), JSON.stringify($scope.todo)).success(function (data) {
-                $scope.todo = data;
-                $location.path('/list');
-              });
+          $scope.writeTag();
+          var posts = [];
+          var newTags = [];
+          for (var i = 0; i < $scope.todo.Tags.length; i++) {
+            if ($scope.todo.Tags[i]._ui == undefined) {
+              posts.push($http.post(ToDone.API.Tags(), $scope.todo.Tags[i]));
             } else {
-              $http.put(ToDone.API.Todo() + TaskID, $scope.todo).success(function (data) {
-                $scope.todo = data;
-                $location.path('/list');
-              });
+              newTags.push($scope.todo.Tags[i]._id);
             }
+            }
+            $q.all(posts).then(function (res) {
+              for (var i = 0; i < res.length; i++) {
+                newTags.push(res[i].data._id);
+              }
+              $scope.todo.Tags = newTags;
+
+              if (TaskID == -1) {
+                $http.post(ToDone.API.Todo(), $scope.todo).success(function (data) {
+                  $scope.todo = data;
+                  $location.path('/list');
+                });
+              } else {
+                $http.put(ToDone.API.Todo() + TaskID, $scope.todo).success(function (data) {
+                  $scope.todo = data;
+                  $location.path('/list');
+                });
+              }
+            });
         };
 
         $scope.cancel = function () {

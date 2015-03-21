@@ -22,10 +22,10 @@
             </select>
         </div>
     </div>
-    <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo.TaskID}})">
+    <div ng-repeat="todo in todos" class="well well-small" ng-click="edit({{todo._id}})">
         <i class="icon-edit" ng-hide="todo.Completed"></i>
         <i class="icon-ok" ng-show="todo.Completed"></i>
-        <a ng-href="#/edit/{{todo.TaskID}}">{{todo.Title}}</a>
+        <a ng-href="#/edit/{{todo._id}}">{{todo.Title}}</a>
         <i class="icon-repeat" ng-show="todo.RepeatFormula.length"></i>
         <span class="label label-important" ng-show="(todo.DaysUntilDue < 0)">Overdue</span>
         <span class="label label-warning" ng-show="(todo.DaysUntilDue == 0)">Today</span>

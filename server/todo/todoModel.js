@@ -1,16 +1,16 @@
 ﻿'use strict';
 
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+  Schema = mongoose.Schema;
 
-var TodoSchema = new mongoose.Schema({
+var TodoSchema = new Schema({
   userId: Number,
   Title: { type: String, required: true },
   RepeatFormula: String,
   DueDate: Date,
-  Tags: Array,
+  Tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
   Contexts: Array,
   Description: String
 });
-
 
 module.exports = mongoose.model('Todo', TodoSchema);

@@ -1,11 +1,13 @@
 var express = require('express'),
   todo = require('./server/todo/todoRoute.js'),
+  tag = require('./server/tag/tagRoute.js'),
   mongoose = require('mongoose'),
   bodyParser = require('body-parser');
 
 var app = express();
 app.use(bodyParser.json());
 app.use('/todo', todo);
+app.use('/tag', tag);
 app.use(express.static(__dirname));
 
 app.listen(1337);

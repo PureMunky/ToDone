@@ -13,7 +13,7 @@ ToDone.API = {
         return 'data/contexts.json';
     },
     Tags: function () {
-        return '/API/ToDone/TagService.svc/';
+        return '/tag/';
     },
     Build: function () {
         return 'version.json';
