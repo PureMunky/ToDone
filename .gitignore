@@ -29,3 +29,4 @@ node_modules
 # App Configuration
 app/config.js
 *.suo
+server/config.js
