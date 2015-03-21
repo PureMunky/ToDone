@@ -194,11 +194,18 @@ ToDone.Controllers = (function () {
 
         $scope.save = function () {
             $scope.writeTag();
-            
-            $http.put(ToDone.API.Todo() + TaskID, $scope.todo).success(function (data) {
+            if (TaskID == -1) {
+              console.log($scope.todo);
+              $http.post(ToDone.API.Todo(), JSON.stringify($scope.todo)).success(function (data) {
                 $scope.todo = data;
                 $location.path('/list');
-            });
+              });
+            } else {
+              $http.put(ToDone.API.Todo() + TaskID, $scope.todo).success(function (data) {
+                $scope.todo = data;
+                $location.path('/list');
+              });
+            }
         };
 
         $scope.cancel = function () {
@@ -232,6 +239,7 @@ ToDone.Controllers = (function () {
 
     that.QuickAdd = function ($scope, $http, $route, $rootScope) {
         $http.get(ToDone.API.Todo() + '-1').success(function (data) {
+          console.log(data);
             $scope.todo = data;
         });
 
@@ -244,7 +252,8 @@ ToDone.Controllers = (function () {
             $scope.todo.Tags = squishedTags;
             
             
-            $http.put(ToDone.API.Todo() + '-1', $scope.todo).success(function () {
+            console.log($scope.todo);
+            $http.post(ToDone.API.Todo(), $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $scope.todo.Tags = [];
                 $scope.todo.RepeatFormula = '';
