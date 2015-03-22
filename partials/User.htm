@@ -1,0 +1,13 @@
+﻿<div class="well">
+    First Name:
+    <input type="text" ng-model="User.Name.First" /><br />
+    Last Name:
+    <input type="text" ng-model="User.Name.Last" /><br />
+
+    <ul>
+        <li ng-repeat="key in User.Keys">
+            {{key}}
+        </li>
+    </ul>
+    <button class="btn btn-primary" ng-click="save()" ng-show="ready">Save</button>
+</div>

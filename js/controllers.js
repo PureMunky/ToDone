@@ -2,12 +2,6 @@
 ToDone.Controllers = (function () {
     var that = {};
 
-    that.Build = function ($scope, $http) {
-        $http.get(ToDone.API.Build()).success(function (data) {
-            $scope.BuildData = data;
-        });
-    };
-    
     that.TodoList = function ($scope, $rootScope, $location, UserService, APIService) {
 
         $scope.Form = {
@@ -250,6 +244,9 @@ ToDone.Controllers = (function () {
         }, {
             Name: 'New',
             Link: '#/create'
+        }, {
+          Name: 'User',
+          Link: '#/user'
         }];
     };
 
@@ -292,5 +289,21 @@ ToDone.Controllers = (function () {
             });
     };
 
+    that.User = function ($scope, $http, APIService, UserService) {
+      $scope.ready = false;
+
+      APIService.get(ToDone.API.Users(), function (err, data) {
+        $scope.User = data;
+        $scope.ready = true;
+      });
+
+      $scope.save = function () {
+        if (UserService.ready()) {
+          $http.put(ToDone.API.Users(), $scope.User).success(function (data) {
+            $scope.User = data;
+          });
+        }
+      };
+    };
     return that;
 })();

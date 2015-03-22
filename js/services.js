@@ -2,14 +2,15 @@
   'use strict';
 
   TD.service('UserService', ['$http', function ($http) {
-    var service = {};
+    var service = {},
+      initialKey = 'initialKey';
 
     service.get = function (cb) {
-      if (_getStoredKey() == 'initialkey') {
+      if (!service.ready()) {
         $http.get(ToDone.API.Users() + _getStoredKey()).success(function (data) {
           _setStoredKey(data.key);
           _setHttpHeader(data.key);
-          cb(null, data);
+          cb(null, data.key);
         }).error(function (err) {
           cb(err, null);
         });
@@ -19,12 +20,16 @@
       }
     };
 
+    service.ready = function () {
+      return (_getStoredKey() !== initialKey);
+    }
+
     function _setHttpHeader(key) {
       $http.defaults.headers.common.UserKey = key;
     }
 
     function _getStoredKey() {
-      return localStorage.getItem('USERKEY') || 'initialkey';
+      return localStorage.getItem('USERKEY') || initialKey;
     }
 
     function _setStoredKey(newValue) {
@@ -59,4 +64,5 @@
 
     return service;
   }]);
+
 }(ToDone.App));

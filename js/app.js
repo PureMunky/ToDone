@@ -10,8 +10,11 @@ ToDone.App = angular.module('ToDone', []).config(['$routeProvider', function ($r
         templateUrl: 'partials/TodoEdit.htm',
         controller: ToDone.Controllers.TodoEdit
     }).when('/current', {
-        templateUrl: 'partials/CurrentList.htm',
-        controller: ToDone.Controllers.CurrentList
+      templateUrl: 'partials/CurrentList.htm',
+      controller: ToDone.Controllers.CurrentList
+    }).when('/user', {
+      templateUrl: 'partials/User.htm',
+      controller: ToDone.Controllers.User
     }).otherwise({
         redirectTo: '/list'
     });
