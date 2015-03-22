@@ -9,6 +9,7 @@ ToDone.Controllers = (function () {
     };
     
     that.TodoList = function ($scope, $rootScope, $location, UserService, APIService) {
+
         $scope.Form = {
             SelectedTag: $rootScope.CurrentTag || JSON.parse(localStorage.getItem('ToDone.SelectedTag')) || {},
             SelectedContext: $rootScope.SelectedContext || JSON.parse(localStorage.getItem('ToDone.SelectedContext')) || {},
@@ -68,10 +69,6 @@ ToDone.Controllers = (function () {
         $scope.edit = function (taskID) {
             $location.path('/edit/' + taskID);
         };
-
-        UserService.get(function (err, key) {
-          console.log(key);
-        });
         
         function loadSort() {
             var SavedSort = JSON.parse(localStorage.getItem('ToDone.SelectedSort')) || "title";
@@ -258,7 +255,6 @@ ToDone.Controllers = (function () {
 
     that.QuickAdd = function ($scope, $http, $route, $rootScope) {
         $http.get(ToDone.API.Todo() + '-1').success(function (data) {
-          console.log(data);
             $scope.todo = data;
         });
 
@@ -270,8 +266,6 @@ ToDone.Controllers = (function () {
             }
             $scope.todo.Tags = squishedTags;
             
-            
-            console.log($scope.todo);
             $http.post(ToDone.API.Todo(), $scope.todo).success(function () {
                 $scope.todo.Title = '';
                 $scope.todo.Tags = [];

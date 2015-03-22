@@ -17,8 +17,5 @@ ToDone.API = {
     },
     Users: function () {
       return '/user/';
-    },
-    Build: function () {
-        return 'version.json';
     }
 };

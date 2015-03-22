@@ -80,36 +80,3 @@ ToDone.App.directive('repeatFormat', function () {
         }
     };
 });
-
-ToDone.App.directive('googleAuth', function ($rootScope) {
-    return {
-        restrict: 'A',
-        templateUrl: 'partials/directives/auth.htm',
-        scope: {},
-        link: function (scope, elem, attrs) {
-            scope.user = {
-                loaded: false
-            };
-            
-            scope.SetGoogleUser = function () {
-                gapi.client.load('plus', 'v1', function() {
-                    var request = gapi.client.plus.people.get({
-                        'userId': 'me'
-                    });
-                    
-                    request.execute(function(resp) {
-                        scope.$apply(function() {
-                            scope.user = resp;
-                            scope.user.loaded = true;
-                            $rootScope.Auth = {
-                                UserID: scope.user.id
-                            }
-                        });
-                    });
-                });  
-            };
-            
-            Auth.setAuthFunction(scope.SetGoogleUser);
-        }
-    };
-});
