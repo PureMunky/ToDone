@@ -4,13 +4,20 @@ var express = require('express');
 var router = express.Router();
 var todo = require('./todoModel.js');
 var rh = require('../routeHelper.js');
+var user = require('../user/userCtrl.js');
 
 router.get('/', function (req, res, next) {
   todo.find(rh.resolve(res, next));
 });
 
 router.get('/list/:sort', function (req, res, next) {
-  todo.find({}).populate('Tags').sort({ title: 1 }).exec(rh.resolve(res, next));
+  user.getID(req.headers.userkey, function (err, userId) {
+    if (err) {
+      rh.resolve(res, next)(err, null);
+    } else {
+      todo.find({ _owner: userId }).populate('Tags').sort({ title: 1 }).exec(rh.resolve(res, next));
+    }
+  });
 });
 
 router.get('/:id', function (req, res, next) {
@@ -32,7 +39,16 @@ router.put('/:id', function (req, res, next) {
 });
 
 router.post('/', function (req, res, next) {
-  todo.create(req.body, rh.resolve(res, next));
+  user.getID(req.headers.userkey, function (err, userId) {
+    if (err) {
+      rh.resolve(res, next)(err, null);
+    } else {
+      console.log(userId);
+      var task = req.body;
+      task._owner = userId;
+      todo.create(task, rh.resolve(res, next));
+    }
+  });
 });
 
 module.exports = router;

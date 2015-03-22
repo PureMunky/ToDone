@@ -15,6 +15,9 @@ ToDone.API = {
     Tags: function () {
         return '/tag/';
     },
+    Users: function () {
+      return '/user/';
+    },
     Build: function () {
         return 'version.json';
     }

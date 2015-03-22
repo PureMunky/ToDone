@@ -8,7 +8,7 @@ ToDone.Controllers = (function () {
         });
     };
     
-    that.TodoList = function ($scope, $http, $rootScope, $location) {
+    that.TodoList = function ($scope, $rootScope, $location, UserService, APIService) {
         $scope.Form = {
             SelectedTag: $rootScope.CurrentTag || JSON.parse(localStorage.getItem('ToDone.SelectedTag')) || {},
             SelectedContext: $rootScope.SelectedContext || JSON.parse(localStorage.getItem('ToDone.SelectedContext')) || {},
@@ -54,11 +54,11 @@ ToDone.Controllers = (function () {
             if($scope.Form.SelectedContext) localStorage.setItem('ToDone.SelectedContext', JSON.stringify($scope.Form.SelectedContext));
                 
             if ($scope.Form.SelectedTag.TagID > 0 || $scope.Form.SelectedContext.TagID > 0) {
-                $http.get(ToDone.API.Todo() + 'filter/' + ($scope.Form.SelectedTag.TagID || -1) + ',' + ($scope.Form.SelectedContext.TagID || -1) + '/-1/' + ($scope.Form.SelectedSort.Sort || 'title')).success(function (data) {
+              APIService.get(ToDone.API.Todo() + 'filter/' + ($scope.Form.SelectedTag.TagID || -1) + ',' + ($scope.Form.SelectedContext.TagID || -1) + '/-1/' + ($scope.Form.SelectedSort.Sort || 'title'), function (err, data) {
                     $scope.todos = data;
                 });
             } else {                  
-                $http.get(ToDone.API.Todo() + 'list/' + ($scope.Form.SelectedSort.Sort || 'title')).success(function (data) {
+                APIService.get(ToDone.API.Todo() + 'list/' + ($scope.Form.SelectedSort.Sort || 'title'), function (err, data) {
                     $scope.todos = data;
                     localStorage.setItem('ToDone.Tasks', JSON.stringify(data));
                 });
@@ -68,6 +68,10 @@ ToDone.Controllers = (function () {
         $scope.edit = function (taskID) {
             $location.path('/edit/' + taskID);
         };
+
+        UserService.get(function (err, key) {
+          console.log(key);
+        });
         
         function loadSort() {
             var SavedSort = JSON.parse(localStorage.getItem('ToDone.SelectedSort')) || "title";
@@ -115,7 +119,7 @@ ToDone.Controllers = (function () {
         
         if(ToDone.API.Online) {
             // Get Normal Tags
-            $http.get(ToDone.API.Tags() + 'type/1').success(function (data) {
+            APIService.get(ToDone.API.Tags() + 'type/1', function (err, data) {
                 $scope.tags = data;
                 localStorage.setItem('ToDone.Tags', JSON.stringify(data));
                 $scope.Form.TagOptions = $scope.Form.StaticTags.concat($scope.tags);
@@ -132,7 +136,7 @@ ToDone.Controllers = (function () {
             });
             
             // Get Context Tags
-            $http.get(ToDone.API.Tags() + 'type/2').success(function (data) {
+            APIService.get(ToDone.API.Tags() + 'type/2', function (err, data) {
                 $scope.contexts = data;
                 localStorage.setItem('ToDone.Contexts', JSON.stringify(data));
                 $scope.Form.ContextOptions = $scope.Form.StaticTags.concat($scope.contexts);

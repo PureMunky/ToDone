@@ -36,7 +36,11 @@ function _genKey(oldKey) {
 // Gets the user id for a specified user key.
 function _getID(key, cb) {
   _getUserByKey(key, function (err, data) {
-    cb(err, data._id);
+    if (data) {
+      cb(err, data._id);
+    } else {
+      cb(new Error('Invalid User Key'), null);
+    }
   });
 }
 
