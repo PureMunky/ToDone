@@ -9,7 +9,7 @@ var UserSchema = new Schema({
     Last: String
   },
   Email: String,
-  Keys: [String]
+  Keys: [{ type: Schema.Types.ObjectId, ref: 'Key' }]
 });
 
 module.exports = mongoose.model('User', UserSchema);

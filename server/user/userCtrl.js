@@ -1,6 +1,7 @@
 ﻿'use strict';
 
 var user = require('./userModel.js'),
+  keyModel = require('./keyModel.js'),
   crypto = require('crypto');
 
 // Returns a new user key and associates it with a user record.
@@ -8,16 +9,32 @@ function _getKey(key, cb) {
   var newKey = _genKey();
   _getUserByKey(key, function (err, data) {
     if (data != undefined) {
-      data.Keys.push(newKey);
-      data.save(function (err, data) {
-        cb(err, newKey);
-      });
+      _addKeyToUser(data, key, newKey, cb);
     } else {
-      user.create({ Keys: [newKey] }, function (err, data){
-        cb(err, newKey);
+      user.create({}, function (err, data) {
+        _addKeyToUser(data, key, newKey, cb);
       });
     }
   });
+}
+
+// Adds a new key to an existing user.
+function _addKeyToUser(user, oldKey, keyValue, cb) {
+  _saveNewKey(user._id, oldKey, keyValue, function (err, keyData) {
+    user.Keys.push(keyData._id);
+    user.save(function (err) {
+      cb(err, keyValue);
+    });
+  });
+}
+
+// Creates a new key.
+function _saveNewKey(ownerId, oldKey, keyValue, cb) {
+  keyModel.create({
+    _owner: ownerId,
+    Value: keyValue,
+    GeneratedFrom: oldKey
+  }, cb);
 }
 
 // Generates a new user key.
@@ -46,7 +63,13 @@ function _getID(key, cb) {
 
 // Gets a user object by key.
 function _getUserByKey(key, cb) {
-  user.findOne({ Keys: key }, cb);
+  keyModel.findOne({ Value: key }).populate('_owner').exec(function (err, data) {
+    if (data) {
+      user.findOne({ _id: data._owner._id }).exec(cb)
+    } else {
+      cb(err, null);
+    }
+  });
 }
 
 module.exports.getKey = _getKey;

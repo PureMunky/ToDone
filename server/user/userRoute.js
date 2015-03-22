@@ -14,7 +14,7 @@ router.get('/:key', function (req, res, next) {
 
 router.get('/', function (req, res, next) {
   rh.authenticate(req, res, next, function (err, userId) {
-    userModel.findOne({ _id: userId }).select('-_id').exec(rh.resolve(res, next));
+    userModel.findOne({ _id: userId }).populate('Keys', '-_id -_owner').select('-_id').exec(rh.resolve(res, next));
   });
 });
 
