@@ -6,9 +6,9 @@ var todo = require('../server/todo/todoModel.js'),
 
 describe('todoModel.js', function () {
 
-  //it('works', function () {
-  //  expect(1).toBe(1);
-  //});
+  it('works', function () {
+    expect(1).toBe(1);
+  });
   
   //it('can get todos', function () {
   //  var task = new todo({ title: 'test title' });

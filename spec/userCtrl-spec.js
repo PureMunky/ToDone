@@ -14,6 +14,10 @@ describe('userCtrl.js', function () {
     });
   });
 
+  afterEach(function () {
+    mongoose.connection.close();
+  });
+
   it('works', function () {
     expect(1).toBe(1);
   });
