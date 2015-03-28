@@ -85,7 +85,7 @@ describe('todoCtrl.js', function () {
       Tags: [ tag._id ],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: false
+      Completed: false
     };
 
     todoModel.create(source, function (err) {
@@ -99,7 +99,7 @@ describe('todoCtrl.js', function () {
         expect(data.Tags[0]._id).toBe(source.Tags[0]._id);
         expect(data.Contexts[0]).toBe(source.Contexts[0]);
         expect(data.Description).toBe(source.Description);
-        expect(data.Complete).toBe(false);
+        expect(data.Completed).toBe(false);
 
         done();
       });
@@ -116,7 +116,7 @@ describe('todoCtrl.js', function () {
       Tags: [ tag._id ],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: false
+      Completed: false
     };
 
     todoCtrl.save(source, function (err, data) {
@@ -136,14 +136,14 @@ describe('todoCtrl.js', function () {
       Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: true
+      Completed: true
     };
 
     todoCtrl.save(source, function (err, data) {
       expect(err).toBe(null);
       expect(data._id).toBeDefined();
 
-      expect(data.Complete).toBe(true);
+      expect(data.Completed).toBe(true);
 
       done();
     });
@@ -159,14 +159,14 @@ describe('todoCtrl.js', function () {
       Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: true
+      Completed: true
     };
 
     todoCtrl.save(source, function (err, data) {
       expect(err).toBe(null);
       expect(data._id).toBeDefined();
 
-      expect(data.Complete).toBe(false);
+      expect(data.Completed).toBe(false);
       expect(data.DueDate.toString()).toBe(new Date(2015, 3, 29).toString());
       done();
     });
@@ -181,14 +181,14 @@ describe('todoCtrl.js', function () {
       Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: true
+      Completed: true
     };
 
     todoCtrl.save(source, function (err, data) {
       expect(err).toBe(null);
       expect(data._id).toBeDefined();
 
-      expect(data.Complete).toBe(false);
+      expect(data.Completed).toBe(false);
       expect(data.DueDate.toString()).toBe(new Date(2015, 3, 8).toString());
       done();
     });
@@ -203,14 +203,14 @@ describe('todoCtrl.js', function () {
       Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: true
+      Completed: true
     };
 
     todoCtrl.save(source, function (err, data) {
       expect(err).toBe(null);
       expect(data._id).toBeDefined();
 
-      expect(data.Complete).toBe(false);
+      expect(data.Completed).toBe(false);
       expect(data.DueDate.toString()).toBe(new Date(2015, 4, 1).toString());
       done();
     });
@@ -225,14 +225,14 @@ describe('todoCtrl.js', function () {
       Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: true
+      Completed: true
     };
 
     todoCtrl.save(source, function (err, data) {
       expect(err).toBe(null);
       expect(data._id).toBeDefined();
 
-      expect(data.Complete).toBe(false);
+      expect(data.Completed).toBe(false);
       expect(data.DueDate.toString()).toBe(new Date(2016, 3, 1).toString());
       done();
     });
@@ -247,14 +247,14 @@ describe('todoCtrl.js', function () {
       Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: true
+      Completed: true
     };
 
     todoCtrl.save(source, function (err, data) {
       expect(err).toBe(null);
       expect(data._id).toBeDefined();
 
-      expect(data.Complete).toBe(false);
+      expect(data.Completed).toBe(false);
       expect(data.DueDate.toString()).toBe(new Date(2015, 5, 1).toString());
       done();
     });
@@ -269,14 +269,14 @@ describe('todoCtrl.js', function () {
       Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
-      Complete: true
+      Completed: true
     };
 
     todoCtrl.save(source, function (err, data) {
       expect(err).toBe(null);
       expect(data._id).toBeDefined();
 
-      expect(data.Complete).toBe(false);
+      expect(data.Completed).toBe(false);
       expect(moment(data.DueDate).toString()).toBe(new moment().add(1, 'd').toString());
       done();
     });
