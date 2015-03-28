@@ -1,6 +1,7 @@
 ﻿'use strict';
 
-var todoModel = require('./todoModel.js');
+var todoModel = require('./todoModel.js'),
+  moment = require('moment');
 
 function _save(todo, cb) {
   _processTodo(todo);
@@ -19,59 +20,27 @@ function _processTodo(todo) {
 
 function _setRepeat(todo) {
   var repeat = _parseRepeat(todo.RepeatFormula),
-    start_date = {
-      month: 0,
-      day: 0,
-      year: 0
-    },
+    start_date = new moment(),
     durationTime;
 
-  console.log(repeat);
   switch (repeat.start) {
     case 's':
       // Start Date
-      start_date.month = todo.StartDate.getMonth();
-      start_date.day = todo.StartDate.getDate();
-      start_date.year = todo.StartDate.getYear();
-
+      start_date = new moment(todo.StartDate);
       break;
     case 'd':
       // Due Date
-      start_date.month = todo.DueDate.getMonth();
-      start_date.day = todo.DueDate.getDate();
-      start_date.year = todo.DueDate.getYear();
-
+      start_date = new moment(todo.DueDate);
       break;
     default:
       // Today
-      start_date.month = new Date().getMonth();
-      start_date.day = new Date().getDate();
-      start_date.year = new Date().getYear();
-
+      start_date = new moment();
       break;
   }
 
-  switch (repeat.duration) {
-    case 'd':
-      start_date.day += repeat.num;
-      break;
-    case 'w':
-      start_date.day += (repeat.num * 7);
-      break;
-    case 'm':
-      start_date.month += repeat.num;
-      break;
-    case 'y':
-      start_date.year += repeat.num;
-      break;
-  }
-
-  start_date.year += 1900;
-
+  start_date.add(repeat.num, repeat.duration);
   todo.Complete = false;
-
-  todo.DueDate = new Date(start_date.year, start_date.month, start_date.day);
-  console.log(start_date);
+  todo.DueDate = start_date;
 }
 
 function _parseRepeat(repeat) {
