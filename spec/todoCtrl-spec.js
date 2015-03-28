@@ -110,7 +110,7 @@ describe('todoCtrl.js', function () {
     var source = {
       _owner: user._id,
       Title: 'test title',
-      RepeatFormula: '1|d',
+      RepeatFormula: '1|d|t',
       DueDate: new Date(2015, 3, 28),
       Tags: [ tag._id ],
       Contexts: ['hello'],
@@ -121,6 +121,52 @@ describe('todoCtrl.js', function () {
     todoCtrl.save(source, function (err, data) {
       expect(err).toBe(null);
       expect(data._id).toBeDefined();
+      done();
+    });
+
+  });
+
+  it('processes completes', function (done) {
+    var source = {
+      _owner: user._id,
+      Title: 'test title',
+      RepeatFormula: '',
+      DueDate: new Date(2015, 3, 28),
+      Tags: [tag._id],
+      Contexts: ['hello'],
+      Description: 'test description',
+      Complete: true
+    };
+
+    todoCtrl.save(source, function (err, data) {
+      expect(err).toBe(null);
+      expect(data._id).toBeDefined();
+
+      expect(data.Complete).toBe(true);
+
+      done();
+    });
+
+  });
+
+  it('processes repeats from today', function (done) {
+    var source = {
+      _owner: user._id,
+      Title: 'test title',
+      RepeatFormula: '1|d|d',
+      DueDate: new Date(2015, 3, 28),
+      Tags: [tag._id],
+      Contexts: ['hello'],
+      Description: 'test description',
+      Complete: true
+    };
+
+    todoCtrl.save(source, function (err, data) {
+      expect(err).toBe(null);
+      expect(data._id).toBeDefined();
+
+      expect(data.Complete).toBe(false);
+      expect(data.DueDate.toString()).toBe(new Date(2015, 3, 29).toString());
       done();
     });
 
