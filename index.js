@@ -4,7 +4,7 @@ var express = require('express'),
   user = require('./server/user/userRoute.js'),
   mongoose = require('mongoose'),
   bodyParser = require('body-parser'),
-  config = require('./server/config.js')[process.env.NODE_ENV];
+  config = require('./server/config.js')['PRIMARY'];
 
 var app = express();
 app.use(bodyParser.json());
@@ -14,12 +14,12 @@ app.use('/user', user);
 app.use(express.static(__dirname));
 
 app.listen(1337);
-console.log('web server listening - ' + process.env.NODE_ENV);
+console.log('web server listening');
 
 mongoose.connect(config.db.conn, function (err) {
   if (err) {
-    console.log('db connection error - ' + process.env.NODE_ENV, err);
+    console.log('db connection error', err);
   } else {
-    console.log('db connection successful - ' + process.env.NODE_ENV);
+    console.log('db connection successful');
   }
 });
