@@ -13,7 +13,7 @@ function _save(todo, cb) {
 }
 
 function _processTodo(todo) {
-  if (todo.Complete && todo.RepeatFormula) {
+  if (todo.Completed && todo.RepeatFormula) {
     _setRepeat(todo);
   }
 }
@@ -39,7 +39,7 @@ function _setRepeat(todo) {
   }
 
   start_date.add(repeat.num, repeat.duration);
-  todo.Complete = false;
+  todo.Completed = false;
   todo.DueDate = start_date;
 }
 

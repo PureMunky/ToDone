@@ -3,6 +3,7 @@
 var express = require('express');
 var router = express.Router();
 var todo = require('./todoModel.js');
+var todoCtrl = require('./todoCtrl.js');
 var rh = require('../routeHelper.js');
 var user = require('../user/userCtrl.js');
 
@@ -37,14 +38,14 @@ router.get('/:id', function (req, res, next) {
 router.put('/:id', function (req, res, next) {
   rh.authenticate(req, res, next, function (err, userId) {
     req.body._owner = userId;
-    todo.update({ _id: req.params.id, _owner: userId }, req.body, rh.resolve(res, next));
+    todoCtrl.save(req.body, rh.resolve(res, next));
   });
 });
 
 router.post('/', function (req, res, next) {
   rh.authenticate(req, res, next, function (err, userId) {
     req.body._owner = userId;
-    todo.create(req.body, rh.resolve(res, next));
+    todoCtrl.save(req.body, rh.resolve(res, next));
   });
 });
 

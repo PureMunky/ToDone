@@ -11,7 +11,7 @@ var TodoSchema = new Schema({
   Tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
   Contexts: Array,
   Description: String,
-  Complete: Boolean
+  Completed: Boolean
 });
 
 module.exports = mongoose.model('Todo', TodoSchema);
