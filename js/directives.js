@@ -10,7 +10,7 @@ ToDone.App.directive('repeatFormat', function () {
             scope.repeatOptions = [
                 {ID: 'd', Title: 'Days'},
                 {ID: 'w', Title: 'Weeks'},
-                {ID: 'm', Title: 'Months'},
+                {ID: 'M', Title: 'Months'},
                 {ID: 'y', Title: 'Years'},
             ];
             

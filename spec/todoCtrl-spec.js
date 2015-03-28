@@ -3,6 +3,7 @@
 var todoModel = require('../server/todo/todoModel.js'),
   todoCtrl = require('../server/todo/todoCtrl.js'),
   mongoose = require('mongoose'),
+  moment = require('moment'),
   config = require('../server/config.js')['TEST'],
   userModel = require('../server/user/userModel.js'),
   user,
@@ -149,7 +150,7 @@ describe('todoCtrl.js', function () {
 
   });
 
-  it('processes repeats from today', function (done) {
+  it('processes repeats from due date', function (done) {
     var source = {
       _owner: user._id,
       Title: 'test title',
@@ -169,6 +170,116 @@ describe('todoCtrl.js', function () {
       expect(data.DueDate.toString()).toBe(new Date(2015, 3, 29).toString());
       done();
     });
-
   });
+
+  it('processes week repeats', function (done) {
+    var source = {
+      _owner: user._id,
+      Title: 'test title',
+      RepeatFormula: '1|w|d',
+      DueDate: new Date(2015, 3, 1),
+      Tags: [tag._id],
+      Contexts: ['hello'],
+      Description: 'test description',
+      Complete: true
+    };
+
+    todoCtrl.save(source, function (err, data) {
+      expect(err).toBe(null);
+      expect(data._id).toBeDefined();
+
+      expect(data.Complete).toBe(false);
+      expect(data.DueDate.toString()).toBe(new Date(2015, 3, 8).toString());
+      done();
+    });
+  });
+
+  it('processes month repeats', function (done) {
+    var source = {
+      _owner: user._id,
+      Title: 'test title',
+      RepeatFormula: '1|M|d',
+      DueDate: new Date(2015, 3, 1),
+      Tags: [tag._id],
+      Contexts: ['hello'],
+      Description: 'test description',
+      Complete: true
+    };
+
+    todoCtrl.save(source, function (err, data) {
+      expect(err).toBe(null);
+      expect(data._id).toBeDefined();
+
+      expect(data.Complete).toBe(false);
+      expect(data.DueDate.toString()).toBe(new Date(2015, 4, 1).toString());
+      done();
+    });
+  });
+
+  it('processes year repeats', function (done) {
+    var source = {
+      _owner: user._id,
+      Title: 'test title',
+      RepeatFormula: '1|y|d',
+      DueDate: new Date(2015, 3, 1),
+      Tags: [tag._id],
+      Contexts: ['hello'],
+      Description: 'test description',
+      Complete: true
+    };
+
+    todoCtrl.save(source, function (err, data) {
+      expect(err).toBe(null);
+      expect(data._id).toBeDefined();
+
+      expect(data.Complete).toBe(false);
+      expect(data.DueDate.toString()).toBe(new Date(2016, 3, 1).toString());
+      done();
+    });
+  });
+
+  it('processes 2 month repeats', function (done) {
+    var source = {
+      _owner: user._id,
+      Title: 'test title',
+      RepeatFormula: '2|M|d',
+      DueDate: new Date(2015, 3, 1),
+      Tags: [tag._id],
+      Contexts: ['hello'],
+      Description: 'test description',
+      Complete: true
+    };
+
+    todoCtrl.save(source, function (err, data) {
+      expect(err).toBe(null);
+      expect(data._id).toBeDefined();
+
+      expect(data.Complete).toBe(false);
+      expect(data.DueDate.toString()).toBe(new Date(2015, 5, 1).toString());
+      done();
+    });
+  });
+
+  it('processes repeats from today', function (done) {
+    var source = {
+      _owner: user._id,
+      Title: 'test title',
+      RepeatFormula: '1|d|t',
+      DueDate: new Date(2015, 3, 28),
+      Tags: [tag._id],
+      Contexts: ['hello'],
+      Description: 'test description',
+      Complete: true
+    };
+
+    todoCtrl.save(source, function (err, data) {
+      expect(err).toBe(null);
+      expect(data._id).toBeDefined();
+
+      expect(data.Complete).toBe(false);
+      expect(moment(data.DueDate).toString()).toBe(new moment().add(1, 'd').toString());
+      done();
+    });
+  });
+
 });
