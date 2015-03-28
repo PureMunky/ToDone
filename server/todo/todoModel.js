@@ -10,7 +10,8 @@ var TodoSchema = new Schema({
   DueDate: Date,
   Tags: [{ type: Schema.Types.ObjectId, ref: 'Tag' }],
   Contexts: Array,
-  Description: String
+  Description: String,
+  Complete: Boolean
 });
 
 module.exports = mongoose.model('Todo', TodoSchema);
