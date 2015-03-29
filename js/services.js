@@ -1,6 +1,7 @@
 ﻿(function (TD) {
   'use strict';
 
+  // Interactions with the user api for key maangement.
   TD.service('UserService', ['$http', function ($http) {
     var service = {},
       initialKey = 'initialKey';
@@ -43,38 +44,43 @@
     return service;
   }]);
 
+  // Standin for $http authenticates and actions automatically.
   TD.service('APIService', ['$http', 'UserService', function ($http, user) {
     var service = {};
 
     service.get = function (url, cb) {
       user.get(function (err, key) {
-        $http.get(url).success(function (data) {
-          cb(null, data);
-        }).error(function (err) {
-          cb(err, null);
-        });
+        _handlePromise($http.get(url), cb);
       });
     };
 
     service.put = function (url, data, cb) {
       user.get(function (err, key) {
-        $http.put(url, data).success(function (data) {
-          cb(null, data);
-        }).error(function (err) {
-          cb(err);
-        });
+        _handlePromise($http.put(url, data), cb);
       });
     };
 
     service.post = function (url, data, cb) {
       user.get(function (err, key) {
-        $http.post(url, data).success(function (data) {
-
-        }).err(function (err) {
-
-        });
+        _handlePromise($http.post(url, data), cb);
       });
     };
+
+    function _handlePromise(prom, cb) {
+      prom.success(_handle(cb)).error(_error(cb));
+    }
+
+    function _handle(cb) {
+      return function (data) {
+        cb(null, data);
+      };
+    }
+
+    function _error(cb) {
+      return function (err) {
+        cb(err);
+      };
+    }
 
     return service;
   }]);
