@@ -3,6 +3,7 @@
 var todoModel = require('./todoModel.js'),
   moment = require('moment');
 
+// Processes and save a todo to the database.
 function _save(todo, cb) {
   _processTodo(todo);
 
@@ -12,12 +13,14 @@ function _save(todo, cb) {
   });
 }
 
+// Process the todo before saving it.
 function _processTodo(todo) {
   if (todo.Completed && todo.RepeatFormula) {
     _setRepeat(todo);
   }
 }
 
+// Modifies the todo if based on repeat logic.
 function _setRepeat(todo) {
   var repeat = _parseRepeat(todo.RepeatFormula),
     start_date = new moment(),
@@ -43,6 +46,7 @@ function _setRepeat(todo) {
   todo.DueDate = start_date;
 }
 
+// Parses the repeat string and creates an object representing it.
 function _parseRepeat(repeat) {
   var parts = repeat.split('|'),
     num = parseInt(parts[0]),
