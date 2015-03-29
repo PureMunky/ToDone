@@ -56,6 +56,16 @@
       });
     };
 
+    service.put = function (url, data, cb) {
+      user.get(function (err, key) {
+        $http.put(url, data).success(function (data) {
+          cb(null, data);
+        }).error(function (err) {
+          cb(err);
+        });
+      });
+    };
+
     service.post = function (url, data, cb) {
       user.get(function (err, key) {
         $http.post(url, data).success(function (data) {
