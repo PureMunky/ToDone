@@ -24,6 +24,10 @@
       return (_getStoredKey() !== initialKey);
     }
 
+    service.onReady = function (cb) {
+      service.get(cb);
+    }
+
     function _setHttpHeader(key) {
       $http.defaults.headers.common.UserKey = key;
     }

@@ -309,10 +309,16 @@ ToDone.Controllers = (function () {
     };
   }];
 
-  that.TagEditor = ['$scope', 'APIService', function ($scope, APIService) {
-    APIService.get(ToDone.API.Tags(), function (err, data) {
-      $scope.tags = data;
-    });
+  that.TagEditor = ['$scope', 'APIService', 'UserService', function ($scope, APIService, UserService) {
+
+    function _load(err, userKey) {
+      APIService.get(ToDone.API.Tags(), function (err, data) {
+        $scope.tags = data;
+      });
+    }
+
+    UserService.onReady(_load);
+
   }];
 
   return that;
