@@ -2,7 +2,7 @@
 ToDone.Controllers = (function () {
   var that = {};
 
-  that.TodoList = function ($scope, $rootScope, $location, UserService, APIService) {
+  that.TodoList = ['$scope', '$rootScope', '$location', 'UserService', 'APIService', function ($scope, $rootScope, $location, UserService, APIService) {
 
     $scope.Form = {
       SelectedTag: $rootScope.CurrentTag || JSON.parse(localStorage.getItem('ToDone.SelectedTag')) || {},
@@ -147,15 +147,15 @@ ToDone.Controllers = (function () {
       $scope.lists = JSON.parse(localStorage.getItem('ToDone.Lists'));
       $scope.contexts = JSON.parse(localStorage.getItem('ToDone.Contexts'));
     }
-  };
+  }];
 
-  that.CurrentList = function ($scope, $http) {
+  that.CurrentList = ['$scope', '$http', function ($scope, $http) {
     $http.get(ToDone.API.Todo() + 'current').success(function (data) {
       $scope.todos = data;
     });
-  };
+  }];
 
-  that.TodoEdit = function ($scope, $http, $routeParams, $location, $q) {
+  that.TodoEdit = ['$scope', '$http', '$routeParams', '$location', '$q', function ($scope, $http, $routeParams, $location, $q) {
     var TaskID = $routeParams.TodoID || -1;
 
     $scope.todo = {};
@@ -221,9 +221,9 @@ ToDone.Controllers = (function () {
     $scope.cancel = function () {
       $location.path('/list');
     };
-  };
+  }];
 
-  that.MainNavigation = function ($scope) {
+  that.MainNavigation = ['$scope', function ($scope) {
     var futureLinks = [{
       Name: 'Current',
       Link: '#/current'
@@ -247,10 +247,13 @@ ToDone.Controllers = (function () {
     }, {
       Name: 'User',
       Link: '#/user'
+    }, {
+      Name: 'Tags',
+      Link: '#/tagEditor'
     }];
-  };
+  }];
 
-  that.QuickAdd = function ($scope, $http, $route, $rootScope) {
+  that.QuickAdd = ['$scope', '$http', '$route', '$rootScope', function ($scope, $http, $route, $rootScope) {
     $http.get(ToDone.API.Todo() + '-1').success(function (data) {
       $scope.todo = data;
     });
@@ -287,9 +290,9 @@ ToDone.Controllers = (function () {
             $scope.todo.Tags[1] = newValue;
           }
         });
-  };
+  }];
 
-  that.User = function ($scope, $http, APIService, UserService) {
+  that.User = ['$scope', '$http', 'APIService', 'UserService', function ($scope, $http, APIService, UserService) {
     $scope.ready = false;
 
     APIService.get(ToDone.API.Users(), function (err, data) {
@@ -304,6 +307,13 @@ ToDone.Controllers = (function () {
         });
       }
     };
-  };
+  }];
+
+  that.TagEditor = ['$scope', 'APIService', function ($scope, APIService) {
+    APIService.get(ToDone.API.Tags(), function (err, data) {
+      $scope.tags = data;
+    });
+  }];
+
   return that;
 })();
