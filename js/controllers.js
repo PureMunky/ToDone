@@ -315,6 +315,22 @@ ToDone.Controllers = (function () {
       APIService.get(ToDone.API.Tags(), function (err, data) {
         $scope.tags = data;
       });
+
+      $scope.save = function (tag) {
+        APIService.put(ToDone.API.Tags() + tag._id, tag, function (err, data) {
+          console.log(data);
+        });
+      };
+
+      $scope.newAction = function (tag) {
+        if (!tag.Actions) { tag.Actions = []; }
+
+        tag.Actions.push({
+          Trigger: 'onComplete',
+          Do: 'moveTo',
+          Tag: ''
+        });
+      };
     }
 
     UserService.onReady(_load);

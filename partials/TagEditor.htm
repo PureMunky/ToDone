@@ -1,3 +1,13 @@
 ﻿<div class="well" ng-repeat="tag in tags">
-    {{tag.Title}}
+    <div class="input-prepend">
+        <span class="add-on">Title</span>
+        <input type="text" ng-model="tag.Title" />
+    </div>
+    <div>
+        <div ng-repeat="action in tag.Actions">
+            {{action.Trigger}} - {{action.Do}} - {{action.Tag.Title}}
+        </div>
+        <button class="btn" ng-click="newAction(tag)">Add</button>
+    </div>
+    <button class="btn" ng-click="save(tag)">Save</button>
 </div>
