@@ -5,6 +5,7 @@ var todoModel = require('../server/todo/todoModel.js'),
   mongoose = require('mongoose'),
   moment = require('moment'),
   config = require('../server/config.js')['TEST'],
+  tagActionModel = require('../server/tag/tagActionModel.js'),
   userModel = require('../server/user/userModel.js'),
   user,
   tagModel = require('../server/tag/tagModel.js'),
@@ -40,7 +41,7 @@ describe('todoCtrl.js', function () {
       userModel.find({}, populateUser);
     }
 
-    function populateUser (err, data) {
+    function populateUser(err, data) {
       user = data[0];
       createNewTag();
     }
@@ -82,7 +83,7 @@ describe('todoCtrl.js', function () {
       Title: 'test title',
       RepeatFormula: '1|d',
       DueDate: new Date(2015, 3, 28),
-      Tags: [ tag._id ],
+      Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
       Completed: false
@@ -90,13 +91,15 @@ describe('todoCtrl.js', function () {
 
     todoModel.create(source, function (err) {
       expect(err).toBe(null);
-      todoModel.findOne({_owner: user._id }, function (err, data) {
+      todoModel.findOne({ _owner: user._id }, function (err, data) {
         expect(err).toBe(null);
+
+        expect(data).toBeDefined();
         expect(data._owner).toBeUndefined();
         expect(data.Title).toBe(source.Title);
         expect(data.RepeatFormula).toBe(source.RepeatFormula);
         expect(data.DueDate.toString()).toBe(source.DueDate.toString());
-        expect(data.Tags[0]._id).toBe(source.Tags[0]._id);
+        expect(data.Tags[0].toString()).toBe(tag._id.toString());
         expect(data.Contexts[0]).toBe(source.Contexts[0]);
         expect(data.Description).toBe(source.Description);
         expect(data.Completed).toBe(false);
@@ -113,7 +116,7 @@ describe('todoCtrl.js', function () {
       Title: 'test title',
       RepeatFormula: '1|d|t',
       DueDate: new Date(2015, 3, 28),
-      Tags: [ tag._id ],
+      Tags: [tag._id],
       Contexts: ['hello'],
       Description: 'test description',
       Completed: false
@@ -282,4 +285,58 @@ describe('todoCtrl.js', function () {
     });
   });
 
+  it('processes tag actions', function (done) {
+    var toTag = {
+      _owner: user._id,
+      Title: 'example tag',
+      Type: 1
+    };
+
+
+    tagModel.create(toTag, { upsert: true }, function (err, data) {
+      toTag = data;
+
+      tagActionModel.create({
+        Trigger: 'onComplete',
+        Do: 'moveTo',
+        FromTag: tag._id,
+        ToTag: toTag._id
+      }, function () {
+
+      });
+
+      tagActionModel.create({
+        Trigger: 'onComplete',
+        Do: 'moveTo',
+        FromTag: toTag._id,
+        ToTag: tag._id
+      }, function () {
+
+      });
+
+      tag.save(saveTodo);
+    });
+
+    function saveTodo(err, tagData) {
+      expect(err).toBe(null);
+      var source = {
+        _owner: user._id,
+        Title: 'test title',
+        RepeatFormula: '',
+        DueDate: new Date(2015, 3, 28),
+        Tags: [tag._id],
+        Contexts: ['hello'],
+        Description: 'test description',
+        Completed: true
+      };
+
+      todoCtrl.save(source, test);
+    }
+
+    function test(err, data) {
+      expect(data.Tags.length).toBe(1);
+      //expect(data.Tags[0].toString()).toBe(toTag._id.toString());
+      done();
+    }
+  });
 });

@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var TagSchema = new Schema({
   _owner: { type: Schema.Types.ObjectId, ref: 'User', select: false},
   Title: String,
-  Type: Number,
+  Type: Number
 });
 
 module.exports = mongoose.model('Tag', TagSchema);

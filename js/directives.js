@@ -80,3 +80,17 @@ ToDone.App.directive('repeatFormat', function () {
         }
     };
 });
+
+ToDone.App.directive('countDown', ['APIService', function (APIService) {
+  var directive = {};
+
+  directive.restrict = 'A';
+  directive.templateUrl = 'partials/directives/countDown.htm';
+  directive.link = function (scope, elem, attrs) {
+    APIService.get(ToDone.API.Todo() + 'list/list', function (err, data) {
+      scope.todos = data;
+    });
+  };
+
+  return directive;
+}]);

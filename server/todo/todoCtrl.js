@@ -1,6 +1,7 @@
 ﻿'use strict';
 
 var todoModel = require('./todoModel.js'),
+  tagActionModel = require('../tag/tagActionModel.js'),
   moment = require('moment');
 
 // Processes and save a todo to the database.
@@ -15,8 +16,32 @@ function _save(todo, cb) {
 
 // Process the todo before saving it.
 function _processTodo(todo) {
-  if (todo.Completed && todo.RepeatFormula) {
-    _setRepeat(todo);
+  if (todo.Completed) {
+    if (todo.RepeatFormula) {
+      _setRepeat(todo);
+    }
+
+    //_processTagAction(todo);
+  }
+}
+
+function _processTagAction(todo) {
+  var i = 0,
+    j = 0;
+
+  for (i = 0; i < todo.Tags.length; i++) {
+    tagActionModel.find({ FromTag: todo.Tags[i] }, function (err, data) {
+      console.log(data);
+    });
+  //  if (todo.Tags[i].Actions) {
+  //    for (j = 0; j < todo.Tags[i].Actions.length; j++) {
+  //      if (todo.Tags[i].Actions[j].Trigger == 'onComplete') {
+  //        if (todo.Tags[i].Actions[j].Do == 'moveTo') {
+  //          todo.Tags[i] = todo.Tags[i].Actions[j].Tag;
+  //        }
+  //      }
+  //    }
+  //  }
   }
 }
 
