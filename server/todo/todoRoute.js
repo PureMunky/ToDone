@@ -13,6 +13,12 @@ router.get('/', function (req, res, next) {
   });
 });
 
+router.get('/list/countDown', function (req, res, next) {
+  rh.authenticate(req, res, next, function (err, userId) {
+    todo.find({ _owner: userId, CountDown: true }).sort({ DueDate: 1 }).exec(rh.resolve(res, next));
+  });
+});
+
 router.get('/list/:sort', function (req, res, next) {
   rh.authenticate(req, res, next, function (err, userId) {
     todo.find({ _owner: userId }).populate('Tags').sort({ title: 1 }).exec(rh.resolve(res, next));

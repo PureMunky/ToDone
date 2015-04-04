@@ -87,9 +87,14 @@ ToDone.App.directive('countDown', ['APIService', function (APIService) {
   directive.restrict = 'A';
   directive.templateUrl = 'partials/directives/countDown.htm';
   directive.link = function (scope, elem, attrs) {
-    APIService.get(ToDone.API.Todo() + 'list/list', function (err, data) {
-      scope.todos = data;
-    });
+    _update();
+
+    function _update() {
+      APIService.get(ToDone.API.Todo() + 'list/countDown', function (err, data) {
+        scope.todos = data;
+        //setTimeout(_update, 5 * 60 * 1000);
+      });
+    }
   };
 
   return directive;

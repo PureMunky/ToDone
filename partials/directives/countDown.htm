@@ -1,1 +1,1 @@
-﻿<span class="well" ng-repeat="todo in todos">{{todo.Title}} {{todo.DueDate | date: 'medium'}}</span>
+﻿<span class="well" ng-repeat="todo in todos">{{todo.Title}} - {{todo.DueDate | date: 'medium' }} - {{todo.DueDate | until}}</span>

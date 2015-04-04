@@ -10,6 +10,14 @@
 		</tr>
         <tr>
             <td colspan="2">
+                <div class="input-prepend">
+                    <span class="add-on">Count Down</span>
+                    <span class="add-on"><input type="checkbox" ng-model="todo.CountDown" ng-checked="todo.CountDown" /></span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
                 Due: {{todo.DueDate | date: 'mediumDate'}}
             </td>
         </tr>
