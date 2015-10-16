@@ -2,12 +2,14 @@
 
 var config = {};
 
-config['PRIMARY'] = {};
-config['PRIMARY'].db = {};
-config['PRIMARY'].db.conn = 'mongodb://localhost/todoAppDev';
-
-config['TEST'] = {};
-config['TEST'].db = {};
-config['TEST'].db.conn = 'mongodb://localhost/todoAppTest';
+config = {
+    db: {
+        conn: process.env.MONGODB_URL || 'mongodb://localhost/todoApp'
+    },
+    web: {
+        port: process.env.PORT,
+        IP: process.env.IP
+    }
+};
 
 module.exports = config;

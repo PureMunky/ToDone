@@ -3,7 +3,7 @@
 var user = require('../server/user/userCtrl.js'),
   userModel = require('../server/user/userModel.js'),
   mongoose = require('mongoose'),
-  config = require('../server/config.js')['TEST'];
+  config = require('../server/config.js');
 
 describe('userCtrl.js', function () {
   beforeEach(function (done) {
