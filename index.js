@@ -14,7 +14,7 @@ app.use('/user', user);
 app.use(express.static(__dirname));
 
 app.listen(config.web.port);
-console.log('web server listening');
+console.log('web server listening on port ' + config.web.port);
 
 mongoose.connect(config.db.conn, function (err) {
   if (err) {
