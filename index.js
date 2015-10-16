@@ -13,6 +13,7 @@ app.use('/tag', tag);
 app.use('/user', user);
 app.use(express.static(__dirname));
 
+// Start listening at a particular port
 app.listen(config.web.port);
 console.log('web server listening on port ' + config.web.port);
 
