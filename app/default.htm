@@ -1,0 +1,55 @@
+<!doctype html>
+<!--<html lang="en" ng-app="ToDone" manifest="todone.appcache">-->
+<html lang="en" ng-app="ToDone">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <title>ToDone</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet" />
+    <link href="css/core.css" rel="stylesheet" />
+    <link rel="icon" type="image/png" href="img/ToDone.png" />
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="js/config_online.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/directives.js"></script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="brand" href="#">ToDone</a>
+                <div class="nav-collapse collapse">
+                    <ul class="nav" ng-controller="ToDone.Controllers.MainNavigation">
+                        <li ng-repeat="link in links"><a ng-href="{{link.Link}}">{{link.Name}}</a></li>
+                    </ul>
+                    <form ng-controller="ToDone.Controllers.QuickAdd" ng-submit="save()" class="navbar-form pull-right">
+                        <input type="text" ng-model="todo.Title" placeholder="QuickAdd" />
+                        <button type="button" class="btn" ng-click="save()">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container" count-down></div>
+    <div ng-view class="container"></div>
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/client:plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+        })();
+    </script>
+</body>
+</html>
